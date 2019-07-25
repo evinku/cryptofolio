@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 const StyledCard = styled.div`
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr 2.5fr;
+  grid-template-columns: 25px 4fr 3fr 4fr;
 `;
 
 function CoinCardHeadlines() {
   return (
     <>
       <StyledCard>
-        <span>Rank</span>
+        <span>No</span>
         <span>Name</span>
         <span>Price</span>
         <span>Marketcap</span>

@@ -8,7 +8,7 @@ const StyledSection = styled.section``;
 
 const StyledCard = styled.div`
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr 2.5fr;
+  grid-template-columns: 25px 4fr 3fr 4fr;
 `;
 
 const StyledImg = styled.img`
@@ -32,7 +32,7 @@ function CoinCards({ coinData }) {
             <StyledImg alt={coinData.name} src={coinData.image} />
             <span>{coinData.name}</span>
           </StyledGroup>
-          <span>${trenner(coinData.current_price)}</span>
+          <span>${coinData.current_price}</span>
           <span>${trenner(coinData.market_cap)}</span>
         </StyledCard>
         <hr />
