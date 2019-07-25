@@ -3,9 +3,9 @@ import MarketsPage from "./markets/MarketsPage";
 
 function App() {
   return (
-    <div>
+    <>
       <MarketsPage />
-    </div>
+    </>
   );
 }
 
