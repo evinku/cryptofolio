@@ -1,11 +1,14 @@
 import React from "react";
-import styled from "styled-components";
 import CoinCard from "./CoinCard";
+import CoinCardHeadlines from "./CoinCardHeadlines";
 
 function MarketsPage() {
-  return;
-
-  <CoinCard />;
+  return (
+    <>
+      <CoinCardHeadlines />
+      <CoinCard />
+    </>
+  );
 }
 
 export default MarketsPage;

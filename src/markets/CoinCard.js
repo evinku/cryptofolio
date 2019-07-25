@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import trenner from "../utils/trenner";
 
 const StyledCard = styled.div`
   display: grid;
@@ -13,8 +14,6 @@ const StyledImg = styled.img`
   margin-right: 5px;
 `;
 
-const StyledData = styled.span``;
-
 const StyledGroup = styled.div`
   display: flex;
   align-items: center;
@@ -24,13 +23,13 @@ function CoinCard({ market_cap_rank, image, name, current_price, market_cap }) {
   return (
     <>
       <StyledCard>
-        <StyledData>{market_cap_rank}</StyledData>
+        <span>{market_cap_rank}</span>
         <StyledGroup>
           <StyledImg alt={name} src={image} />
-          <StyledData>{name}</StyledData>
+          <span>{name}</span>
         </StyledGroup>
-        <StyledData>${current_price}</StyledData>
-        <StyledData>${market_cap}</StyledData>
+        <span>${trenner(current_price)}</span>
+        <span>${trenner(market_cap)}</span>
       </StyledCard>
       <hr />
     </>

@@ -5,6 +5,8 @@ menu: Components
 
 import { Props, Playground } from "docz";
 import CoinCard from "./CoinCard";
+import CoinCardHeadlines from "./CoinCardHeadlines";
+
 //import GlobalStyles from '../app/GlobalStyles';
 
 //<GlobalStyles />
@@ -16,39 +18,21 @@ import CoinCard from "./CoinCard";
 ## Basic usage
 
 <Playground>
-  <CoinCard
-    market_cap_rank={1}
-    image="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
-    name="Bitcoin"
-    current_price={4234}
-    market_cap={452342423}
-  />
-  <CoinCard
-    market_cap_rank={1}
-    image="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
-    name="Bitcoin"
-    current_price={4234}
-    market_cap={452342423}
-  />
-  <CoinCard
-    market_cap_rank={1}
-    image="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
-    name="Bitcoin"
-    current_price={4234}
-    market_cap={452342423}
-  />
-  <CoinCard
-    market_cap_rank={1}
-    image="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
-    name="Bitcoin"
-    current_price={4234}
-    market_cap={452342423}
-  />
-  <CoinCard
-    market_cap_rank={1}
-    image="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
-    name="Bitcoin"
-    current_price={4234}
-    market_cap={452342423}
-  />
+  <>
+    <CoinCardHeadlines />
+    <CoinCard
+      market_cap_rank={1}
+      image="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
+      name="Bitcoin"
+      current_price={42345}
+      market_cap={4523424235355}
+    />
+    <CoinCard
+      market_cap_rank={1}
+      image="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
+      name="Bitcoin"
+      current_price={4234}
+      market_cap={452342423}
+    />
+  </>
 </Playground>

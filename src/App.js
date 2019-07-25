@@ -1,7 +1,12 @@
 import React from "react";
+import MarketsPage from "./markets/MarketsPage";
 
 function App() {
-  return <div className="App">Cryptofolio</div>;
+  return (
+    <div>
+      <MarketsPage />
+    </div>
+  );
 }
 
 export default App;
