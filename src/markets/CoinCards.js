@@ -45,6 +45,7 @@ function CoinCards({ coinData }) {
   return (
     <StyledSection>
       <CoinCardHeadlines />
+      {coinData.length === 0 && <div>Loading...</div>}
       {coinData && coinData.map(renderCoinCard)}
     </StyledSection>
   );
