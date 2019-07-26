@@ -4,6 +4,7 @@ import styled from "styled-components";
 const StyledCard = styled.div`
   display: grid;
   grid-template-columns: 25px 4fr 3fr 4fr;
+  font-weight: bold;
 `;
 
 function CoinCardHeadlines() {

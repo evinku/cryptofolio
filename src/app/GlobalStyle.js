@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
 
   html, body {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Saira Semi Condensed', sans-serif;
   }
 `;
 

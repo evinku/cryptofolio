@@ -34,7 +34,7 @@ function CoinCards({ coinData }) {
             <StyledImg alt={coinData.name} src={coinData.image} />
             <span>{coinData.name}</span>
           </StyledGroup>
-          <span>${coinData.current_price}</span>
+          <span>${coinData.current_price.toFixed(2)}</span>
           <span>${trenner(coinData.market_cap)}</span>
         </StyledCard>
         <hr />
