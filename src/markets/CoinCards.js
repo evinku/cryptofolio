@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 import trenner from "../utils/trenner";
 import CoinCardHeadlines from "./CoinCardHeadlines";
 
-const StyledSection = styled.section``;
+const StyledSection = styled.section`
+  margin: 5px;
+`;
 
 const StyledCard = styled.div`
   display: grid;
