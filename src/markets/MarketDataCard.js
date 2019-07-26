@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-const StyledDiv = styled.div`
+const StyledSection = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 5px;
@@ -16,11 +16,12 @@ const StyledGroup = styled.div`
   align-items: center;
   border: solid 1px;
   border-radius: 5px;
+  padding: 5px;
 `;
 
 function MarketDataCard({ marketData }) {
   return (
-    <StyledDiv>
+    <StyledSection>
       <StyledGroup>
         <span>Total Marketcap</span>
         <span>${marketData && marketData.total_market_cap_usd}</span>
@@ -36,7 +37,7 @@ function MarketDataCard({ marketData }) {
         <span>Bitcoin Dominanz</span>
         <span>{marketData && marketData.market_cap_percentage_btc}%</span>
       </StyledGroup>
-    </StyledDiv>
+    </StyledSection>
   );
 }
 
