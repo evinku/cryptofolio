@@ -1,8 +1,14 @@
 import React from "react";
 import CoinCards from "./CoinCards";
-import coinData from "./__mock__/coinData";
+import { getCoinData } from "../utils/coinGecko";
 
 function MarketsPage() {
+  const [coinData, setCoinData] = React.useState([]);
+
+  React.useEffect(() => {
+    getCoinData().then(coinData => setCoinData(coinData));
+  });
+
   return (
     <>
       <CoinCards coinData={coinData} />
