@@ -11,8 +11,8 @@ const StyledDiv = styled.div`
 const StyledInput = styled.input`
   margin: 5px;
   border: solid 1px;
-  border-radius: 3px;
-  font-size: 20px;
+  border-radius: 10px;
+  font-size: 18px;
   padding: 3px;
   margin-bottom: 20px;
 `;
