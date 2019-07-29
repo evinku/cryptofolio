@@ -17,9 +17,21 @@ const StyledInput = styled.input`
   margin-bottom: 20px;
 `;
 
-function Search({ coinData }) {
-  function handlechange() {
-    return null;
+function Search({ coinData, onSearchChange }) {
+  function handlechange(event) {
+    const input = event.target.value.toLowerCase();
+
+    if (input === "") {
+      const filteredCoins = null;
+      return onSearchChange(filteredCoins);
+    }
+
+    if (coinData.length > 0) {
+      const filteredCoins = coinData.filter(coin =>
+        coin.name.toLowerCase().startsWith(input)
+      );
+      onSearchChange(filteredCoins);
+    }
   }
 
   return (
@@ -28,5 +40,9 @@ function Search({ coinData }) {
     </StyledDiv>
   );
 }
+
+Search.propTypes = {
+  onSearchChange: PropTypes.func.isRequired
+};
 
 export default Search;
