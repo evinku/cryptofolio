@@ -2,6 +2,7 @@ import React from "react";
 import CoinCards from "./CoinCards";
 import { getCoinData, getMarketData } from "../utils/coinGecko";
 import MarketDataCard from "./MarketDataCard";
+import Search from "./Search";
 
 function MarketsPage() {
   const [coinData, setCoinData] = React.useState([]);
@@ -15,6 +16,7 @@ function MarketsPage() {
   return (
     <>
       <MarketDataCard marketData={marketData} />
+      <Search />
       <CoinCards coinData={coinData} />
     </>
   );
