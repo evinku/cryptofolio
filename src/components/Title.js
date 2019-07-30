@@ -18,13 +18,18 @@ const StyledTitle = styled.h1`
   text-align: center;
 `;
 
+const StyledHr = styled.hr`
+  width: 200px;
+  margin-bottom: 30px;
+`;
+
 function Title({ size, children, className }) {
   return (
     <>
       <StyledTitle size={size} className={className}>
         {children}
       </StyledTitle>
-      <hr />
+      <StyledHr />
     </>
   );
 }
