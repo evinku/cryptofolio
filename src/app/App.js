@@ -3,20 +3,32 @@ import styled from "styled-components";
 import React from "react";
 import MarketsPage from "../markets/MarketsPage";
 import GlobalStyles from "./GlobalStyle";
+import AddTransactionPage from "../addTransaction/AddTransactionPage";
 
 const Grid = styled.div`
   display: grid;
   grid-template-rows: auto 48px;
-  height: 100vh;
 `;
 
 function App() {
+  const [transactions, setTransactions] = React.useState("");
+
+  function handleOnClick(transaction) {
+    console.log(transaction);
+  }
+
   return (
     <Router>
       <GlobalStyles />
       <Grid>
         <Switch>
           <Route path="/markets" render={props => <MarketsPage {...props} />} />
+          <Route
+            path="/add_transaction"
+            render={props => (
+              <AddTransactionPage {...props} onClick={handleOnClick} />
+            )}
+          />
         </Switch>
       </Grid>
     </Router>

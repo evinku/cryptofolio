@@ -3,21 +3,33 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
+  display:flex;
+  justify-content: center;
+  align-items: center;
   width: 48px;
   height: 48px;
   border-radius: 50%;
   border: none;
-  color: ${props => (props.active ? "goldenrod" : "black")};
-  font-size: 20px;
+  /*color: ${props => (props.active ? "goldenrod" : "black")};*/
   cursor: pointer;
-  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
+  
 `;
 
-function ActionButton({ icon, active, onClick, className }) {
+const StyledGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+function ActionButton({ icon, active, onClick, className, type }) {
   return (
-    <StyledButton className={className} active={active} onClick={onClick}>
-      <i className={`fas ${icon}`} />
-    </StyledButton>
+    <StyledGroup>
+      <StyledButton className={className} active={active} onClick={onClick}>
+        <i className={`fas ${icon}`} />
+      </StyledButton>
+      <h3>{type}</h3>
+    </StyledGroup>
   );
 }
 
