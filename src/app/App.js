@@ -11,10 +11,10 @@ const Grid = styled.div`
 `;
 
 function App() {
-  const [transactions, setTransactions] = React.useState("");
+  const [transactions, setTransactions] = React.useState([]);
 
   function handleOnClick(transaction) {
-    console.log(transaction);
+    setTransactions([transaction, ...transactions]);
   }
 
   return (

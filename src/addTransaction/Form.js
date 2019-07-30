@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 import ActionButton from "./ActionButton";
+import PropTypes from "prop-types";
 
 const BuyButton = styled(ActionButton).attrs({
   icon: "fa-smile-beam",
@@ -63,7 +63,7 @@ function Form({ onClick }) {
   }
 
   return (
-    <AddTransactionForm onSubmit={handleBuyClick}>
+    <AddTransactionForm>
       <StyledInput
         onChange={handleChange}
         name="coin"
@@ -91,5 +91,9 @@ function Form({ onClick }) {
     </AddTransactionForm>
   );
 }
+
+Form.propTypes = {
+  onClick: PropTypes.func
+};
 
 export default Form;

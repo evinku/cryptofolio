@@ -1,6 +1,4 @@
-import PropTypes from "prop-types";
 import React from "react";
-import styled from "styled-components";
 import Title from "../components/Title";
 import Form from "./Form";
 
