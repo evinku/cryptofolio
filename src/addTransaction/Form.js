@@ -44,7 +44,8 @@ function Form({ onClick }) {
     coin: "",
     price: "",
     quantity: "",
-    date: ""
+    date: "",
+    type: ""
   });
 
   function handleChange(event) {
@@ -54,32 +55,50 @@ function Form({ onClick }) {
     event.preventDefault();
     formData.type = "buy";
     onClick(formData);
+    setFormdata({
+      coin: "",
+      price: "",
+      quantity: "",
+      date: "",
+      type: ""
+    });
   }
 
   function handleSellClick(event) {
     event.preventDefault();
     formData.type = "sell";
     onClick(formData);
+    setFormdata({
+      coin: "",
+      price: "",
+      quantity: "",
+      date: "",
+      type: ""
+    });
   }
 
   return (
     <AddTransactionForm>
       <StyledInput
+        value={formData.coin}
         onChange={handleChange}
         name="coin"
         placeholder="Choose your Coin"
       />
       <StyledInput
+        value={formData.date}
         onChange={handleChange}
         name="date"
         placeholder="Date (Format: YYYY-MM-DD)"
       />
       <StyledInput
+        value={formData.price}
         onChange={handleChange}
         name="price"
         placeholder="Price in $"
       />
       <StyledInput
+        value={formData.quantity}
         onChange={handleChange}
         name="quantity"
         placeholder="Quantity"

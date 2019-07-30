@@ -17,6 +17,8 @@ function App() {
     setTransactions([transaction, ...transactions]);
   }
 
+  console.log(transactions);
+
   return (
     <Router>
       <GlobalStyles />
