@@ -7,7 +7,7 @@ const StyledSection = styled.section`
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 5px;
   margin: 3px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 const StyledGroup = styled.div`
