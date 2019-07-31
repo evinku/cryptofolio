@@ -12,17 +12,23 @@ const StyledDatePicker = styled(DatePicker)`
 `;
 
 function PickDate({ onDateChange }) {
-  const [date, setDate] = React.useState(new Date());
+  const [date, setDate] = React.useState();
 
   function handleDateChange(date) {
     setDate(date);
     onDateChange(date);
   }
 
+  function handleClick() {
+    setDate(new Date());
+  }
+
   return (
     <StyledDatePicker
-      selected={date}
+      placeholderText="Select date..."
+      selected={date ? date : null}
       onChange={handleDateChange}
+      onclick={handleClick}
       showTimeSelect
       timeFormat="HH:mm"
       timeIntervals={5}

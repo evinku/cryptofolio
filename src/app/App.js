@@ -25,6 +25,11 @@ function App() {
     setTransactions([transaction, ...transactions]);
   }
 
+  const coinOptions = coinData.map(coin => ({
+    label: coin.name,
+    value: coin.id
+  }));
+
   console.log(transactions);
 
   return (
@@ -48,6 +53,7 @@ function App() {
               <AddTransactionPage
                 {...props}
                 onNewTransaction={handleNewTransaction}
+                coinOptions={coinOptions}
               />
             )}
           />

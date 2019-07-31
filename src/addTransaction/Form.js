@@ -43,7 +43,7 @@ const StyledInput = styled.input`
   padding: 5px;
 `;
 
-function Form({ onSubmit }) {
+function Form({ onSubmit, coinOptions }) {
   const [formData, setFormData] = React.useState({
     coin: "",
     price: "",
@@ -74,15 +74,18 @@ function Form({ onSubmit }) {
     setFormData({ ...formData, date: newDate.toISOString() });
   }
 
+  function handleDropdownChange(dropdownValue) {
+    setFormData({ ...formData, coin: dropdownValue });
+  }
+
+  console.log(formData);
+
   return (
     <AddTransactionForm>
-      <StyledInput
-        value={formData.coin}
-        onChange={handleChange}
-        name="coin"
-        placeholder="Choose your Coin"
+      <DropdownMenu
+        coinOptions={coinOptions}
+        onDropdownChange={handleDropdownChange}
       />
-      <DropdownMenu />
       <PickDate onDateChange={handleDateChange} />
       <StyledInput
         value={formData.price}
@@ -105,7 +108,8 @@ function Form({ onSubmit }) {
 }
 
 Form.propTypes = {
-  onClick: PropTypes.func
+  onSubmit: PropTypes.func,
+  coinOptions: PropTypes.array
 };
 
 export default Form;
