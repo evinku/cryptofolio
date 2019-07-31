@@ -36,10 +36,15 @@ const AddTransactionForm = styled.form`
 
 const StyledInput = styled.input`
   width: 300px;
-  height: 50px;
+  height: 30px;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 15px;
   padding: 5px;
+`;
+
+const StyledDescription = styled.h2`
+  margin: 0;
+  margin-bottom: 2px;
 `;
 
 const StyledError = styled.div`
@@ -97,6 +102,7 @@ function Form({ onSubmit, coinOptions }) {
     }
     onSubmit({ ...formData, type });
     resetForm();
+    setErrors({});
   }
 
   function handleDateChange(newDate) {
@@ -111,29 +117,41 @@ function Form({ onSubmit, coinOptions }) {
 
   return (
     <AddTransactionForm>
-      <DropdownMenu
-        coinOptions={coinOptions}
-        onDropdownChange={handleDropdownChange}
-      />
-      {errors.coin && <StyledError>{errors.coin}</StyledError>}
-      <PickDate onDateChange={handleDateChange} />
-      {errors.date && <StyledError>{errors.date}</StyledError>}
-      <StyledInput
-        type="number"
-        value={formData.price}
-        onChange={handleChange}
-        name="price"
-        placeholder="Price in $"
-      />
-      {errors.price && <StyledError>{errors.price}</StyledError>}
-      <StyledInput
-        type="number"
-        value={formData.quantity}
-        onChange={handleChange}
-        name="quantity"
-        placeholder="Quantity"
-      />
-      {errors.quantity && <StyledError>{errors.quantity}</StyledError>}
+      <div>
+        <StyledDescription>Coin:</StyledDescription>
+        <DropdownMenu
+          coinOptions={coinOptions}
+          onDropdownChange={handleDropdownChange}
+        />
+        {errors.coin && <StyledError>{errors.coin}</StyledError>}
+      </div>
+      <div>
+        <StyledDescription>Date:</StyledDescription>
+        <PickDate onDateChange={handleDateChange} />
+        {errors.date && <StyledError>{errors.date}</StyledError>}
+      </div>
+      <div>
+        <StyledDescription>Price:</StyledDescription>
+        <StyledInput
+          type="number"
+          value={formData.price}
+          onChange={handleChange}
+          name="price"
+          placeholder="Price in $"
+        />
+        {errors.price && <StyledError>{errors.price}</StyledError>}
+      </div>
+      <div>
+        <StyledDescription>Quantity:</StyledDescription>
+        <StyledInput
+          type="number"
+          value={formData.quantity}
+          onChange={handleChange}
+          name="quantity"
+          placeholder="Quantity"
+        />
+        {errors.quantity && <StyledError>{errors.quantity}</StyledError>}
+      </div>
       <ButtonGroup>
         <BuyButton onClick={event => handleSubmit(event, "buy")} />
         <SellButton onClick={event => handleSubmit(event, "sell")} />

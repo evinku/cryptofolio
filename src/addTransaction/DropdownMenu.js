@@ -15,7 +15,14 @@ const StyledSelect = styled(Select)`
     width: 200px;
     height: 50px;
   }
-  .react-dropdown-select-item {
+  .react-dropdown-select {
+    border-radius: 10px;
+  }
+  .react-dropdown-select-content {
+    display: flex;
+    align-items: center;
+    width: 270px;
+    font-size: 15px;
   }
 `;
 

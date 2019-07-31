@@ -5,9 +5,9 @@ import PropTypes from "prop-types";
 
 const StyledDatePicker = styled(DatePicker)`
   width: 300px;
-  height: 50px;
+  height: 30px;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 15px;
   padding: 5px;
 `;
 
