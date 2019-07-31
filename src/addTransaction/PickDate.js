@@ -1,6 +1,7 @@
 import DatePicker from "react-datepicker";
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const StyledDatePicker = styled(DatePicker)`
   width: 300px;
@@ -30,5 +31,9 @@ function PickDate({ onDateChange }) {
     />
   );
 }
+
+PickDate.propTypes = {
+  onDateChange: PropTypes.func
+};
 
 export default PickDate;

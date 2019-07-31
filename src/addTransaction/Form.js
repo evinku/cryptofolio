@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 
 import "react-datepicker/dist/react-datepicker.css";
 import PickDate from "./PickDate";
+import DropdownMenu from "./DropdownMenu";
 
 const BuyButton = styled(ActionButton).attrs({
   icon: "fa-smile-beam",
@@ -81,6 +82,7 @@ function Form({ onSubmit }) {
         name="coin"
         placeholder="Choose your Coin"
       />
+      <DropdownMenu />
       <PickDate onDateChange={handleDateChange} />
       <StyledInput
         value={formData.price}
