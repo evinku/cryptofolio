@@ -13,7 +13,7 @@ const Grid = styled.div`
 function App() {
   const [transactions, setTransactions] = React.useState([]);
 
-  function handleOnClick(transaction) {
+  function handleNewTransaction(transaction) {
     setTransactions([transaction, ...transactions]);
   }
 
@@ -28,7 +28,10 @@ function App() {
           <Route
             path="/add_transaction"
             render={props => (
-              <AddTransactionPage {...props} onClick={handleOnClick} />
+              <AddTransactionPage
+                {...props}
+                onNewTransaction={handleNewTransaction}
+              />
             )}
           />
         </Switch>

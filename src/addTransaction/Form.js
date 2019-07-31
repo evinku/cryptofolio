@@ -3,6 +3,9 @@ import styled from "styled-components";
 import ActionButton from "./ActionButton";
 import PropTypes from "prop-types";
 
+import "react-datepicker/dist/react-datepicker.css";
+import PickDate from "./PickDate";
+
 const BuyButton = styled(ActionButton).attrs({
   icon: "fa-smile-beam",
   type: "Buy"
@@ -39,42 +42,35 @@ const StyledInput = styled.input`
   padding: 5px;
 `;
 
-function Form({ onClick }) {
-  const [formData, setFormdata] = React.useState({
+function Form({ onSubmit }) {
+  const [formData, setFormData] = React.useState({
     coin: "",
     price: "",
     quantity: "",
-    date: "",
-    type: ""
+    date: ""
   });
 
-  function handleChange(event) {
-    setFormdata({ ...formData, [event.target.name]: event.target.value });
-  }
-  function handleBuyClick(event) {
-    event.preventDefault();
-    formData.type = "buy";
-    onClick(formData);
-    setFormdata({
+  function resetForm() {
+    setFormData({
       coin: "",
       price: "",
       quantity: "",
-      date: "",
-      type: ""
+      date: ""
     });
   }
 
-  function handleSellClick(event) {
+  function handleChange(event) {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  }
+
+  function handleSubmit(event, type) {
     event.preventDefault();
-    formData.type = "sell";
-    onClick(formData);
-    setFormdata({
-      coin: "",
-      price: "",
-      quantity: "",
-      date: "",
-      type: ""
-    });
+    onSubmit({ ...formData, type });
+    resetForm();
+  }
+
+  function handleDateChange(newDate) {
+    setFormData({ ...formData, date: newDate.toISOString() });
   }
 
   return (
@@ -85,12 +81,7 @@ function Form({ onClick }) {
         name="coin"
         placeholder="Choose your Coin"
       />
-      <StyledInput
-        value={formData.date}
-        onChange={handleChange}
-        name="date"
-        placeholder="Date (Format: YYYY-MM-DD)"
-      />
+      <PickDate onDateChange={handleDateChange} />
       <StyledInput
         value={formData.price}
         onChange={handleChange}
@@ -104,8 +95,8 @@ function Form({ onClick }) {
         placeholder="Quantity"
       />
       <ButtonGroup>
-        <BuyButton onClick={handleBuyClick} />
-        <SellButton onClick={handleSellClick} />
+        <BuyButton onClick={event => handleSubmit(event, "buy")} />
+        <SellButton onClick={event => handleSubmit(event, "sell")} />
       </ButtonGroup>
     </AddTransactionForm>
   );

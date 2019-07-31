@@ -2,11 +2,11 @@ import React from "react";
 import Title from "../components/Title";
 import Form from "./Form";
 
-function AddTransactionPage({ onClick }) {
+function AddTransactionPage({ onNewTransaction }) {
   return (
     <>
       <Title size="L">Add Transaction</Title>
-      <Form onClick={onClick} />
+      <Form onSubmit={onNewTransaction} />
     </>
   );
 }
