@@ -12,7 +12,7 @@ const StyledSelect = styled(Select)`
 `;
 
 function DropdownMenu({ coinOptions }) {
-  const coinOptions = [
+  const coinOptionstest = [
     { label: "Bitcoin", value: "Bi" },
     { label: "Bitcoi", value: "Bit" }
   ];

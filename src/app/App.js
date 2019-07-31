@@ -4,6 +4,7 @@ import React from "react";
 import MarketsPage from "../markets/MarketsPage";
 import GlobalStyles from "./GlobalStyle";
 import AddTransactionPage from "../addTransaction/AddTransactionPage";
+import { getCoinData, getMarketData } from "../utils/coinGecko";
 
 const Grid = styled.div`
   display: grid;
@@ -12,6 +13,13 @@ const Grid = styled.div`
 
 function App() {
   const [transactions, setTransactions] = React.useState([]);
+  const [coinData, setCoinData] = React.useState([]);
+  const [marketData, setMarketData] = React.useState({});
+
+  React.useEffect(() => {
+    getCoinData().then(coinData => setCoinData(coinData));
+    getMarketData().then(marketData => setMarketData(marketData));
+  }, []);
 
   function handleNewTransaction(transaction) {
     setTransactions([transaction, ...transactions]);
@@ -24,7 +32,16 @@ function App() {
       <GlobalStyles />
       <Grid>
         <Switch>
-          <Route path="/markets" render={props => <MarketsPage {...props} />} />
+          <Route
+            path="/markets"
+            render={props => (
+              <MarketsPage
+                {...props}
+                coinData={coinData}
+                marketData={marketData}
+              />
+            )}
+          />
           <Route
             path="/add_transaction"
             render={props => (
