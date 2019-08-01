@@ -4,7 +4,7 @@ import React from "react";
 import MarketsPage from "../markets/MarketsPage";
 import GlobalStyles from "./GlobalStyle";
 import AddTransactionPage from "../addTransaction/AddTransactionPage";
-import { getCoinData, getMarketData } from "../utils/coinGecko";
+import { getCoinData } from "../utils/coinGecko";
 import AllTransactionsPage from "../allTransactions/AllTransactionsPage";
 import { setToLocal, getFromLocal } from "../services";
 
@@ -15,14 +15,12 @@ const Grid = styled.div`
 
 function App() {
   const [transactions, setTransactions] = React.useState(
-    getFromLocal("transactions")
+    getFromLocal("transactions") || []
   );
   const [coinData, setCoinData] = React.useState([]);
-  const [marketData, setMarketData] = React.useState({});
 
   React.useEffect(() => {
     getCoinData().then(coinData => setCoinData(coinData));
-    getMarketData().then(marketData => setMarketData(marketData));
   }, []);
 
   React.useEffect(() => {
@@ -52,13 +50,7 @@ function App() {
           <Route
             path="/markets"
             exact
-            render={props => (
-              <MarketsPage
-                {...props}
-                coinData={coinData}
-                marketData={marketData}
-              />
-            )}
+            render={props => <MarketsPage {...props} coinData={coinData} />}
           />
           <Route
             path="/add_transaction"

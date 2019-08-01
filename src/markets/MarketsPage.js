@@ -3,9 +3,15 @@ import CoinCards from "./CoinCards";
 import MarketDataCard from "./MarketDataCard";
 import Search from "./Search";
 import Title from "../components/Title";
+import { getMarketData } from "../utils/coinGecko";
 
-function MarketsPage({ coinData, marketData }) {
+function MarketsPage({ coinData }) {
   const [filteredCoins, setFilteredCoins] = React.useState(null);
+  const [marketData, setMarketData] = React.useState({});
+
+  React.useEffect(() => {
+    getMarketData().then(marketData => setMarketData(marketData));
+  }, []);
 
   function handleSearchChange(filteredCoins) {
     setFilteredCoins(filteredCoins);
