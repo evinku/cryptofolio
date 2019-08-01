@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import React from "react";
 import MarketsPage from "../markets/MarketsPage";
@@ -11,6 +6,7 @@ import GlobalStyles from "./GlobalStyle";
 import AddTransactionPage from "../addTransaction/AddTransactionPage";
 import { getCoinData, getMarketData } from "../utils/coinGecko";
 import AllTransactionsPage from "../allTransactions/AllTransactionsPage";
+import { setToLocal, getFromLocal } from "../services";
 
 const Grid = styled.div`
   display: grid;
@@ -18,7 +14,9 @@ const Grid = styled.div`
 `;
 
 function App() {
-  const [transactions, setTransactions] = React.useState([]);
+  const [transactions, setTransactions] = React.useState(
+    getFromLocal("transactions")
+  );
   const [coinData, setCoinData] = React.useState([]);
   const [marketData, setMarketData] = React.useState({});
 
@@ -26,6 +24,10 @@ function App() {
     getCoinData().then(coinData => setCoinData(coinData));
     getMarketData().then(marketData => setMarketData(marketData));
   }, []);
+
+  React.useEffect(() => {
+    setToLocal("transactions", transactions);
+  }, [transactions]);
 
   function handleNewTransaction(transaction) {
     setTransactions([transaction, ...transactions]);

@@ -1,9 +1,27 @@
 import React from "react";
 import Title from "../components/Title";
+import styled from "styled-components";
 import PropTypes from "prop-types";
+import ActionButton from "../components/ActionButton";
 
-function AllTransactionsPage() {
-  return <Title size="L">All Transactions</Title>;
+const AddMoreButton = styled(ActionButton).attrs({
+  icon: "fa-plus",
+  type: "Add more"
+})`
+  font-size: 20px;
+`;
+
+function AllTransactionsPage({ history }) {
+  function handleClick() {
+    history.push("/add_transaction");
+  }
+
+  return (
+    <>
+      <Title size="L">All Transactions</Title>;
+      <AddMoreButton onClick={handleClick} />
+    </>
+  );
 }
 
 AllTransactionsPage.propTypes = {};

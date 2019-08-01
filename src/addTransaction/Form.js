@@ -1,7 +1,6 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import styled from "styled-components";
-import ActionButton from "./ActionButton";
+import ActionButton from "../components/ActionButton";
 import PropTypes from "prop-types";
 import "react-datepicker/dist/react-datepicker.css";
 import PickDate from "./PickDate";
