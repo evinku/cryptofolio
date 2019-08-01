@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import Moment from "react-moment";
 
 const StyledSection = styled.section`
   margin: 5px;
@@ -39,7 +40,9 @@ function TransactionCards({ transactions }) {
     return (
       <div key={transaction.transaction_id}>
         <StyledCard color={transaction.type === "buy" ? "#A8D7B6" : "#F5A099"}>
-          <span>Date: {transaction.date}</span>
+          <span>
+            Date: <Moment format="YYYY/MM/DD HH:mm">{transaction.date}</Moment>
+          </span>
           <hr />
           <StyledTransactions>
             <StyledGroup>
