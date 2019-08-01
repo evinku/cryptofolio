@@ -1,0 +1,31 @@
+---
+name: TransactionCards
+menu: Components
+---
+
+import { Props, Playground } from "docz";
+import TransactionCards from "./TransactionCards";
+
+import GlobalStyles from "../app/GlobalStyle";
+
+<GlobalStyles />
+
+# TransactionCards
+
+<Props of={TransactionCards} />
+
+## Test Usage
+
+<Playground>
+  <TransactionCards
+    transactions={[
+      {
+        coin: "bitcoin",
+        price: 3232,
+        quantity: 4324,
+        date: "12.12.1990",
+        type: "Sell"
+      }
+    ]}
+  />
+</Playground>

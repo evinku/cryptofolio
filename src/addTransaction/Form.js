@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import ActionButton from "../components/ActionButton";
-import PropTypes from "prop-types";
 import "react-datepicker/dist/react-datepicker.css";
+import PropTypes from "prop-types";
 import PickDate from "./PickDate";
 import DropdownMenu from "./DropdownMenu";
+const uuidv1 = require("uuid/v1");
 
 const BuyButton = styled(ActionButton).attrs({
   icon: "fa-smile-beam",
@@ -55,6 +56,7 @@ const StyledError = styled.div`
 
 function Form({ history, onSubmit, coinOptions }) {
   const [formData, setFormData] = React.useState({
+    transaction_id: uuidv1(),
     coin: "",
     price: "",
     quantity: "",
@@ -83,6 +85,7 @@ function Form({ history, onSubmit, coinOptions }) {
 
   function resetForm() {
     setFormData({
+      transaction_id: uuidv1(),
       coin: "",
       price: "",
       quantity: "",

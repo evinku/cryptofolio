@@ -3,6 +3,7 @@ import Title from "../components/Title";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import ActionButton from "../components/ActionButton";
+import TransactionCards from "./TransactionCards";
 
 const AddMoreButton = styled(ActionButton).attrs({
   icon: "fa-plus",
@@ -19,12 +20,14 @@ function AllTransactionsPage({ history, transactions }) {
   return (
     <>
       <Title size="L">All Transactions</Title>
-      <div>{JSON.stringify(transactions)}</div>
+      <TransactionCards transactions={transactions} />
       <AddMoreButton onClick={handleClick} />
     </>
   );
 }
 
-AllTransactionsPage.propTypes = {};
+AllTransactionsPage.propTypes = {
+  transactions: PropTypes.array.isRequired
+};
 
 export default AllTransactionsPage;
