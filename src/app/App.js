@@ -5,6 +5,7 @@ import MarketsPage from "../markets/MarketsPage";
 import GlobalStyles from "./GlobalStyle";
 import AddTransactionPage from "../addTransaction/AddTransactionPage";
 import { getCoinData, getMarketData } from "../utils/coinGecko";
+import AllTransactionsPage from "../allTransactions/AllTransactionsPage";
 
 const Grid = styled.div`
   display: grid;
@@ -60,6 +61,10 @@ function App() {
                 coinOptions={coinOptions}
               />
             )}
+          />
+          <Route
+            path="/all_transactions"
+            render={props => <AllTransactionsPage {...props} />}
           />
         </Switch>
       </Grid>
