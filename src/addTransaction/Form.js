@@ -11,6 +11,7 @@ const BuyButton = styled(ActionButton).attrs({
   type: "Buy"
 })`
   font-size: 60px;
+  color: green;
 `;
 
 const SellButton = styled(ActionButton).attrs({
@@ -18,6 +19,7 @@ const SellButton = styled(ActionButton).attrs({
   type: "Sell"
 })`
   font-size: 60px;
+  color: crimson;
 `;
 
 const ButtonGroup = styled.div`

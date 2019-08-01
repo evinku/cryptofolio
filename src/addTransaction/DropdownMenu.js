@@ -4,20 +4,11 @@ import styled from "styled-components";
 import Select from "react-dropdown-select";
 
 const StyledSelect = styled(Select)`
-  width: 250px;
   height: 30px;
-  border-radius: 10px;
-  font-size: 20px;
+  font-size: 15px;
   padding: 0px;
   margin: 0px;
 
-  .react-dropdown-select-input {
-    width: 200px;
-    height: 50px;
-  }
-  .react-dropdown-select {
-    border-radius: 10px;
-  }
   .react-dropdown-select-content {
     display: flex;
     align-items: center;
