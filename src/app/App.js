@@ -66,7 +66,9 @@ function App() {
           <Route
             exact
             path="/all_transactions"
-            render={props => <AllTransactionsPage {...props} />}
+            render={props => (
+              <AllTransactionsPage {...props} transactions={transactions} />
+            )}
           />
         </Switch>
       </Grid>

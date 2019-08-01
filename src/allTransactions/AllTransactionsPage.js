@@ -11,14 +11,15 @@ const AddMoreButton = styled(ActionButton).attrs({
   font-size: 20px;
 `;
 
-function AllTransactionsPage({ history }) {
+function AllTransactionsPage({ history, transactions }) {
   function handleClick() {
     history.push("/add_transaction");
   }
 
   return (
     <>
-      <Title size="L">All Transactions</Title>;
+      <Title size="L">All Transactions</Title>
+      <div>{JSON.stringify(transactions)}</div>
       <AddMoreButton onClick={handleClick} />
     </>
   );
