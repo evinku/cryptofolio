@@ -6,9 +6,6 @@ function AllTransactionsPage() {
   return <Title size="L">All Transactions</Title>;
 }
 
-AllTransactionsPage.propTypes = {
-  xx: PropTypes.func,
-  xx: PropTypes.array
-};
+AllTransactionsPage.propTypes = {};
 
 export default AllTransactionsPage;

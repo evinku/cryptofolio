@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import ActionButton from "./ActionButton";
 import PropTypes from "prop-types";
@@ -53,7 +54,7 @@ const StyledError = styled.div`
   color: crimson;
 `;
 
-function Form({ onSubmit, coinOptions }) {
+function Form({ history, onSubmit, coinOptions }) {
   const [formData, setFormData] = React.useState({
     coin: "",
     price: "",
@@ -105,6 +106,8 @@ function Form({ onSubmit, coinOptions }) {
     onSubmit({ ...formData, type });
     resetForm();
     setErrors({});
+
+    history.push("/all_transactions");
   }
 
   function handleDateChange(newDate) {

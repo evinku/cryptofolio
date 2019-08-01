@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import styled from "styled-components";
 import React from "react";
 import MarketsPage from "../markets/MarketsPage";
@@ -44,6 +49,7 @@ function App() {
         <Switch>
           <Route
             path="/markets"
+            exact
             render={props => (
               <MarketsPage
                 {...props}
@@ -54,6 +60,7 @@ function App() {
           />
           <Route
             path="/add_transaction"
+            exact
             render={props => (
               <AddTransactionPage
                 {...props}
@@ -63,6 +70,7 @@ function App() {
             )}
           />
           <Route
+            exact
             path="/all_transactions"
             render={props => <AllTransactionsPage {...props} />}
           />
