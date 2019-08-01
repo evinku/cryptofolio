@@ -21,12 +21,13 @@ const StyledTitle = styled.h1`
 const StyledHr = styled.hr`
   width: 200px;
   margin-bottom: 30px;
+  height: 1px;
 `;
 
-function Title({ size, children, className }) {
+function Title({ size, children, className, ...props }) {
   return (
     <>
-      <StyledTitle size={size} className={className}>
+      <StyledTitle size={size} className={className} {...props}>
         {children}
       </StyledTitle>
       <StyledHr />
