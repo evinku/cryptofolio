@@ -11,6 +11,7 @@ const StyledCard = styled.div`
   border-radius: 10px;
   padding: 5px;
   margin-bottom: 10px;
+  background-color: ${props => props.color};
 `;
 
 const StyledTransactions = styled.div`
@@ -37,7 +38,7 @@ function TransactionCards({ transactions }) {
   function renderTransactionCard(transaction) {
     return (
       <div key={transaction.transaction_id}>
-        <StyledCard>
+        <StyledCard color={transaction.type === "buy" ? "#A8D7B6" : "#F5A099"}>
           <span>Date: {transaction.date}</span>
           <hr />
           <StyledTransactions>
