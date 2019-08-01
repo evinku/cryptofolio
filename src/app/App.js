@@ -26,8 +26,12 @@ function App() {
   }
 
   const coinOptions = coinData.map(coin => ({
-    label: coin.name,
-    value: coin.id
+    label: (
+      <>
+        <img alt="" src={coin.image} height="20px" width="20px" /> {coin.name}
+      </>
+    ),
+    value: coin.name
   }));
 
   console.log(transactions);
