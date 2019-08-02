@@ -9,17 +9,19 @@ const uuidv1 = require("uuid/v1");
 
 const BuyButton = styled(ActionButton).attrs({
   icon: "fa-smile-beam",
-  type: "Buy"
+  type: "Buy",
+  size: "20px"
 })`
-  font-size: 60px;
+  font-size: 50px;
   color: green;
 `;
 
 const SellButton = styled(ActionButton).attrs({
   icon: "fa-sad-cry",
-  type: "Sell"
+  type: "Sell",
+  size: "20px"
 })`
-  font-size: 60px;
+  font-size: 50px;
   color: crimson;
 `;
 

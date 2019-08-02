@@ -15,6 +15,11 @@ const StyledButton = styled.button`
   
 `;
 
+const StyledDescription = styled.span`
+  font-size: ${props => props.size};
+  margin: 0;
+`;
+
 const StyledGroup = styled.div`
   display: flex;
   flex-direction: column;
@@ -22,13 +27,13 @@ const StyledGroup = styled.div`
   justify-content: center;
 `;
 
-function ActionButton({ icon, active, onClick, className, type }) {
+function ActionButton({ icon, active, onClick, className, type, size }) {
   return (
     <StyledGroup>
       <StyledButton className={className} active={active} onClick={onClick}>
         <i className={`fas ${icon}`} />
       </StyledButton>
-      <h3>{type}</h3>
+      <StyledDescription size={size}>{type}</StyledDescription>
     </StyledGroup>
   );
 }
