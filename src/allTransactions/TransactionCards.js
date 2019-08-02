@@ -5,7 +5,7 @@ import Moment from "react-moment";
 import { fadeIn } from "../utils/animations";
 
 const StyledSection = styled.section`
-  margin: 5px;
+  margin: 20px;
 `;
 
 const StyledCard = styled.div`
@@ -71,7 +71,14 @@ function TransactionCards({ transactions }) {
 
   return (
     <StyledSection>
-      {transactions && transactions.map(renderTransactionCard)}
+      {transactions &&
+        transactions
+          .sort(function(a, b) {
+            a = new Date(a.date);
+            b = new Date(b.date);
+            return a > b ? 1 : a < b ? -1 : 0;
+          })
+          .map(renderTransactionCard)}
     </StyledSection>
   );
 }

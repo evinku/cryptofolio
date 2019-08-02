@@ -30,7 +30,7 @@ function App() {
   function handleNewTransaction(transaction) {
     setTransactions([transaction, ...transactions]);
   }
-
+  // prepare for dropdown in DropdownMenu
   const coinOptions = coinData.map(coin => ({
     label: (
       <>
