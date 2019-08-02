@@ -30,7 +30,7 @@ function App() {
   function handleNewTransaction(transaction) {
     setTransactions([transaction, ...transactions]);
   }
-
+  // prepare for dropdown in DropdownMenu
   const coinOptions = coinData.map(coin => ({
     label: (
       <>
@@ -39,8 +39,6 @@ function App() {
     ),
     value: coin.name
   }));
-
-  console.log(transactions);
 
   return (
     <Router>

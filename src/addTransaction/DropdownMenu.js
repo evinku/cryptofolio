@@ -7,6 +7,11 @@ const StyledSelect = styled(Select)`
   .react-dropdown-select-content {
     width: 270px;
   }
+  .react-dropdown-select-item {
+    &:hover {
+      background: lightgray;
+    }
+  }
 `;
 
 function DropdownMenu({ coinOptions, onDropdownChange }) {
