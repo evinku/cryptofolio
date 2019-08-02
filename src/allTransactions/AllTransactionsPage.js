@@ -4,6 +4,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import ActionButton from "../components/ActionButton";
 import TransactionCards from "./TransactionCards";
+import SearchTransactions from "./SearchTransactions";
 
 const AddMoreButton = styled(ActionButton).attrs({
   icon: "fa-plus",
@@ -13,6 +14,12 @@ const AddMoreButton = styled(ActionButton).attrs({
 `;
 
 function AllTransactionsPage({ history, transactions }) {
+  const [filteredTransactions, setFilteredTransactions] = React.useState(null);
+
+  function handleSearchTransactionsChange(filteredTransactions) {
+    setFilteredTransactions(filteredTransactions);
+  }
+
   function handleClick() {
     history.push("/add_transaction");
   }
@@ -20,7 +27,15 @@ function AllTransactionsPage({ history, transactions }) {
   return (
     <>
       <Title size="L">All Transactions</Title>
-      <TransactionCards transactions={transactions} />
+      <SearchTransactions
+        transactions={transactions}
+        onSearchTransactionsChange={handleSearchTransactionsChange}
+      />
+      <TransactionCards
+        transactions={
+          filteredTransactions ? filteredTransactions : transactions
+        }
+      />
       <AddMoreButton onClick={handleClick} />
     </>
   );

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Moment from "react-moment";
+import { fadeIn } from "../utils/animations";
 
 const StyledSection = styled.section`
   margin: 5px;
@@ -13,6 +14,7 @@ const StyledCard = styled.div`
   padding: 5px;
   margin-bottom: 10px;
   background-color: ${props => props.color};
+  animation: ${fadeIn} 1s ease-out;
 `;
 
 const StyledTransactions = styled.div`
