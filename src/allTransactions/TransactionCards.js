@@ -14,7 +14,7 @@ const StyledCard = styled.div`
   padding: 5px;
   margin-bottom: 10px;
   background-color: ${props => props.color};
-  animation: ${fadeIn} 1s ease-out;
+  animation: ${fadeIn} 0.5s ease-out;
 `;
 
 const StyledTransactions = styled.div`

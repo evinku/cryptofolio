@@ -120,8 +120,6 @@ function Form({ history, onSubmit, coinOptions }) {
     setFormData({ ...formData, coin: dropdownValue });
   }
 
-  console.log(formData);
-
   return (
     <AddTransactionForm>
       <div>

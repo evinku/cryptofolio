@@ -24,16 +24,39 @@ function AllTransactionsPage({ history, transactions }) {
     history.push("/add_transaction");
   }
 
+  //prepare for dropdown in SearchTransactions
+  const transactionOptions = [
+    ...transactions
+      .map(transaction => ({
+        label: transaction.coin,
+        value: transaction.coin
+      }))
+      .filter(
+        (option, index, self) =>
+          index ===
+          self.findIndex(
+            t => t.label === option.label && t.value === option.value
+          )
+      ),
+    {
+      label: "All Transactions",
+      value: null
+    }
+  ];
+
+  console.log(transactionOptions);
+
   return (
     <>
       <Title size="L">All Transactions</Title>
       <SearchTransactions
+        transactionOptions={transactionOptions}
         transactions={transactions}
         onSearchTransactionsChange={handleSearchTransactionsChange}
       />
       <TransactionCards
         transactions={
-          filteredTransactions ? filteredTransactions : transactions
+          filteredTransactions === null ? transactions : filteredTransactions
         }
       />
       <AddMoreButton onClick={handleClick} />

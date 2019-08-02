@@ -40,8 +40,6 @@ function App() {
     value: coin.name
   }));
 
-  console.log(transactions);
-
   return (
     <Router>
       <GlobalStyles />
