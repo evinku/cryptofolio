@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "dinero.js": "^1.6.0",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "prop-types": "^15.7.2",

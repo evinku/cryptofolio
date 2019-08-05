@@ -7,10 +7,16 @@ import AddTransactionPage from "../addTransaction/AddTransactionPage";
 import { getCoinData } from "../utils/coinGecko";
 import AllTransactionsPage from "../allTransactions/AllTransactionsPage";
 import { setToLocal, getFromLocal } from "../services";
+import FooterNavigation from "../components/FooterNavigation";
 
 const Grid = styled.div`
   display: grid;
-  grid-template-rows: auto 48px;
+  grid-template-rows: auto 55px;
+  height: 100vh;
+`;
+
+const ContentCointainer = styled.div`
+  overflow: auto;
 `;
 
 function App() {
@@ -30,45 +36,47 @@ function App() {
   function handleNewTransaction(transaction) {
     setTransactions([transaction, ...transactions]);
   }
-  // prepare for dropdown in DropdownMenu
-  const coinOptions = coinData.map(coin => ({
-    label: (
-      <>
-        <img alt="" src={coin.image} height="20px" width="20px" /> {coin.name}
-      </>
-    ),
-    value: coin.name
-  }));
 
   return (
     <Router>
       <GlobalStyles />
       <Grid>
-        <Switch>
-          <Route
-            path="/markets"
-            exact
-            render={props => <MarketsPage {...props} coinData={coinData} />}
-          />
-          <Route
-            path="/add_transaction"
-            exact
-            render={props => (
-              <AddTransactionPage
-                {...props}
-                onNewTransaction={handleNewTransaction}
-                coinOptions={coinOptions}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/all_transactions"
-            render={props => (
-              <AllTransactionsPage {...props} transactions={transactions} />
-            )}
-          />
-        </Switch>
+        <ContentCointainer>
+          <Switch>
+            <Route
+              path="/markets"
+              exact
+              render={props => <MarketsPage {...props} coinData={coinData} />}
+            />
+            <Route
+              path="/add_transaction"
+              exact
+              render={props => (
+                <AddTransactionPage
+                  {...props}
+                  onNewTransaction={handleNewTransaction}
+                  coinData={coinData}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/all_transactions"
+              render={props => (
+                <AllTransactionsPage {...props} transactions={transactions} />
+              )}
+            />
+          </Switch>
+        </ContentCointainer>
+        <FooterNavigation
+          links={{
+            toPortfolio: "/portfolio",
+            toMarkets: "/markets",
+            toAddTransaction: "/add_transaction",
+            toAllTransactions: "/all_transactions",
+            toInsights: "/insights"
+          }}
+        />
       </Grid>
     </Router>
   );

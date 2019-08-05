@@ -8,10 +8,9 @@ import SearchTransactions from "./SearchTransactions";
 
 const AddMoreButton = styled(ActionButton).attrs({
   icon: "fa-plus",
-  type: "Add more"
-})`
-  font-size: 20px;
-`;
+  type: "Add more",
+  size: "20px"
+})``;
 
 function AllTransactionsPage({ history, transactions }) {
   const [filteredTransactions, setFilteredTransactions] = React.useState(null);
