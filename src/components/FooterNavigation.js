@@ -98,7 +98,7 @@ const FooterLink = styled(Link)`
 function FooterNavigation({ links }) {
   return (
     <StyledFooter>
-      <FooterLink to={links.toPortfolio}>
+      <FooterLink to={links.toCryptofolio}>
         <PortfolioButton />
       </FooterLink>
       <FooterLink to={links.toInsights}>

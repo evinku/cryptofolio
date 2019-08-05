@@ -8,6 +8,7 @@ import { getCoinData } from "../utils/coinGecko";
 import AllTransactionsPage from "../allTransactions/AllTransactionsPage";
 import { setToLocal, getFromLocal } from "../services";
 import FooterNavigation from "../components/FooterNavigation";
+import CryptofolioPage from "../portfolio/CryptofolioPage";
 
 const Grid = styled.div`
   display: grid;
@@ -66,11 +67,18 @@ function App() {
                 <AllTransactionsPage {...props} transactions={transactions} />
               )}
             />
+            <Route
+              exact
+              path="/cryptofolio"
+              render={props => (
+                <CryptofolioPage {...props} transactions={transactions} />
+              )}
+            />
           </Switch>
         </ContentCointainer>
         <FooterNavigation
           links={{
-            toPortfolio: "/portfolio",
+            toCryptofolio: "/cryptofolio",
             toMarkets: "/markets",
             toAddTransaction: "/add_transaction",
             toAllTransactions: "/all_transactions",

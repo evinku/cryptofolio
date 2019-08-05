@@ -4,6 +4,7 @@ import MarketDataCard from "./MarketDataCard";
 import Search from "./Search";
 import Title from "../components/Title";
 import { getMarketData } from "../utils/coinGecko";
+import PropTypes from "prop-types";
 
 function MarketsPage({ coinData }) {
   const [filteredCoins, setFilteredCoins] = React.useState(null);
@@ -26,5 +27,8 @@ function MarketsPage({ coinData }) {
     </>
   );
 }
+MarketsPage.propTypes = {
+  coinData: PropTypes.array.isRequired
+};
 
 export default MarketsPage;
