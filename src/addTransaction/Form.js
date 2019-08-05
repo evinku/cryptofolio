@@ -36,7 +36,7 @@ const AddTransactionForm = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 80vh;
+  height: 75vh;
 `;
 
 const StyledInput = styled.input`
