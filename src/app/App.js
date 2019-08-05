@@ -71,7 +71,11 @@ function App() {
               exact
               path="/cryptofolio"
               render={props => (
-                <CryptofolioPage {...props} transactions={transactions} />
+                <CryptofolioPage
+                  {...props}
+                  transactions={transactions}
+                  coinData={coinData}
+                />
               )}
             />
           </Switch>
