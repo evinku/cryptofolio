@@ -13,6 +13,9 @@ const PortfolioButton = styled(ActionButton).attrs({
   width: 35px;
   height: 35px;
   background-color: white;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const InsightsButton = styled(ActionButton).attrs({
@@ -24,6 +27,9 @@ const InsightsButton = styled(ActionButton).attrs({
   width: 35px;
   height: 35px;
   background-color: white;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const MarketsButton = styled(ActionButton).attrs({
@@ -35,10 +41,13 @@ const MarketsButton = styled(ActionButton).attrs({
   width: 35px;
   height: 35px;
   background-color: white;
+  &:focus {
+    outline: none;
+  }
 `;
 
-const NewsButton = styled(ActionButton).attrs({
-  icon: "fa-rss",
+const AllTransactionsButton = styled(ActionButton).attrs({
+  icon: "fa-align-justify",
   type: "",
   size: "16px"
 })`
@@ -46,14 +55,9 @@ const NewsButton = styled(ActionButton).attrs({
   width: 35px;
   height: 35px;
   background-color: white;
-`;
-
-const StyledDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: -25px;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const AddButton = styled(ActionButton).attrs({
@@ -64,6 +68,17 @@ const AddButton = styled(ActionButton).attrs({
   font-size: 40px;
   border: solid 1px;
   background-color: white;
+  &:focus {
+    outline: none;
+  }
+`;
+
+const StyledDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -25px;
 `;
 
 const StyledFooter = styled.div`
@@ -75,22 +90,37 @@ const StyledFooter = styled.div`
   justify-items: center;
 `;
 
+const FooterLink = styled(Link)`
+  text-align: center;
+  text-decoration: none;
+`;
+
 function FooterNavigation({ links }) {
   return (
     <StyledFooter>
-      <PortfolioButton />
-      <InsightsButton />
-      <MarketsButton />
-      <NewsButton />
+      <FooterLink to={links.toPortfolio}>
+        <PortfolioButton />
+      </FooterLink>
+      <FooterLink to={links.toInsights}>
+        <InsightsButton />
+      </FooterLink>
+      <FooterLink to={links.toMarkets}>
+        <MarketsButton />
+      </FooterLink>
+      <FooterLink to={links.toAllTransactions}>
+        <AllTransactionsButton />
+      </FooterLink>
       <StyledDiv>
-        <AddButton />
+        <FooterLink to={links.toAddTransaction}>
+          <AddButton />
+        </FooterLink>
       </StyledDiv>
     </StyledFooter>
   );
 }
 
 FooterNavigation.propTypes = {
-  links: PropTypes.array
+  links: PropTypes.object
 };
 
 export default FooterNavigation;

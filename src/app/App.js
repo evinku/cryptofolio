@@ -36,15 +36,6 @@ function App() {
   function handleNewTransaction(transaction) {
     setTransactions([transaction, ...transactions]);
   }
-  // prepare for dropdown in DropdownMenu
-  const coinOptions = coinData.map(coin => ({
-    label: (
-      <>
-        <img alt="" src={coin.image} height="20px" width="20px" /> {coin.name}
-      </>
-    ),
-    value: coin.name
-  }));
 
   return (
     <Router>
@@ -64,7 +55,7 @@ function App() {
                 <AddTransactionPage
                   {...props}
                   onNewTransaction={handleNewTransaction}
-                  coinOptions={coinOptions}
+                  coinData={coinData}
                 />
               )}
             />
@@ -77,7 +68,15 @@ function App() {
             />
           </Switch>
         </ContentCointainer>
-        <FooterNavigation />
+        <FooterNavigation
+          links={{
+            toPortfolio: "/portfolio",
+            toMarkets: "/markets",
+            toAddTransaction: "/add_transaction",
+            toAllTransactions: "/all_transactions",
+            toInsights: "/insights"
+          }}
+        />
       </Grid>
     </Router>
   );
