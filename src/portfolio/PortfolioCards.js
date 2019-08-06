@@ -32,6 +32,12 @@ const StyledQuantity = styled.span`
   font-size: 14px;
 `;
 
+const StyledTotal = styled.div`
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+`;
+
 function findPriceByName(coins, name) {
   const coin = coins[name];
   return coin && coin.current_price;
@@ -48,6 +54,16 @@ function calculateHoldings(price, amount) {
     style: "currency",
     currency: "USD"
   }).format(holdings);
+}
+
+function totalHoldings(total, coinData) {
+  return Object.keys(total)
+    .map(key => {
+      const amount = total[key];
+      const price = findPriceByName(coinData, key);
+      return amount * price;
+    })
+    .reduce((acc, amount) => acc + amount);
 }
 
 function PortfolioCards({ transactions, coinData }) {
@@ -88,6 +104,13 @@ function PortfolioCards({ transactions, coinData }) {
 
   return (
     <StyledSection>
+      <StyledTotal>
+        Total:
+        {new Intl.NumberFormat("de-DE", {
+          style: "currency",
+          currency: "USD"
+        }).format(totalHoldings(total, coinData))}
+      </StyledTotal>
       <PortfolioCardsHeadlines />
       {Object.keys(total).map(renderPortfolioCards)}
     </StyledSection>
