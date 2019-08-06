@@ -3,22 +3,21 @@ import styled from "styled-components";
 
 const StyledCard = styled.div`
   display: grid;
-  grid-template-columns: 30px 4fr 3fr 3fr;
+  grid-template-columns: 1fr 1fr 1fr;
   font-weight: bold;
 `;
 
-function CoinCardHeadlines() {
+function PortfolioCardsHeadlines() {
   return (
     <>
       <StyledCard>
-        <span>No</span>
-        <span>Name</span>
+        <span>Quantity</span>
         <span>Price</span>
-        <span>Marketcap</span>
+        <span>Holdings</span>
       </StyledCard>
       <hr />
     </>
   );
 }
 
-export default CoinCardHeadlines;
+export default PortfolioCardsHeadlines;

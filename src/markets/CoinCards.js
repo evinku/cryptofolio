@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import trenner from "../utils/trenner";
+import numeral from "numeral";
 import CoinCardHeadlines from "./CoinCardHeadlines";
 
 const StyledSection = styled.section`
@@ -10,7 +10,7 @@ const StyledSection = styled.section`
 
 const StyledCard = styled.div`
   display: grid;
-  grid-template-columns: 25px 4fr 3fr 4fr;
+  grid-template-columns: 30px 4fr 3fr 3fr;
 `;
 
 const StyledImg = styled.img`
@@ -34,8 +34,13 @@ function CoinCards({ coinData }) {
             <StyledImg alt={coinData.name} src={coinData.image} />
             <span>{coinData.name}</span>
           </StyledGroup>
-          <span>${coinData.current_price.toFixed(2)}</span>
-          <span>${trenner(coinData.market_cap)}</span>
+          <span>
+            {new Intl.NumberFormat("de-DE", {
+              style: "currency",
+              currency: "USD"
+            }).format(coinData.current_price)}
+          </span>
+          <span>{numeral(coinData.market_cap).format("($ 0.00 a)")}</span>
         </StyledCard>
         <hr />
       </div>

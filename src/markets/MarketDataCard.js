@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import numeral from "numeral";
 
 const StyledSection = styled.section`
   display: grid;
@@ -24,18 +25,20 @@ function MarketDataCard({ marketData }) {
     <StyledSection>
       <StyledGroup>
         <span>Total Marketcap</span>
-        <span>${marketData && marketData.total_market_cap_usd}</span>
+        <span>
+          {numeral(marketData.total_market_cap_usd).format("($ 0.00 a)")}
+        </span>
         <span>
           {marketData && marketData.market_cap_change_percentage_24h_usd}%
         </span>
       </StyledGroup>
       <StyledGroup>
         <span>24h Volume</span>
-        <span>${marketData && marketData.total_volume_usd}</span>
+        <span>{numeral(marketData.total_volume_usd).format("($ 0.00 a)")}</span>
       </StyledGroup>
       <StyledGroup>
-        <span>Bitcoin Dominanz</span>
-        <span>{marketData && marketData.market_cap_percentage_btc}%</span>
+        <span>₿-Dominanz</span>
+        <span>{marketData.market_cap_percentage_btc}%</span>
       </StyledGroup>
     </StyledSection>
   );
