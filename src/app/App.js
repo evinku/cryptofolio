@@ -25,9 +25,21 @@ function App() {
     getFromLocal("transactions") || []
   );
   const [coinData, setCoinData] = React.useState([]);
+  const [coinDataNormalized, setCoinDataNormalized] = React.useState({});
 
   React.useEffect(() => {
-    getCoinData().then(coinData => setCoinData(coinData));
+    getCoinData().then(coinData => {
+      setCoinData(coinData);
+
+      setCoinDataNormalized(
+        coinData.reduce((acc, coin) => {
+          return {
+            ...acc,
+            [coin.name]: coin
+          };
+        }, {})
+      );
+    });
   }, []);
 
   React.useEffect(() => {
@@ -74,7 +86,7 @@ function App() {
                 <CryptofolioPage
                   {...props}
                   transactions={transactions}
-                  coinData={coinData}
+                  coinData={coinDataNormalized}
                 />
               )}
             />
