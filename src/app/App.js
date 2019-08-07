@@ -9,6 +9,8 @@ import AllTransactionsPage from "../allTransactions/AllTransactionsPage";
 import { setToLocal, getFromLocal } from "../services";
 import FooterNavigation from "../components/FooterNavigation";
 import CryptofolioPage from "../portfolio/CryptofolioPage";
+import InsightsPage from "../insights/InsightsPage";
+import { totalHoldingsPerCoin } from "../utils/portfolioServices";
 
 const Grid = styled.div`
   display: grid;
@@ -50,7 +52,7 @@ function App() {
     setTransactions([transaction, ...transactions]);
   }
 
-  const total = transactions.reduce((acc, transaction) => {
+  const totalQuantities = transactions.reduce((acc, transaction) => {
     const { coin, type, quantity } = transaction;
     const previousQuantity = acc[coin] || 0;
     return {
@@ -58,6 +60,13 @@ function App() {
       [coin]: previousQuantity + quantity * (type === "buy" ? 1 : -1)
     };
   }, {});
+
+  const pieData = {
+    options: {
+      labels: Object.keys(totalQuantities)
+    },
+    series: totalHoldingsPerCoin(totalQuantities, coinDataNormalized)
+  };
 
   return (
     <Router>
@@ -79,7 +88,7 @@ function App() {
                   onNewTransaction={handleNewTransaction}
                   coinData={coinData}
                   coinDataNormalized={coinDataNormalized}
-                  total={total}
+                  totalQuantities={totalQuantities}
                 />
               )}
             />
@@ -96,10 +105,16 @@ function App() {
               render={props => (
                 <CryptofolioPage
                   {...props}
-                  total={total}
+                  totalQuantities={totalQuantities}
                   coinData={coinDataNormalized}
+                  pieData={pieData}
                 />
               )}
+            />
+            <Route
+              exact
+              path="/insights"
+              render={props => <InsightsPage {...props} pieData={pieData} />}
             />
           </Switch>
         </ContentCointainer>

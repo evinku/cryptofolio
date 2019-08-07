@@ -68,7 +68,13 @@ function checkTransaction(coin, currentQuantity, quantity, type) {
   } else return false;
 }
 
-function Form({ history, onSubmit, coinOptions, total, coinDataNormalized }) {
+function Form({
+  history,
+  onSubmit,
+  coinOptions,
+  totalQuantities,
+  coinDataNormalized
+}) {
   const [formData, setFormData] = React.useState({
     id: uuidv1(),
     coin: "",
@@ -82,7 +88,9 @@ function Form({ history, onSubmit, coinOptions, total, coinDataNormalized }) {
   function validate(type) {
     const errors = {};
 
-    if (checkTransaction(formData.coin, total, formData.quantity, type)) {
+    if (
+      checkTransaction(formData.coin, totalQuantities, formData.quantity, type)
+    ) {
       errors.checkTransaction = "You can't sell more than you own";
     }
     if (formData.quantity.trim() === "") {
@@ -191,7 +199,10 @@ function Form({ history, onSubmit, coinOptions, total, coinDataNormalized }) {
 
 Form.propTypes = {
   onSubmit: PropTypes.func,
-  coinOptions: PropTypes.array
+  coinOptions: PropTypes.array,
+  history: PropTypes.object,
+  totalQuantities: PropTypes.object,
+  coinDataNormalized: PropTypes.object
 };
 
 export default Form;

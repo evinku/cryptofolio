@@ -4,19 +4,20 @@ import Title from "../components/Title";
 import PortfolioCards from "./PortfolioCards";
 import PieChart from "./PieChart";
 
-function CryptofolioPage({ total, coinData }) {
+function CryptofolioPage({ totalQuantities, coinData, pieData }) {
   return (
     <>
       <Title size="L">Cryptofolio</Title>
-      <PieChart total={total} coinData={coinData} />
-      <PortfolioCards total={total} coinData={coinData} />
+      <PieChart pieData={pieData} />
+      <PortfolioCards totalQuantities={totalQuantities} coinData={coinData} />
     </>
   );
 }
 
 CryptofolioPage.propTypes = {
-  total: PropTypes.object.isRequired,
-  coinData: PropTypes.object.isRequired
+  totalQuantities: PropTypes.object.isRequired,
+  coinData: PropTypes.object.isRequired,
+  pieData: PropTypes.object.isRequired
 };
 
 export default CryptofolioPage;

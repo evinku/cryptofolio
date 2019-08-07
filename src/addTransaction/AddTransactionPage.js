@@ -7,7 +7,7 @@ function AddTransactionPage({
   history,
   onNewTransaction,
   coinData,
-  total,
+  totalQuantities,
   coinDataNormalized
 }) {
   // prepare for dropdown in Form
@@ -24,7 +24,7 @@ function AddTransactionPage({
         onSubmit={onNewTransaction}
         coinOptions={coinOptions}
         history={history}
-        total={total}
+        totalQuantities={totalQuantities}
         coinDataNormalized={coinDataNormalized}
       />
     </>
@@ -34,7 +34,7 @@ function AddTransactionPage({
 AddTransactionPage.propTypes = {
   onNewTransaction: PropTypes.func,
   coinData: PropTypes.array,
-  total: PropTypes.object,
+  totalQuantities: PropTypes.object,
   coinDataNormalized: PropTypes.object,
   history: PropTypes.object
 };
