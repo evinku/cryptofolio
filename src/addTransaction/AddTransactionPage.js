@@ -11,6 +11,7 @@ function AddTransactionPage({
   coinDataNormalized
 }) {
   // prepare for dropdown in Form
+
   const coinOptions = coinData.map(coin => ({
     label: coin.name,
     value: coin.name
@@ -32,7 +33,10 @@ function AddTransactionPage({
 
 AddTransactionPage.propTypes = {
   onNewTransaction: PropTypes.func,
-  coinOptions: PropTypes.array
+  coinData: PropTypes.array,
+  total: PropTypes.object,
+  coinDataNormalized: PropTypes.object,
+  history: PropTypes.object
 };
 
 export default AddTransactionPage;

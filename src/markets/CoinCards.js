@@ -19,9 +19,19 @@ const StyledImg = styled.img`
   margin-right: 3px;
 `;
 
-const StyledGroup = styled.div`
+const StyledGroupImage = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const StyledGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const StyledSpan = styled.span`
+  color: ${props => props.color};
 `;
 
 function CoinCards({ coinData }) {
@@ -29,18 +39,44 @@ function CoinCards({ coinData }) {
     return (
       <div key={coinData.id}>
         <StyledCard>
-          <span>{coinData.market_cap_rank}</span>
-          <StyledGroup>
+          <StyledGroup>{coinData.market_cap_rank}</StyledGroup>
+          <StyledGroupImage>
             <StyledImg alt={coinData.name} src={coinData.image} />
             <span>{coinData.name}</span>
+          </StyledGroupImage>
+          <StyledGroup>
+            <span>
+              {new Intl.NumberFormat("de-DE", {
+                style: "currency",
+                currency: "USD"
+              }).format(coinData.current_price)}
+            </span>
+            <StyledSpan
+              color={
+                coinData.price_change_percentage_24h.toString().startsWith("-")
+                  ? "#A8D7B6"
+                  : "#F5A099"
+              }
+            >
+              {Math.round(coinData.price_change_percentage_24h * 100) / 100} %
+            </StyledSpan>
           </StyledGroup>
-          <span>
-            {new Intl.NumberFormat("de-DE", {
-              style: "currency",
-              currency: "USD"
-            }).format(coinData.current_price)}
-          </span>
-          <span>{numeral(coinData.market_cap).format("($ 0.00 a)")}</span>
+          <StyledGroup>
+            <span>{numeral(coinData.market_cap).format("($ 0.00 a)")}</span>
+            <StyledSpan
+              color={
+                coinData.market_cap_change_percentage_24h
+                  .toString()
+                  .startsWith("-")
+                  ? "#A8D7B6"
+                  : "#F5A099"
+              }
+            >
+              {Math.round(coinData.market_cap_change_percentage_24h * 100) /
+                100}{" "}
+              %
+            </StyledSpan>
+          </StyledGroup>
         </StyledCard>
         <hr />
       </div>
