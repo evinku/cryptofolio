@@ -9,6 +9,8 @@ import AllTransactionsPage from "../allTransactions/AllTransactionsPage";
 import { setToLocal, getFromLocal } from "../services";
 import FooterNavigation from "../components/FooterNavigation";
 import CryptofolioPage from "../portfolio/CryptofolioPage";
+import InsightsPage from "../insights/InsightsPage";
+import { totalHoldingsPerCoin } from "../utils/portfolioServices";
 
 const Grid = styled.div`
   display: grid;
@@ -50,6 +52,22 @@ function App() {
     setTransactions([transaction, ...transactions]);
   }
 
+  const totalQuantities = transactions.reduce((acc, transaction) => {
+    const { coin, type, quantity } = transaction;
+    const previousQuantity = acc[coin] || 0;
+    return {
+      ...acc,
+      [coin]: previousQuantity + quantity * (type === "buy" ? 1 : -1)
+    };
+  }, {});
+
+  const pieData = {
+    options: {
+      labels: Object.keys(totalQuantities)
+    },
+    series: totalHoldingsPerCoin(totalQuantities, coinDataNormalized)
+  };
+
   return (
     <Router>
       <GlobalStyles />
@@ -62,19 +80,21 @@ function App() {
               render={props => <MarketsPage {...props} coinData={coinData} />}
             />
             <Route
-              path="/add_transaction"
+              path="/add-transaction"
               exact
               render={props => (
                 <AddTransactionPage
                   {...props}
                   onNewTransaction={handleNewTransaction}
                   coinData={coinData}
+                  coinDataNormalized={coinDataNormalized}
+                  totalQuantities={totalQuantities}
                 />
               )}
             />
             <Route
               exact
-              path="/all_transactions"
+              path="/all-transactions"
               render={props => (
                 <AllTransactionsPage {...props} transactions={transactions} />
               )}
@@ -85,10 +105,16 @@ function App() {
               render={props => (
                 <CryptofolioPage
                   {...props}
-                  transactions={transactions}
+                  totalQuantities={totalQuantities}
                   coinData={coinDataNormalized}
+                  pieData={pieData}
                 />
               )}
+            />
+            <Route
+              exact
+              path="/insights"
+              render={props => <InsightsPage {...props} pieData={pieData} />}
             />
           </Switch>
         </ContentCointainer>
@@ -96,8 +122,8 @@ function App() {
           links={{
             toCryptofolio: "/cryptofolio",
             toMarkets: "/markets",
-            toAddTransaction: "/add_transaction",
-            toAllTransactions: "/all_transactions",
+            toAddTransaction: "/add-transaction",
+            toAllTransactions: "/all-transactions",
             toInsights: "/insights"
           }}
         />

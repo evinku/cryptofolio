@@ -11,7 +11,10 @@ export function getCoinData() {
           image: coinData.image,
           current_price: coinData.current_price,
           market_cap: coinData.market_cap,
-          market_cap_rank: coinData.market_cap_rank
+          market_cap_rank: coinData.market_cap_rank,
+          price_change_percentage_24h: coinData.price_change_percentage_24h,
+          market_cap_change_percentage_24h:
+            coinData.market_cap_change_percentage_24h
         };
       });
       return coinData;

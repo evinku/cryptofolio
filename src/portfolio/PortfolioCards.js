@@ -2,6 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import PortfolioCardsHeadlines from "./PortfolioCardsHeadlines";
+import {
+  findPriceByName,
+  findImageByName,
+  calculateHoldings,
+  totalHoldings
+} from "../utils/portfolioServices";
 
 const StyledSection = styled.section`
   margin: 5px;
@@ -38,38 +44,7 @@ const StyledTotal = styled.div`
   margin-bottom: 20px;
 `;
 
-function findPriceByName(coins, name) {
-  const coin = coins[name];
-  return coin && coin.current_price;
-}
-function findImageByName(coins, name) {
-  const coin = coins[name];
-  return coin && coin.image;
-}
-
-function calculateHoldings(price, amount) {
-  const holdings = price * amount;
-
-  return new Intl.NumberFormat("de-DE", {
-    style: "currency",
-    currency: "USD"
-  }).format(holdings);
-}
-
-function totalHoldings(total, coinData) {
-  if (Object.keys(total).length === 0) {
-    return 0;
-  }
-  return Object.keys(total)
-    .map(key => {
-      const amount = total[key];
-      const price = findPriceByName(coinData, key);
-      return amount * price;
-    })
-    .reduce((acc, amount) => acc + amount);
-}
-
-function PortfolioCards({ coinData, total }) {
+function PortfolioCards({ coinData, totalQuantities }) {
   function renderPortfolioCards(key) {
     return (
       <div key={key}>
@@ -79,7 +54,7 @@ function PortfolioCards({ coinData, total }) {
               <StyledImg alt={key} src={findImageByName(coinData, key)} />
               <span>{key}</span>
             </StyledGroupInGroup>
-            <StyledQuantity>{total[key]}</StyledQuantity>
+            <StyledQuantity>{totalQuantities[key]}</StyledQuantity>
           </StyledGroup>
           <span>
             {new Intl.NumberFormat("de-DE", {
@@ -88,7 +63,10 @@ function PortfolioCards({ coinData, total }) {
             }).format(findPriceByName(coinData, key))}
           </span>
           <span>
-            {calculateHoldings(findPriceByName(coinData, key), total[key])}
+            {calculateHoldings(
+              findPriceByName(coinData, key),
+              totalQuantities[key]
+            )}
           </span>
         </StyledCard>
         <hr />
@@ -103,16 +81,16 @@ function PortfolioCards({ coinData, total }) {
         {new Intl.NumberFormat("de-DE", {
           style: "currency",
           currency: "USD"
-        }).format(totalHoldings(total, coinData))}
+        }).format(totalHoldings(totalQuantities, coinData))}
       </StyledTotal>
       <PortfolioCardsHeadlines />
-      {Object.keys(total).map(renderPortfolioCards)}
+      {Object.keys(totalQuantities).map(renderPortfolioCards)}
     </StyledSection>
   );
 }
 
 PortfolioCards.propTypes = {
-  total: PropTypes.object.isRequired,
+  totalQuantities: PropTypes.object.isRequired,
   coinData: PropTypes.object.isRequired
 };
 

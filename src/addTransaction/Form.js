@@ -56,9 +56,27 @@ const StyledError = styled.div`
   color: crimson;
 `;
 
-function Form({ history, onSubmit, coinOptions }) {
+function checkTransaction(coin, currentQuantity, quantity, type) {
+  if (type === "buy") {
+    return false;
+  }
+  if (currentQuantity[coin] === undefined) {
+    return true;
+  }
+  if (currentQuantity[coin] < quantity) {
+    return true;
+  } else return false;
+}
+
+function Form({
+  history,
+  onSubmit,
+  coinOptions,
+  totalQuantities,
+  coinDataNormalized
+}) {
   const [formData, setFormData] = React.useState({
-    transaction_id: uuidv1(),
+    id: uuidv1(),
     coin: "",
     price: "",
     quantity: "",
@@ -67,9 +85,14 @@ function Form({ history, onSubmit, coinOptions }) {
 
   const [errors, setErrors] = React.useState({});
 
-  function validate() {
+  function validate(type) {
     const errors = {};
 
+    if (
+      checkTransaction(formData.coin, totalQuantities, formData.quantity, type)
+    ) {
+      errors.checkTransaction = "You can't sell more than you own";
+    }
     if (formData.quantity.trim() === "") {
       errors.quantity = "Please add a quantity";
     }
@@ -87,7 +110,7 @@ function Form({ history, onSubmit, coinOptions }) {
 
   function resetForm() {
     setFormData({
-      transaction_id: uuidv1(),
+      id: uuidv1(),
       coin: "",
       price: "",
       quantity: "",
@@ -101,8 +124,8 @@ function Form({ history, onSubmit, coinOptions }) {
 
   function handleSubmit(event, type) {
     event.preventDefault();
-
-    const errors = validate();
+    setErrors({});
+    const errors = validate(type);
     if (errors) {
       setErrors(errors);
       return;
@@ -111,7 +134,7 @@ function Form({ history, onSubmit, coinOptions }) {
     resetForm();
     setErrors({});
 
-    history.push("/all_transactions");
+    history.push("/all-transactions");
   }
 
   function handleDateChange(newDate) {
@@ -119,7 +142,11 @@ function Form({ history, onSubmit, coinOptions }) {
   }
 
   function handleDropdownChange(dropdownValue) {
-    setFormData({ ...formData, coin: dropdownValue });
+    setFormData({
+      ...formData,
+      coin: dropdownValue,
+      price: coinDataNormalized[dropdownValue].current_price.toString()
+    });
   }
 
   return (
@@ -158,6 +185,9 @@ function Form({ history, onSubmit, coinOptions }) {
           placeholder="Quantity"
         />
         {errors.quantity && <StyledError>{errors.quantity}</StyledError>}
+        {errors.checkTransaction && (
+          <StyledError>{errors.checkTransaction}</StyledError>
+        )}
       </div>
       <ButtonGroup>
         <BuyButton onClick={event => handleSubmit(event, "buy")} />
@@ -169,7 +199,10 @@ function Form({ history, onSubmit, coinOptions }) {
 
 Form.propTypes = {
   onSubmit: PropTypes.func,
-  coinOptions: PropTypes.array
+  coinOptions: PropTypes.array,
+  history: PropTypes.object,
+  totalQuantities: PropTypes.object,
+  coinDataNormalized: PropTypes.object
 };
 
 export default Form;
