@@ -3,9 +3,20 @@ import Chart from "react-apexcharts";
 
 function PieChart() {
   const [pieData, setPieData] = React.useState({
-    options: {},
-    series: [44, 55, 41, 17, 15],
-    labels: ["A", "B", "C", "D", "E"]
+    options: {
+      labels: [
+        "Bitcoin",
+        "Ethereum",
+        "XRP",
+        "Stellar",
+        "Siacoin",
+        "Digibyte",
+        "Peercoin",
+        "Test",
+        "Test2"
+      ]
+    },
+    series: [44, 55, 41, 17, 15, 55, 41, 17, 15]
   });
 
   return (
