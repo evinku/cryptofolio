@@ -126,7 +126,7 @@ function Form({ history, onSubmit, coinOptions, total, coinDataNormalized }) {
     resetForm();
     setErrors({});
 
-    history.push("/all_transactions");
+    history.push("/all-transactions");
   }
 
   function handleDateChange(newDate) {

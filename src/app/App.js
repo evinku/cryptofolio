@@ -71,7 +71,7 @@ function App() {
               render={props => <MarketsPage {...props} coinData={coinData} />}
             />
             <Route
-              path="/add_transaction"
+              path="/add-transaction"
               exact
               render={props => (
                 <AddTransactionPage
@@ -85,7 +85,7 @@ function App() {
             />
             <Route
               exact
-              path="/all_transactions"
+              path="/all-transactions"
               render={props => (
                 <AllTransactionsPage {...props} transactions={transactions} />
               )}
@@ -107,8 +107,8 @@ function App() {
           links={{
             toCryptofolio: "/cryptofolio",
             toMarkets: "/markets",
-            toAddTransaction: "/add_transaction",
-            toAllTransactions: "/all_transactions",
+            toAddTransaction: "/add-transaction",
+            toAllTransactions: "/all-transactions",
             toInsights: "/insights"
           }}
         />

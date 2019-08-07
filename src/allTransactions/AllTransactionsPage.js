@@ -20,7 +20,7 @@ function AllTransactionsPage({ history, transactions }) {
   }
 
   function handleClick() {
-    history.push("/add_transaction");
+    history.push("/add-transaction");
   }
 
   //prepare for dropdown in SearchTransactions
