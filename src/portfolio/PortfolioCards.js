@@ -57,6 +57,9 @@ function calculateHoldings(price, amount) {
 }
 
 function totalHoldings(total, coinData) {
+  if (Object.keys(total).length === 0) {
+    return 0;
+  }
   return Object.keys(total)
     .map(key => {
       const amount = total[key];
@@ -66,16 +69,7 @@ function totalHoldings(total, coinData) {
     .reduce((acc, amount) => acc + amount);
 }
 
-function PortfolioCards({ transactions, coinData }) {
-  const total = transactions.reduce((acc, transaction) => {
-    const { coin, type, quantity } = transaction;
-    const previousQuantity = acc[coin] || 0;
-    return {
-      ...acc,
-      [coin]: previousQuantity + quantity * (type === "buy" ? 1 : -1)
-    };
-  }, {});
-
+function PortfolioCards({ coinData, total }) {
   function renderPortfolioCards(key) {
     return (
       <div key={key}>
@@ -105,7 +99,7 @@ function PortfolioCards({ transactions, coinData }) {
   return (
     <StyledSection>
       <StyledTotal>
-        Total:
+        <div>Total:</div>
         {new Intl.NumberFormat("de-DE", {
           style: "currency",
           currency: "USD"
@@ -118,7 +112,7 @@ function PortfolioCards({ transactions, coinData }) {
 }
 
 PortfolioCards.propTypes = {
-  transactions: PropTypes.array.isRequired,
+  total: PropTypes.object.isRequired,
   coinData: PropTypes.object.isRequired
 };
 

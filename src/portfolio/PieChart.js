@@ -1,23 +1,32 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
-function PieChart() {
-  const [pieData, setPieData] = React.useState({
-    options: {
-      labels: [
-        "Bitcoin",
-        "Ethereum",
-        "XRP",
-        "Stellar",
-        "Siacoin",
-        "Digibyte",
-        "Peercoin",
-        "Test",
-        "Test2"
-      ]
-    },
-    series: [44, 55, 41, 17, 15, 55, 41, 17, 15]
+function findPriceByName(coins, name) {
+  if (Object.keys(coins).length === 0) {
+    return 0;
+  }
+  const coin = coins[name];
+  return coin && coin.current_price;
+}
+
+function totalHoldingsPerCoin(total, coinData) {
+  if (Object.keys(total).length === 0) {
+    return 0;
+  }
+  return Object.keys(total).map(key => {
+    const amount = total[key];
+    const price = findPriceByName(coinData, key);
+    return amount * price;
   });
+}
+
+function PieChart({ total, coinData }) {
+  const pieData = {
+    options: {
+      labels: Object.keys(total)
+    },
+    series: totalHoldingsPerCoin(total, coinData)
+  };
 
   return (
     <div>
