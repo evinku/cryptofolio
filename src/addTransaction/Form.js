@@ -70,7 +70,7 @@ function checkTransaction(coin, currentQuantity, quantity, type) {
 
 function Form({ history, onSubmit, coinOptions, total, coinDataNormalized }) {
   const [formData, setFormData] = React.useState({
-    transaction_id: uuidv1(),
+    id: uuidv1(),
     coin: "",
     price: "",
     quantity: "",
@@ -102,7 +102,7 @@ function Form({ history, onSubmit, coinOptions, total, coinDataNormalized }) {
 
   function resetForm() {
     setFormData({
-      transaction_id: uuidv1(),
+      id: uuidv1(),
       coin: "",
       price: "",
       quantity: "",
