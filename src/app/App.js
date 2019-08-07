@@ -96,7 +96,11 @@ function App() {
               exact
               path="/all-transactions"
               render={props => (
-                <AllTransactionsPage {...props} transactions={transactions} />
+                <AllTransactionsPage
+                  {...props}
+                  transactions={transactions}
+                  totalQuantities={totalQuantities}
+                />
               )}
             />
             <Route

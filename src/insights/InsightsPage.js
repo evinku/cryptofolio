@@ -8,7 +8,11 @@ const StyledSection = styled.section``;
 function InsightsPage({ pieData }) {
   console.log(pieData);
 
-  return <Title size="L">Insights</Title>;
+  return (
+    <StyledSection>
+      <Title size="L">Insights</Title>;
+    </StyledSection>
+  );
 }
 
 InsightsPage.propTypes = {
