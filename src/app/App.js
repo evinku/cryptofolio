@@ -50,6 +50,15 @@ function App() {
     setTransactions([transaction, ...transactions]);
   }
 
+  const total = transactions.reduce((acc, transaction) => {
+    const { coin, type, quantity } = transaction;
+    const previousQuantity = acc[coin] || 0;
+    return {
+      ...acc,
+      [coin]: previousQuantity + quantity * (type === "buy" ? 1 : -1)
+    };
+  }, {});
+
   return (
     <Router>
       <GlobalStyles />
@@ -69,6 +78,8 @@ function App() {
                   {...props}
                   onNewTransaction={handleNewTransaction}
                   coinData={coinData}
+                  coinDataNormalized={coinDataNormalized}
+                  total={total}
                 />
               )}
             />
@@ -85,7 +96,7 @@ function App() {
               render={props => (
                 <CryptofolioPage
                   {...props}
-                  transactions={transactions}
+                  total={total}
                   coinData={coinDataNormalized}
                 />
               )}

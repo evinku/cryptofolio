@@ -4,16 +4,7 @@ import Title from "../components/Title";
 import PortfolioCards from "./PortfolioCards";
 import PieChart from "./PieChart";
 
-function CryptofolioPage({ transactions, coinData }) {
-  const total = transactions.reduce((acc, transaction) => {
-    const { coin, type, quantity } = transaction;
-    const previousQuantity = acc[coin] || 0;
-    return {
-      ...acc,
-      [coin]: previousQuantity + quantity * (type === "buy" ? 1 : -1)
-    };
-  }, {});
-
+function CryptofolioPage({ total, coinData }) {
   return (
     <>
       <Title size="L">Cryptofolio</Title>
@@ -24,7 +15,7 @@ function CryptofolioPage({ transactions, coinData }) {
 }
 
 CryptofolioPage.propTypes = {
-  transactions: PropTypes.array.isRequired,
+  total: PropTypes.object.isRequired,
   coinData: PropTypes.object.isRequired
 };
 

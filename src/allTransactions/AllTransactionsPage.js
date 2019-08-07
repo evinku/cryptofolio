@@ -43,8 +43,6 @@ function AllTransactionsPage({ history, transactions }) {
     }
   ];
 
-  console.log(transactionOptions);
-
   return (
     <>
       <Title size="L">All Transactions</Title>
