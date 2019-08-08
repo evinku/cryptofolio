@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Kevin Kuhfeldt",
+    "email": "kevin.kuhft@gmx.de",
+    "date": "2019-08-08",
+    "portfolioData": {
+      "Ethereum": 20,
+      "Lambda": 11,
+      "EOS": 323,
+      "Bitcoin": 2.5
+    }
+  },
+  {
+    "name": "Marwin Bla",
+    "email": "kevinuhfeldt@gmx.de",
+    "date": "2019-08-08",
+    "portfolioData": {
+      "Ethereum": 20,
+      "Lambda": 11,
+      "EOS": 323,
+      "Bitcoin": 2.5
+    }
+  },
+  {
+    "name": "lando Bla",
+    "email": "kn.kuhfeldt@gmx.de",
+    "date": "2019-08-08",
+    "portfolioData": {
+      "Ethereum": 20,
+      "Lambda": 11,
+      "EOS": 323,
+      "Bitcoin": 2.5
+    }
+  },
+  {
+    "name": "Konsti Bla",
+    "email": ".kuhfeldt@gmx.de",
+    "date": "2019-08-08",
+    "portfolioData": {
+      "Ethereum": 20,
+      "Lambda": 11,
+      "EOS": 323,
+      "Bitcoin": 2.5
+    }
+  }
+]

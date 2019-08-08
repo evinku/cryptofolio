@@ -43,3 +43,12 @@ export function totalHoldings(total, coinData) {
     })
     .reduce((acc, amount) => acc + amount);
 }
+
+export function getPieData(totalQuantities, coinData, totalHoldingsPerCoin) {
+  return {
+    options: {
+      labels: Object.keys(totalQuantities)
+    },
+    series: totalHoldingsPerCoin(totalQuantities, coinData)
+  };
+}

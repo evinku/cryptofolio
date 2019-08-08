@@ -54,7 +54,8 @@ function AllTransactionsPage({ history, transactions, totalQuantities }) {
 }
 
 AllTransactionsPage.propTypes = {
-  transactions: PropTypes.array.isRequired
+  transactions: PropTypes.array.isRequired,
+  totalQuantities: PropTypes.object.isRequired
 };
 
 export default AllTransactionsPage;
