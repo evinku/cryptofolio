@@ -5,9 +5,9 @@
     "date": "2019-08-08",
     "portfolioData": {
       "Ethereum": 20,
-      "Lambda": 11,
-      "EOS": 323,
-      "Bitcoin": 2.5
+      "Lambda": 1,
+      "EOS": 3,
+      "Bitcoin": 2
     }
   },
   {
@@ -15,10 +15,10 @@
     "email": "kevinuhfeldt@gmx.de",
     "date": "2019-08-08",
     "portfolioData": {
-      "Ethereum": 20,
+      "Ethereum": 2,
       "Lambda": 11,
-      "EOS": 323,
-      "Bitcoin": 2.5
+      "EOS": 23,
+      "Bitcoin": 5
     }
   },
   {
@@ -26,9 +26,9 @@
     "email": "kn.kuhfeldt@gmx.de",
     "date": "2019-08-08",
     "portfolioData": {
-      "Ethereum": 20,
-      "Lambda": 11,
-      "EOS": 323,
+      "Ethereum": 2,
+      "Lambda": 1,
+      "EOS": 3,
       "Bitcoin": 2.5
     }
   },
@@ -37,10 +37,10 @@
     "email": ".kuhfeldt@gmx.de",
     "date": "2019-08-08",
     "portfolioData": {
-      "Ethereum": 20,
-      "Lambda": 11,
-      "EOS": 323,
-      "Bitcoin": 2.5
+      "Ethereum": 27,
+      "Lambda": 100,
+      "EOS": 3,
+      "Bitcoin": 0.5
     }
   }
 ]
