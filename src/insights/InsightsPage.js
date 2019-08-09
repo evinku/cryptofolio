@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Title from "../components/Title";
 import PieCharts from "./PieCharts";
 import PieChart from "../portfolio/PieChart";
-import { getPieData, totalHoldingsPerCoin } from "../utils/portfolioServices";
+import { getPieData } from "../utils/portfolioServices";
 import ActionButton from "../components/ActionButton";
 
 const StyledSection = styled.section``;
@@ -28,9 +28,7 @@ function InsightsPage({ totalQuantities, coinData }) {
     <StyledSection>
       <Title size="L">Insights</Title>
       <div>Your Portfolio:</div>
-      <PieChart
-        pieData={getPieData(totalQuantities, coinData, totalHoldingsPerCoin)}
-      />
+      <PieChart pieData={getPieData(totalQuantities, coinData)} />
       <UploadButton />
       <StyledHr />
       <PieCharts coinData={coinData} />

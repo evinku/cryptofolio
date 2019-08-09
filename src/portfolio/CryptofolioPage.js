@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import Title from "../components/Title";
 import PortfolioCards from "./PortfolioCards";
 import PieChart from "./PieChart";
-import { totalHoldingsPerCoin, getPieData } from "../utils/portfolioServices";
+import { getPieData } from "../utils/portfolioServices";
 
 function CryptofolioPage({ totalQuantities, coinData }) {
-  const pieData = getPieData(totalQuantities, coinData, totalHoldingsPerCoin);
+  const pieData = getPieData(totalQuantities, coinData);
   return (
     <>
       <Title size="L">Cryptofolio</Title>

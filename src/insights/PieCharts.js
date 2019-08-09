@@ -1,7 +1,7 @@
 import React from "react";
 import PieChart from "../portfolio/PieChart";
 import styled from "styled-components";
-import { getPieData, totalHoldingsPerCoin } from "../utils/portfolioServices";
+import { getPieData } from "../utils/portfolioServices";
 import portfolio from "./__mock__/portfolioData";
 
 const StyledHr = styled.hr`
@@ -14,9 +14,7 @@ function PieCharts({ coinData }) {
       <div>{data.name}</div>
       <div>{data.email}</div>
       <div>{data.date}</div>
-      <PieChart
-        pieData={getPieData(data.portfolioData, coinData, totalHoldingsPerCoin)}
-      />
+      <PieChart pieData={getPieData(data.portfolioData, coinData)} />
       <StyledHr />
     </div>
   ));
