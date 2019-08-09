@@ -24,12 +24,14 @@ const UploadButton = styled(ActionButton).attrs({
 `;
 
 function InsightsPage({ totalQuantities, coinData }) {
+  function handleClick() {}
+
   return (
     <StyledSection>
       <Title size="L">Insights</Title>
-      <div>Your Portfolio:</div>
+      <Title size="S">Your Portfolio:</Title>
       <PieChart pieData={getPieData(totalQuantities, coinData)} />
-      <UploadButton />
+      <UploadButton onclick={handleClick} />
       <StyledHr />
       <PieCharts coinData={coinData} />
     </StyledSection>
@@ -37,7 +39,8 @@ function InsightsPage({ totalQuantities, coinData }) {
 }
 
 InsightsPage.propTypes = {
-  totalQuantities: PropTypes.object.isRequired
+  totalQuantities: PropTypes.object.isRequired,
+  coinData: PropTypes.object.isRequired
 };
 
 export default InsightsPage;
