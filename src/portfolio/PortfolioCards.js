@@ -54,7 +54,9 @@ function PortfolioCards({ coinData, totalQuantities }) {
               <StyledImg alt={key} src={findImageByName(coinData, key)} />
               <span>{key}</span>
             </StyledGroupInGroup>
-            <StyledQuantity>{totalQuantities[key]}</StyledQuantity>
+            <StyledQuantity>
+              {Math.round(totalQuantities[key] * 100) / 100}
+            </StyledQuantity>
           </StyledGroup>
           <span>
             {new Intl.NumberFormat("de-DE", {
