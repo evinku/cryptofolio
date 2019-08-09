@@ -6,6 +6,7 @@ import PieCharts from "./PieCharts";
 import PieChart from "../portfolio/PieChart";
 import { getPieData } from "../utils/portfolioServices";
 import ActionButton from "../components/ActionButton";
+import { postPortfolio } from "../services";
 
 const StyledSection = styled.section``;
 
@@ -24,14 +25,23 @@ const UploadButton = styled(ActionButton).attrs({
 `;
 
 function InsightsPage({ totalQuantities, coinData }) {
-  function handleClick() {}
+  function handleClick() {
+    const data = {
+      name: "Kevin",
+      email: "Kevins@gmx.de",
+      date: "12.12.1990",
+      data: { Bitcoin: 4, Ethereum: 20 }
+    };
+
+    postPortfolio(data);
+  }
 
   return (
     <StyledSection>
       <Title size="L">Insights</Title>
       <Title size="S">Your Portfolio:</Title>
       <PieChart pieData={getPieData(totalQuantities, coinData)} />
-      <UploadButton onclick={handleClick} />
+      <UploadButton onClick={handleClick} />
       <StyledHr />
       <PieCharts coinData={coinData} />
     </StyledSection>
