@@ -31,7 +31,7 @@ function PickDate({ onDateChange }) {
       onclick={handleClick}
       showTimeSelect
       timeFormat="HH:mm"
-      timeIntervals={5}
+      timeIntervals={1}
       dateFormat="d MMMM yyyy h:mm aa"
       timeCaption="time"
     />

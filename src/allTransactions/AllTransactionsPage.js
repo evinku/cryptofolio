@@ -12,7 +12,7 @@ const AddMoreButton = styled(ActionButton).attrs({
   size: "20px"
 })``;
 
-function AllTransactionsPage({ history, transactions }) {
+function AllTransactionsPage({ history, transactions, totalQuantities }) {
   const [filteredTransactions, setFilteredTransactions] = React.useState(null);
 
   function handleSearchTransactionsChange(filteredTransactions) {
@@ -25,18 +25,10 @@ function AllTransactionsPage({ history, transactions }) {
 
   //prepare for dropdown in SearchTransactions
   const transactionOptions = [
-    ...transactions
-      .map(transaction => ({
-        label: transaction.coin,
-        value: transaction.coin
-      }))
-      .filter(
-        (option, index, self) =>
-          index ===
-          self.findIndex(
-            t => t.label === option.label && t.value === option.value
-          )
-      ),
+    ...Object.keys(totalQuantities).map(key => ({
+      label: key,
+      value: key
+    })),
     {
       label: "All Transactions",
       value: null
@@ -62,7 +54,8 @@ function AllTransactionsPage({ history, transactions }) {
 }
 
 AllTransactionsPage.propTypes = {
-  transactions: PropTypes.array.isRequired
+  transactions: PropTypes.array.isRequired,
+  totalQuantities: PropTypes.object.isRequired
 };
 
 export default AllTransactionsPage;

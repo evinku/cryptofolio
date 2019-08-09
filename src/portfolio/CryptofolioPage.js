@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import Title from "../components/Title";
 import PortfolioCards from "./PortfolioCards";
 import PieChart from "./PieChart";
+import { getPieData } from "../utils/portfolioServices";
 
-function CryptofolioPage({ totalQuantities, coinData, pieData }) {
+function CryptofolioPage({ totalQuantities, coinData }) {
+  const pieData = getPieData(totalQuantities, coinData);
   return (
     <>
       <Title size="L">Cryptofolio</Title>
@@ -16,8 +18,7 @@ function CryptofolioPage({ totalQuantities, coinData, pieData }) {
 
 CryptofolioPage.propTypes = {
   totalQuantities: PropTypes.object.isRequired,
-  coinData: PropTypes.object.isRequired,
-  pieData: PropTypes.object.isRequired
+  coinData: PropTypes.object.isRequired
 };
 
 export default CryptofolioPage;
