@@ -3,13 +3,25 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Select from "react-dropdown-select";
 
+const StyledDiv = styled.div`
+  background-color: white;
+  font-size: 20px;
+  border: solid 2px rgba(0, 0, 0, 0.3);
+`;
+
 const StyledSelect = styled(Select)`
-  .react-dropdown-select-content {
-    width: 270px;
+  .react-dropdown-select {
   }
+
+  .react-dropdown-select-content {
+    height: 35px;
+    padding: 3px;
+    min-width: 100px;
+  }
+
   .react-dropdown-select-item {
     &:hover {
-      background: lightgray;
+      background: lightgrey;
     }
   }
 `;
@@ -23,12 +35,14 @@ function DropdownMenu({ coinOptions, onDropdownChange }) {
   }
 
   return (
-    <StyledSelect
-      options={coinOptions}
-      values={[]}
-      onChange={handleChange}
-      placeholder="Select coin..."
-    />
+    <StyledDiv>
+      <StyledSelect
+        options={coinOptions}
+        values={[]}
+        onChange={handleChange}
+        placeholder="Select coin"
+      />
+    </StyledDiv>
   );
 }
 

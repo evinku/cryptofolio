@@ -12,7 +12,6 @@ const PortfolioButton = styled(ActionButton).attrs({
   font-size: 35px;
   width: 35px;
   height: 35px;
-  background-color: white;
   &:focus {
     outline: none;
   }
@@ -26,7 +25,6 @@ const InsightsButton = styled(ActionButton).attrs({
   font-size: 35px;
   width: 35px;
   height: 35px;
-  background-color: white;
   &:focus {
     outline: none;
   }
@@ -40,7 +38,6 @@ const MarketsButton = styled(ActionButton).attrs({
   font-size: 35px;
   width: 35px;
   height: 35px;
-  background-color: white;
   &:focus {
     outline: none;
   }
@@ -54,7 +51,6 @@ const AllTransactionsButton = styled(ActionButton).attrs({
   font-size: 35px;
   width: 35px;
   height: 35px;
-  background-color: white;
   &:focus {
     outline: none;
   }
@@ -66,8 +62,9 @@ const AddButton = styled(ActionButton).attrs({
   size: "16px"
 })`
   font-size: 40px;
+  width: 48px;
+  height: 48px;
   border: solid 1px;
-  background-color: white;
   &:focus {
     outline: none;
   }

@@ -6,11 +6,10 @@ const StyledButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 48px;
-  height: 48px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
+  background-color: rgb(240, 240, 240);
 `;
 
 const StyledDescription = styled.span`

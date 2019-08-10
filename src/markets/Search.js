@@ -35,7 +35,7 @@ function Search({ coinData, onSearchChange }) {
 
   return (
     <StyledDiv>
-      <StyledInput onChange={handlechange} placeholder="Search coin..." />
+      <StyledInput onChange={handlechange} placeholder="Search coin" />
     </StyledDiv>
   );
 }

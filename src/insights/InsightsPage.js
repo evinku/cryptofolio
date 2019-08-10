@@ -24,10 +24,9 @@ const StyledHr = styled.hr`
 const UploadButton = styled(ActionButton).attrs({
   icon: "fa-upload",
   type: "Upload Portfolio",
-  size: "20px"
+  size: "16px"
 })`
   font-size: 30px;
-  color: green;
 `;
 
 function InsightsPage({ totalQuantities, coinData }) {
@@ -47,8 +46,6 @@ function InsightsPage({ totalQuantities, coinData }) {
         Litecoin: 32
       }
     };
-
-    postPortfolio(data);
   }
 
   return (

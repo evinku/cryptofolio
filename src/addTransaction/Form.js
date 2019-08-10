@@ -36,15 +36,15 @@ const AddTransactionForm = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 75vh;
+  height: 70vh;
 `;
 
 const StyledInput = styled.input`
-  width: 300px;
+  width: 100vw;
   height: 30px;
-  border-radius: 10px;
   font-size: 15px;
-  padding: 5px;
+  padding: 20px;
+  padding-left: 10px;
 `;
 
 const StyledDescription = styled.h2`
@@ -152,7 +152,6 @@ function Form({
   return (
     <AddTransactionForm>
       <div>
-        <StyledDescription>Coin:</StyledDescription>
         <DropdownMenu
           coinOptions={coinOptions}
           onDropdownChange={handleDropdownChange}
