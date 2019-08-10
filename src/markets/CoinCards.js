@@ -60,7 +60,10 @@ function CoinCards({ coinData }) {
             </span>
             <StyledSpan
               color={
-                coinData.price_change_percentage_24h ? "#F5A099" : "#A8D7B6"
+                coinData.price_change_percentage_24h &&
+                coinData.price_change_percentage_24h.toString().startsWith("-")
+                  ? "#F5A099"
+                  : "#A8D7B6"
               }
             >
               {Math.round(coinData.price_change_percentage_24h * 100) / 100} %
@@ -70,6 +73,7 @@ function CoinCards({ coinData }) {
             <span>{numeral(coinData.market_cap).format("($ 0.00 a)")}</span>
             <StyledSpan
               color={
+                coinData.market_cap_change_percentage_24h &&
                 coinData.market_cap_change_percentage_24h
                   .toString()
                   .startsWith("-")
