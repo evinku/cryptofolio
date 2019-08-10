@@ -12,26 +12,30 @@ function getSize(size) {
   return sizes[size] || sizes.M;
 }
 
+const StyledDiv = styled.div`
+  background: linear-gradient(
+    180deg,
+    rgba(2, 48, 101, 1) 20%,
+    rgba(44, 99, 144, 1) 84%
+  );
+  margin-bottom: 30px;
+  padding: 20px;
+`;
+
 const StyledTitle = styled.h1`
   margin: 0;
   font-size: ${props => getSize(props.size)};
   text-align: center;
-`;
-
-const StyledHr = styled.hr`
-  width: 200px;
-  margin-bottom: 30px;
-  height: 1px;
+  color: white;
 `;
 
 function Title({ size, children, className, ...props }) {
   return (
-    <>
+    <StyledDiv>
       <StyledTitle size={size} className={className} {...props}>
         {children}
       </StyledTitle>
-      <StyledHr />
-    </>
+    </StyledDiv>
   );
 }
 

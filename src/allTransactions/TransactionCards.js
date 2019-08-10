@@ -9,10 +9,10 @@ const StyledSection = styled.section`
 `;
 
 const StyledCard = styled.div`
-  border: solid 1px;
+  border: solid 0.5px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   padding: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   background-color: ${props => props.color};
   animation: ${fadeIn} 0.5s ease-out;
 `;
@@ -22,37 +22,40 @@ const StyledTransactions = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
   grid-gap: 5px;
-  justify-items: center;
 `;
 
 const StyledGroup = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
 `;
 
 const StyledSpan = styled.span`
-  text-decoration: underline;
   opacity: 0.6;
+  margin-right: 5px;
 `;
 
 function TransactionCards({ transactions }) {
   function renderTransactionCard(transaction) {
     return (
       <div key={transaction.id}>
-        <StyledCard color={transaction.type === "buy" ? "#A8D7B6" : "#F5A099"}>
+        <StyledCard
+          color={
+            transaction.type === "buy"
+              ? "rgba(177,213,184,0.5)"
+              : "rgba(233,164,156,0.7)"
+          }
+        >
           <span>
-            Date: <Moment format="YYYY/MM/DD HH:mm">{transaction.date}</Moment>
+            Date: <Moment format="YYYY/MM/DD">{transaction.date}</Moment>
           </span>
           <hr />
           <StyledTransactions>
             <StyledGroup>
-              <StyledSpan>Coin</StyledSpan>
+              <StyledSpan>Coin:</StyledSpan>
               <span>{transaction.coin}</span>
             </StyledGroup>
             <StyledGroup>
-              <StyledSpan>Price</StyledSpan>
+              <StyledSpan>Price:</StyledSpan>
               <span>
                 {new Intl.NumberFormat("de-DE", {
                   style: "currency",
@@ -61,11 +64,11 @@ function TransactionCards({ transactions }) {
               </span>
             </StyledGroup>
             <StyledGroup>
-              <StyledSpan>Amount</StyledSpan>
+              <StyledSpan>Amount:</StyledSpan>
               <span>{transaction.quantity}</span>
             </StyledGroup>
             <StyledGroup>
-              <StyledSpan>Type</StyledSpan>
+              <StyledSpan>Type:</StyledSpan>
               <span>{transaction.type}</span>
             </StyledGroup>
           </StyledTransactions>

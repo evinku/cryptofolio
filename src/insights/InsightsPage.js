@@ -54,7 +54,7 @@ function InsightsPage({ totalQuantities, coinData }) {
   return (
     <StyledSection>
       <Title size="L">Insights</Title>
-      <Title size="S">Your Portfolio:</Title>
+      <h2>Your Portfolio:</h2>
       <PieChart pieData={getPieData(totalQuantities, coinData)} />
       <UploadButton onClick={handleClick} />
       <StyledHr />

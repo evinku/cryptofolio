@@ -5,10 +5,6 @@ import { getPieData } from "../utils/portfolioServices";
 import portfolio from "./__mock__/portfolioData";
 import { getPortfolios } from "../services";
 
-const StyledHr = styled.hr`
-  width: 80%;
-`;
-
 function PieCharts({ coinData }) {
   const [portfolios, setPortfolios] = React.useState([]);
 
@@ -23,12 +19,11 @@ function PieCharts({ coinData }) {
   return (
     portfolios &&
     portfolios.map(portfolio => (
-      <div key={portfolio.email}>
+      <div key={portfolio._id}>
         <div>{portfolio.name}</div>
         <div>{portfolio.email}</div>
         <div>{portfolio.date}</div>
         <PieChart pieData={getPieData(portfolio.data, coinData)} />
-        <StyledHr />
       </div>
     ))
   );

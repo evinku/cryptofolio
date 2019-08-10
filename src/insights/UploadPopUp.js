@@ -14,7 +14,7 @@ const CancelButton = styled(ActionButton).attrs({
   background-color: white;
 `;
 
-const StyledDiv = styled.div`
+const StyledForm = styled.form`
   position: absolute;
   border-radius: 10px;
   top: 50px;
@@ -28,9 +28,9 @@ const StyledDiv = styled.div`
 function UploadPopUp({ showPopUp, onCancelClick }) {
   if (showPopUp) {
     return (
-      <StyledDiv>
+      <StyledForm>
         <CancelButton onClick={() => onCancelClick()} />
-      </StyledDiv>
+      </StyledForm>
     );
   }
   return null;
