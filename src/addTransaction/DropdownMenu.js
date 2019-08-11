@@ -6,7 +6,8 @@ import Select from "react-dropdown-select";
 const StyledDiv = styled.div`
   background-color: white;
   font-size: 20px;
-  border: solid 2px rgba(0, 0, 0, 0.3);
+  padding: 0px;
+  box-shadow: -4px 10px 24px -16px rgba(0, 0, 0, 1);
 `;
 
 const StyledSelect = styled(Select)`

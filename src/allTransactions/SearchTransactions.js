@@ -5,7 +5,7 @@ import Select from "react-dropdown-select";
 
 const StyledSelect = styled(Select)`
   .react-dropdown-select-content {
-    width: 270px;
+    min-width: 270px;
   }
 
   .react-dropdown-select-item {

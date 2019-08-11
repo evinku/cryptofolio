@@ -15,10 +15,18 @@ const StyledSection = styled.section`
   flex-direction: column;
 `;
 
+const StyledHeadline = styled.h2`
+  text-align: center;
+  margin-bottom: 25px;
+  margin-top: 15px;
+  font-size: 28px;
+`;
+
 const StyledHr = styled.hr`
-  height: 5px;
+  height: 3px;
   width: 90%;
-  background: black;
+  background: rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
 `;
 
 const UploadButton = styled(ActionButton).attrs({
@@ -27,6 +35,7 @@ const UploadButton = styled(ActionButton).attrs({
   size: "16px"
 })`
   font-size: 30px;
+  margin-top: 30px;
 `;
 
 function InsightsPage({ totalQuantities, coinData }) {
@@ -51,7 +60,7 @@ function InsightsPage({ totalQuantities, coinData }) {
   return (
     <StyledSection>
       <Title size="L">Insights</Title>
-      <h2>Your Portfolio:</h2>
+      <StyledHeadline>Your Portfolio</StyledHeadline>
       <PieChart pieData={getPieData(totalQuantities, coinData)} />
       <UploadButton onClick={handleClick} />
       <StyledHr />

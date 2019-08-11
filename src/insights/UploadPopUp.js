@@ -6,19 +6,23 @@ import ActionButton from "../components/ActionButton";
 const CancelButton = styled(ActionButton).attrs({
   icon: "fa-window-close",
   type: "Cancel",
-  size: "16px"
+  size: "16px",
+  color: "white"
 })`
   font-size: 40px;
-  background: rgba(44, 99, 144, 1);
+  background: rgba(50, 90, 133, 1);
+  color: white;
 `;
 
 const SendButton = styled(ActionButton).attrs({
   icon: "fa-share-square",
   type: "Send",
-  size: "16px"
+  size: "16px",
+  color: "white"
 })`
+  color: white;
   font-size: 40px;
-  background: rgba(44, 99, 144, 1);
+  background: rgba(50, 90, 133, 1);
 `;
 
 const StyledForm = styled.form`
@@ -27,13 +31,17 @@ const StyledForm = styled.form`
   align-items: center;
   position: absolute;
   border-radius: 10px;
-  top: 50px;
-  width: 300px;
-  height: 300px;
+  top: 195px;
+  width: 95%;
+  height: 250px;
   align-self: center;
   background-color: black;
   padding: 20px;
-  background: rgba(44, 99, 144, 1);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 48, 101, 1) 20%,
+    rgba(44, 99, 144, 1) 84%
+  );
 `;
 
 const StyledInput = styled.input`
@@ -43,7 +51,7 @@ const StyledInput = styled.input`
   padding: 20px;
   padding-left: 10px;
   margin-bottom: 25px;
-  border-radius: 5px;
+  border-radius: 10px;
 `;
 
 const StyledGroup = styled.div`
