@@ -77,4 +77,9 @@ function UploadPopUp({ showPopUp, onCancelClick }) {
   return null;
 }
 
+UploadPopUp.propTypes = {
+  showPopUp: PropTypes.bool.isRequired,
+  onCancelClick: PropTypes.func.isRequired
+};
+
 export default UploadPopUp;
