@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import ActionButton from "../components/ActionButton";
+import { zoomOut } from "../utils/animations";
 
 const CancelButton = styled(ActionButton).attrs({
   icon: "fa-window-close",
@@ -10,7 +11,7 @@ const CancelButton = styled(ActionButton).attrs({
   color: "white"
 })`
   font-size: 40px;
-  background: rgba(50, 90, 133, 1);
+  background: transparent;
   color: white;
 `;
 
@@ -22,7 +23,7 @@ const SendButton = styled(ActionButton).attrs({
 })`
   color: white;
   font-size: 40px;
-  background: rgba(50, 90, 133, 1);
+  background: transparent;
 `;
 
 const StyledForm = styled.form`
@@ -42,6 +43,7 @@ const StyledForm = styled.form`
     rgba(2, 48, 101, 1) 20%,
     rgba(44, 99, 144, 1) 84%
   );
+  animation: ${zoomOut} 0.8s ease-out;
 `;
 
 const StyledInput = styled.input`
