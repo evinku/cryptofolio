@@ -31,12 +31,11 @@ const StyledForm = styled.form`
   flex-direction: column;
   align-items: center;
   position: absolute;
+  align-self: center;
   border-radius: 10px;
   top: 195px;
   width: 95%;
   height: 250px;
-  align-self: center;
-  background-color: black;
   padding: 20px;
   background: linear-gradient(
     180deg,
