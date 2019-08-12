@@ -42,18 +42,18 @@ function AddTransactionPage({
   return (
     <StyledSection>
       <Title size="L">Add Transaction</Title>
-      {transactionType === "sell" ? (
+      {transactionType === "buy" ? (
         <StyledMoneyRain
-          src="https://giphy.com/embed/Efm4qfreaUsrFMwtre"
+          src="/coin_rain.gif"
           width="480"
           height="480"
           frameBorder="0"
           allowFullScreen
         />
       ) : null}
-      {transactionType === "buy" ? (
+      {transactionType === "sell" ? (
         <StyledCoinRain
-          src="https://giphy.com/embed/NsAXBSpx0MJ6IBDCPY"
+          src="/money_rain.gif"
           width="480"
           height="480"
           frameBorder="0"

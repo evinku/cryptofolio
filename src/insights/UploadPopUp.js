@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import ActionButton from "../components/ActionButton";
 import { zoomOut } from "../utils/animations";
+import { postPortfolio } from "../services";
 
 const CancelButton = styled(ActionButton).attrs({
   icon: "fa-window-close",
@@ -61,15 +62,52 @@ const StyledGroup = styled.div`
   justify-content: space-between;
 `;
 
-function UploadPopUp({ showPopUp, onCancelClick }) {
+function UploadPopUp({ showPopUp, onCancelClick, totalQuantities }) {
+  const [uploadData, setUploadData] = React.useState({
+    name: "",
+    email: ""
+  });
+
+  function handleChange(event) {
+    setUploadData({
+      ...uploadData,
+      [event.target.name]: event.target.value
+    });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const date = new Date().toISOString();
+
+    const parsed = Object.keys(totalQuantities).map(key => ({
+      name: key,
+      amount: totalQuantities[key]
+    }));
+
+    const data = { ...uploadData, date, data: parsed };
+
+    postPortfolio(data);
+    onCancelClick();
+  }
+
   if (showPopUp) {
     return (
       <StyledForm>
-        <StyledInput placeholder="Your Name" />
-        <StyledInput placeholder="Your Email" />
+        <StyledInput
+          name="name"
+          value={uploadData.name}
+          placeholder="Your Name"
+          onChange={handleChange}
+        />
+        <StyledInput
+          name="email"
+          value={uploadData.email}
+          placeholder="Your Email"
+          onChange={handleChange}
+        />
         <StyledGroup>
           <CancelButton onClick={() => onCancelClick()} />
-          <SendButton />
+          <SendButton onClick={handleSubmit} />
         </StyledGroup>
       </StyledForm>
     );
@@ -78,7 +116,7 @@ function UploadPopUp({ showPopUp, onCancelClick }) {
 }
 
 UploadPopUp.propTypes = {
-  showPopUp: PropTypes.bool.isRequired,
+  showPopUp: PropTypes.bool,
   onCancelClick: PropTypes.func.isRequired
 };
 

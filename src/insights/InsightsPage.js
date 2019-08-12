@@ -6,7 +6,6 @@ import PieCharts from "./PieCharts";
 import PieChart from "../portfolio/PieChart";
 import { getPieData } from "../utils/portfolioServices";
 import ActionButton from "../components/ActionButton";
-import { postPortfolio } from "../services";
 import UploadPopUp from "./UploadPopUp";
 
 const StyledSection = styled.section`
@@ -43,18 +42,6 @@ function InsightsPage({ totalQuantities, coinData }) {
 
   function handleClick() {
     setShowPopUp(true);
-
-    const data = {
-      name: "Kevin",
-      email: "Kevins@gmx.de",
-      date: "12.12.1990",
-      data: {
-        Bitcoin: 4,
-        Ethereum: 20,
-        XRP: 12,
-        Litecoin: 32
-      }
-    };
   }
 
   return (
@@ -66,6 +53,7 @@ function InsightsPage({ totalQuantities, coinData }) {
       <StyledHr />
       <PieCharts coinData={coinData} />
       <UploadPopUp
+        totalQuantities={totalQuantities}
         showPopUp={showPopUp}
         onCancelClick={() => setShowPopUp(false)}
       />

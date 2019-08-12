@@ -10,11 +10,11 @@ const portfolioSchema = new mongoose.Schema({
     required: true
   },
   date: {
-    type: Date,
+    type: String,
     required: true
   },
   data: {
-    type: Object,
+    type: [{ name: String, amount: Number }],
     required: true
   }
 });

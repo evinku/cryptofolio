@@ -22,13 +22,22 @@ function PieCharts({ coinData }) {
     getPortfolios().then(result => setPortfolios(result));
   }
 
+  function parseCoinData(data) {
+    return data.reduce((acc, coin) => {
+      return {
+        ...acc,
+        [coin.name]: coin.amount
+      };
+    }, {});
+  }
+
   return (
     portfolios &&
     portfolios.map(portfolio => (
       <div key={portfolio._id}>
         <StyledName>{portfolio.name}`s Portfolio</StyledName>
         <PieChart
-          pieData={getPieData(portfolio.data, coinData)}
+          pieData={getPieData(parseCoinData(portfolio.data), coinData)}
           date={portfolio.date}
         />
       </div>

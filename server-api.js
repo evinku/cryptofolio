@@ -10,7 +10,10 @@ module.exports = function(app) {
   app.post("/api/portfolios", (req, res) => {
     Portfolio.create(req.body)
       .then(portfolio => res.json(portfolio))
-      .catch(err => res.json(err));
+      .catch(err => {
+        console.log(err);
+        res.json(err);
+      });
   });
 
   app.patch("/api/portfolios/:id", (req, res) => {
