@@ -65,7 +65,7 @@ function PortfolioCards({ coinData, totalQuantities }) {
           <StyledGroup>
             <StyledGroupInGroup>
               <StyledImg alt={key} src={findImageByName(coinData, key)} />
-              <span>{key}</span>
+              <span>{coinData[key] && coinData[key].name}</span>
             </StyledGroupInGroup>
             <StyledQuantity>
               {Math.round(totalQuantities[key] * 100) / 100}

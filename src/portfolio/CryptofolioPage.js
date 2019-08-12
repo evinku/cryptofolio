@@ -6,6 +6,8 @@ import PieChart from "./PieChart";
 import { getPieData } from "../utils/portfolioServices";
 
 function CryptofolioPage({ totalQuantities, coinData }) {
+  console.log(totalQuantities);
+
   const pieData = getPieData(totalQuantities, coinData);
   return (
     <>
@@ -17,7 +19,7 @@ function CryptofolioPage({ totalQuantities, coinData }) {
 }
 
 CryptofolioPage.propTypes = {
-  totalQuantities: PropTypes.object.isRequired,
+  totalQuantities: PropTypes.object,
   coinData: PropTypes.object.isRequired
 };
 

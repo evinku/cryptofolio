@@ -26,23 +26,12 @@ function App() {
     getFromLocal("transactions") || []
   );
   const [coinData, setCoinData] = React.useState([]);
-  const [coinDataNormalized, setCoinDataNormalized] = React.useState({});
   const [coinDataNormalizedID, setCoinDataNormalizedID] = React.useState({});
-
-  console.log(coinDataNormalizedID);
 
   React.useEffect(() => {
     getCoinData().then(coinData => {
       setCoinData(coinData);
 
-      setCoinDataNormalized(
-        coinData.reduce((acc, coin) => {
-          return {
-            ...acc,
-            [coin.name]: coin
-          };
-        }, {})
-      );
       setCoinDataNormalizedID(
         coinData.reduce((acc, coin) => {
           return {
@@ -103,6 +92,7 @@ function App() {
                   {...props}
                   transactions={transactions}
                   totalQuantities={totalQuantities}
+                  coinData={coinDataNormalizedID}
                 />
               )}
             />

@@ -1,6 +1,6 @@
 export function findPriceByName(coins, name) {
   if (Object.keys(coins).length === 0) {
-    return 0;
+    return null;
   }
   const coin = coins[name];
   return coin && coin.current_price;
@@ -36,7 +36,7 @@ export function totalHoldings(total, coinData) {
 export function getPieData(totalQuantities, coinData) {
   function totalHoldingsPerCoin(totalQuantities, coinData) {
     if (Object.keys(totalQuantities).length === 0) {
-      return 0;
+      return [];
     }
     return Object.keys(totalQuantities).map(key => {
       const amount = totalQuantities[key];
@@ -46,7 +46,9 @@ export function getPieData(totalQuantities, coinData) {
   }
   return {
     options: {
-      labels: Object.keys(totalQuantities)
+      labels: Object.keys(totalQuantities).map(
+        coin => coinData[coin] && coinData[coin].name
+      )
     },
     series: totalHoldingsPerCoin(totalQuantities, coinData)
   };

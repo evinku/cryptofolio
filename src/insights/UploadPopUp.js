@@ -79,12 +79,7 @@ function UploadPopUp({ showPopUp, onCancelClick, totalQuantities }) {
     event.preventDefault();
     const date = new Date().toISOString();
 
-    const parsed = Object.keys(totalQuantities).map(key => ({
-      name: key,
-      amount: totalQuantities[key]
-    }));
-
-    const data = { ...uploadData, date, data: parsed };
+    const data = { ...uploadData, date, data: totalQuantities };
 
     postPortfolio(data);
     onCancelClick();
