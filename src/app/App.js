@@ -27,6 +27,9 @@ function App() {
   );
   const [coinData, setCoinData] = React.useState([]);
   const [coinDataNormalized, setCoinDataNormalized] = React.useState({});
+  const [coinDataNormalizedID, setCoinDataNormalizedID] = React.useState({});
+
+  console.log(coinDataNormalizedID);
 
   React.useEffect(() => {
     getCoinData().then(coinData => {
@@ -37,6 +40,14 @@ function App() {
           return {
             ...acc,
             [coin.name]: coin
+          };
+        }, {})
+      );
+      setCoinDataNormalizedID(
+        coinData.reduce((acc, coin) => {
+          return {
+            ...acc,
+            [coin.id]: coin
           };
         }, {})
       );
@@ -79,7 +90,7 @@ function App() {
                   {...props}
                   onNewTransaction={handleNewTransaction}
                   coinData={coinData}
-                  coinDataNormalized={coinDataNormalized}
+                  coinDataNormalizedID={coinDataNormalizedID}
                   totalQuantities={totalQuantities}
                 />
               )}
@@ -102,7 +113,7 @@ function App() {
                 <CryptofolioPage
                   {...props}
                   totalQuantities={totalQuantities}
-                  coinData={coinDataNormalized}
+                  coinData={coinDataNormalizedID}
                 />
               )}
             />
@@ -113,7 +124,7 @@ function App() {
                 <InsightsPage
                   {...props}
                   totalQuantities={totalQuantities}
-                  coinData={coinDataNormalized}
+                  coinData={coinDataNormalizedID}
                 />
               )}
             />

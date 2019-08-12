@@ -73,7 +73,7 @@ function Form({
   onTransactionSubmit,
   coinOptions,
   totalQuantities,
-  coinDataNormalized
+  coinDataNormalizedID
 }) {
   const [formData, setFormData] = React.useState({
     id: uuidv1(),
@@ -148,7 +148,7 @@ function Form({
     setFormData({
       ...formData,
       coin: dropdownValue,
-      price: coinDataNormalized[dropdownValue].current_price.toString()
+      price: coinDataNormalizedID[dropdownValue].current_price.toString()
     });
   }
 
@@ -204,7 +204,7 @@ Form.propTypes = {
   coinOptions: PropTypes.array,
   history: PropTypes.object,
   totalQuantities: PropTypes.object,
-  coinDataNormalized: PropTypes.object
+  coinDataNormalizedID: PropTypes.object
 };
 
 export default Form;

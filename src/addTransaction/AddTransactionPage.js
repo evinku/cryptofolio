@@ -23,7 +23,7 @@ function AddTransactionPage({
   onNewTransaction,
   coinData,
   totalQuantities,
-  coinDataNormalized
+  coinDataNormalizedID
 }) {
   const [transactionType, setTransactionType] = React.useState("");
 
@@ -36,7 +36,7 @@ function AddTransactionPage({
 
   const coinOptions = coinData.map(coin => ({
     label: coin.name,
-    value: coin.name
+    value: coin.id
   }));
 
   return (
@@ -65,7 +65,7 @@ function AddTransactionPage({
         coinOptions={coinOptions}
         history={history}
         totalQuantities={totalQuantities}
-        coinDataNormalized={coinDataNormalized}
+        coinDataNormalizedID={coinDataNormalizedID}
       />
     </StyledSection>
   );
@@ -75,7 +75,7 @@ AddTransactionPage.propTypes = {
   onNewTransaction: PropTypes.func,
   coinData: PropTypes.array,
   totalQuantities: PropTypes.object,
-  coinDataNormalized: PropTypes.object,
+  coinDataNormalizedID: PropTypes.object,
   history: PropTypes.object
 };
 
