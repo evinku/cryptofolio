@@ -10,10 +10,9 @@ const StyledDiv = styled.div`
 
 const StyledInput = styled.input`
   margin: 5px;
-  border: solid 1px;
   border-radius: 10px;
-  font-size: 18px;
-  padding: 3px;
+  font-size: 16px;
+  padding: 10px;
   margin-bottom: 20px;
 `;
 
@@ -36,7 +35,7 @@ function Search({ coinData, onSearchChange }) {
 
   return (
     <StyledDiv>
-      <StyledInput onChange={handlechange} placeholder="Search coin..." />
+      <StyledInput onChange={handlechange} placeholder="Search coin" />
     </StyledDiv>
   );
 }

@@ -10,7 +10,7 @@ const StyledSection = styled.section`
 
 const StyledCard = styled.div`
   display: grid;
-  grid-template-columns: 30px 4fr 3fr 3fr;
+  grid-template-columns: 30px 4fr 2fr 2fr;
 `;
 
 const StyledImg = styled.img`
@@ -22,12 +22,19 @@ const StyledImg = styled.img`
 const StyledGroupImage = styled.div`
   display: flex;
   align-items: center;
+  font-size: 20px;
 `;
 
 const StyledGroup = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+`;
+
+const StyledRank = styled.div`
+  font-size: 18px;
+  display: flex;
+  align-items: center;
 `;
 
 const StyledSpan = styled.span`
@@ -39,7 +46,7 @@ function CoinCards({ coinData }) {
     return (
       <div key={coinData.id}>
         <StyledCard>
-          <StyledGroup>{coinData.market_cap_rank}</StyledGroup>
+          <StyledRank>{coinData.market_cap_rank}</StyledRank>
           <StyledGroupImage>
             <StyledImg alt={coinData.name} src={coinData.image} />
             <span>{coinData.name}</span>
@@ -53,6 +60,7 @@ function CoinCards({ coinData }) {
             </span>
             <StyledSpan
               color={
+                coinData.price_change_percentage_24h &&
                 coinData.price_change_percentage_24h.toString().startsWith("-")
                   ? "#F5A099"
                   : "#A8D7B6"
@@ -65,6 +73,7 @@ function CoinCards({ coinData }) {
             <span>{numeral(coinData.market_cap).format("($ 0.00 a)")}</span>
             <StyledSpan
               color={
+                coinData.market_cap_change_percentage_24h &&
                 coinData.market_cap_change_percentage_24h
                   .toString()
                   .startsWith("-")

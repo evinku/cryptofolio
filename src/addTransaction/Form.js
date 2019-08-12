@@ -36,15 +36,15 @@ const AddTransactionForm = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 75vh;
+  height: 70vh;
 `;
 
 const StyledInput = styled.input`
-  width: 300px;
+  width: 100vw;
   height: 30px;
-  border-radius: 10px;
   font-size: 15px;
-  padding: 5px;
+  padding: 20px;
+  padding-left: 10px;
 `;
 
 const StyledDescription = styled.h2`
@@ -70,7 +70,7 @@ function checkTransaction(coin, currentQuantity, quantity, type) {
 
 function Form({
   history,
-  onSubmit,
+  onTransactionSubmit,
   coinOptions,
   totalQuantities,
   coinDataNormalized
@@ -130,11 +130,14 @@ function Form({
       setErrors(errors);
       return;
     }
-    onSubmit({ ...formData, type });
+    onTransactionSubmit({ ...formData, type });
+
     resetForm();
     setErrors({});
 
-    history.push("/all-transactions");
+    setTimeout(function() {
+      history.push("/all-transactions");
+    }, 2000);
   }
 
   function handleDateChange(newDate) {
@@ -152,7 +155,6 @@ function Form({
   return (
     <AddTransactionForm>
       <div>
-        <StyledDescription>Coin:</StyledDescription>
         <DropdownMenu
           coinOptions={coinOptions}
           onDropdownChange={handleDropdownChange}
@@ -198,7 +200,7 @@ function Form({
 }
 
 Form.propTypes = {
-  onSubmit: PropTypes.func,
+  onTransactionSubmit: PropTypes.func,
   coinOptions: PropTypes.array,
   history: PropTypes.object,
   totalQuantities: PropTypes.object,

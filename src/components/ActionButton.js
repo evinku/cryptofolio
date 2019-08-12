@@ -6,15 +6,15 @@ const StyledButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 48px;
-  height: 48px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
+  background-color: rgb(240, 240, 240);
 `;
 
 const StyledDescription = styled.span`
   font-size: ${props => props.size};
+  color: ${props => props.color};
   margin: 0;
 `;
 
@@ -25,13 +25,15 @@ const StyledGroup = styled.div`
   justify-content: center;
 `;
 
-function ActionButton({ icon, active, onClick, className, type, size }) {
+function ActionButton({ icon, active, onClick, className, type, size, color }) {
   return (
     <StyledGroup>
       <StyledButton className={className} active={active} onClick={onClick}>
         <i className={`fas ${icon}`} />
       </StyledButton>
-      <StyledDescription size={size}>{type}</StyledDescription>
+      <StyledDescription size={size} color={color}>
+        {type}
+      </StyledDescription>
     </StyledGroup>
   );
 }

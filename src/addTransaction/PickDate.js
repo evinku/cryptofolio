@@ -4,11 +4,11 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const StyledDatePicker = styled(DatePicker)`
-  width: 300px;
+  width: 100vw;
   height: 30px;
-  border-radius: 10px;
-  font-size: 15px;
-  padding: 5px;
+  font-size: 16px;
+  padding: 20px;
+  padding-left: 10px;
 `;
 
 function PickDate({ onDateChange }) {
@@ -25,7 +25,7 @@ function PickDate({ onDateChange }) {
 
   return (
     <StyledDatePicker
-      placeholderText="Select date..."
+      placeholderText="Select date"
       selected={date ? date : null}
       onChange={handleDateChange}
       onclick={handleClick}

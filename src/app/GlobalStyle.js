@@ -8,6 +8,7 @@ const GlobalStyles = createGlobalStyle`
   html, body {
     margin: 0;
     font-family: 'Saira Semi Condensed', sans-serif;
+    background-color: rgb(240,240,240)
   }
 `;
 

@@ -7,38 +7,51 @@ const StyledSection = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 5px;
-  margin: 3px;
+  margin: 5px;
   margin-bottom: 20px;
+  padding: 9px;
+  box-shadow: 0px 6px 29px -25px rgba(0, 0, 0, 0.64);
+  border-radius: 10px;
+  border: solid 0.5px rgba(0, 0, 0, 0.5);
 `;
 
 const StyledGroup = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: solid 1px;
+
   border-radius: 5px;
   padding: 5px;
+`;
+
+const StyledData = styled.span`
+  font-size: 20px;
+`;
+
+const StyledTitle = styled.span`
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.64);
+  margin-bottom: 5px;
 `;
 
 function MarketDataCard({ marketData }) {
   return (
     <StyledSection>
       <StyledGroup>
-        <span>Total Marketcap</span>
-        <span>
+        <StyledTitle>Total Marketcap</StyledTitle>
+        <StyledData>
           {numeral(marketData.total_market_cap_usd).format("($ 0.00 a)")}
-        </span>
-        <span>
-          {marketData && marketData.market_cap_change_percentage_24h_usd}%
-        </span>
+        </StyledData>
       </StyledGroup>
       <StyledGroup>
-        <span>24h Volume</span>
-        <span>{numeral(marketData.total_volume_usd).format("($ 0.00 a)")}</span>
+        <StyledTitle>24h Volume</StyledTitle>
+        <StyledData>
+          {numeral(marketData.total_volume_usd).format("($ 0.00 a)")}
+        </StyledData>
       </StyledGroup>
       <StyledGroup>
-        <span>₿-Dominanz</span>
-        <span>{marketData.market_cap_percentage_btc}%</span>
+        <StyledTitle>₿-Dominanz</StyledTitle>
+        <StyledData>{marketData.market_cap_percentage_btc}%</StyledData>
       </StyledGroup>
     </StyledSection>
   );

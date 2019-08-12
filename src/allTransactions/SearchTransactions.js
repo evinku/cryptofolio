@@ -5,7 +5,7 @@ import Select from "react-dropdown-select";
 
 const StyledSelect = styled(Select)`
   .react-dropdown-select-content {
-    width: 270px;
+    min-width: 270px;
   }
 
   .react-dropdown-select-item {
@@ -18,7 +18,7 @@ const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 `;
 
 function SearchTransactions({

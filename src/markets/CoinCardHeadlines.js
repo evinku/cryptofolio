@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const StyledCard = styled.div`
   display: grid;
-  grid-template-columns: 30px 4fr 3fr 3fr;
+  grid-template-columns: 30px 4fr 2fr 2fr;
   font-weight: bold;
 `;
 

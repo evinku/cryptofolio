@@ -6,34 +6,57 @@ import PieCharts from "./PieCharts";
 import PieChart from "../portfolio/PieChart";
 import { getPieData } from "../utils/portfolioServices";
 import ActionButton from "../components/ActionButton";
+import UploadPopUp from "./UploadPopUp";
 
-const StyledSection = styled.section``;
+const StyledSection = styled.section`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledHeadline = styled.h2`
+  text-align: center;
+  margin-bottom: 25px;
+  margin-top: 15px;
+  font-size: 28px;
+`;
 
 const StyledHr = styled.hr`
-  height: 5px;
-  background: black;
+  height: 3px;
+  width: 90%;
+  background: rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
 `;
 
 const UploadButton = styled(ActionButton).attrs({
   icon: "fa-upload",
   type: "Upload Portfolio",
-  size: "20px"
+  size: "16px"
 })`
   font-size: 30px;
-  color: green;
+  margin-top: 30px;
 `;
 
 function InsightsPage({ totalQuantities, coinData }) {
-  function handleClick() {}
+  const [showPopUp, setShowPopUp] = React.useState(null);
+
+  function handleClick() {
+    setShowPopUp(true);
+  }
 
   return (
     <StyledSection>
       <Title size="L">Insights</Title>
-      <Title size="S">Your Portfolio:</Title>
+      <StyledHeadline>Your Portfolio</StyledHeadline>
       <PieChart pieData={getPieData(totalQuantities, coinData)} />
-      <UploadButton onclick={handleClick} />
+      <UploadButton onClick={handleClick} />
       <StyledHr />
       <PieCharts coinData={coinData} />
+      <UploadPopUp
+        totalQuantities={totalQuantities}
+        showPopUp={showPopUp}
+        onCancelClick={() => setShowPopUp(false)}
+      />
     </StyledSection>
   );
 }

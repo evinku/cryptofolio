@@ -3,21 +3,46 @@ import PieChart from "../portfolio/PieChart";
 import styled from "styled-components";
 import { getPieData } from "../utils/portfolioServices";
 import portfolio from "./__mock__/portfolioData";
+import { getPortfolios } from "../services";
 
-const StyledHr = styled.hr`
-  width: 80%;
+const StyledName = styled.h2`
+  text-align: center;
+  margin-bottom: 1px;
+  margin-top: 40px;
 `;
 
 function PieCharts({ coinData }) {
-  return portfolio.map(data => (
-    <div key={data.email}>
-      <div>{data.name}</div>
-      <div>{data.email}</div>
-      <div>{data.date}</div>
-      <PieChart pieData={getPieData(data.portfolioData, coinData)} />
-      <StyledHr />
-    </div>
-  ));
+  const [portfolios, setPortfolios] = React.useState([]);
+
+  React.useEffect(() => {
+    loadPortfolios();
+  }, []);
+
+  function loadPortfolios() {
+    getPortfolios().then(result => setPortfolios(result));
+  }
+
+  function parseCoinData(data) {
+    return data.reduce((acc, coin) => {
+      return {
+        ...acc,
+        [coin.name]: coin.amount
+      };
+    }, {});
+  }
+
+  return (
+    portfolios &&
+    portfolios.map(portfolio => (
+      <div key={portfolio._id}>
+        <StyledName>{portfolio.name}`s Portfolio</StyledName>
+        <PieChart
+          pieData={getPieData(parseCoinData(portfolio.data), coinData)}
+          date={portfolio.date}
+        />
+      </div>
+    ))
+  );
 }
 
 export default PieCharts;

@@ -44,6 +44,19 @@ const StyledTotal = styled.div`
   margin-bottom: 20px;
 `;
 
+const StyledTitle = styled.h3`
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0;
+`;
+
+const StyledAmount = styled.div`
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+`;
+
 function PortfolioCards({ coinData, totalQuantities }) {
   function renderPortfolioCards(key) {
     return (
@@ -54,7 +67,9 @@ function PortfolioCards({ coinData, totalQuantities }) {
               <StyledImg alt={key} src={findImageByName(coinData, key)} />
               <span>{key}</span>
             </StyledGroupInGroup>
-            <StyledQuantity>{totalQuantities[key]}</StyledQuantity>
+            <StyledQuantity>
+              {Math.round(totalQuantities[key] * 100) / 100}
+            </StyledQuantity>
           </StyledGroup>
           <span>
             {new Intl.NumberFormat("de-DE", {
@@ -77,11 +92,13 @@ function PortfolioCards({ coinData, totalQuantities }) {
   return (
     <StyledSection>
       <StyledTotal>
-        <div>Total:</div>
-        {new Intl.NumberFormat("de-DE", {
-          style: "currency",
-          currency: "USD"
-        }).format(totalHoldings(totalQuantities, coinData))}
+        <StyledTitle>Total:</StyledTitle>
+        <StyledAmount>
+          {new Intl.NumberFormat("de-DE", {
+            style: "currency",
+            currency: "USD"
+          }).format(totalHoldings(totalQuantities, coinData))}
+        </StyledAmount>
       </StyledTotal>
       <PortfolioCardsHeadlines />
       {Object.keys(totalQuantities).map(renderPortfolioCards)}
