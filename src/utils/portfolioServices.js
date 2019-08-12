@@ -44,11 +44,17 @@ export function getPieData(totalQuantities, coinData) {
       return amount * price;
     });
   }
+
+  function getLabels(totalQuantities, coinData) {
+    const labels = Object.keys(totalQuantities).map(
+      coin => coinData[coin] && coinData[coin].name
+    );
+    return labels[0] !== undefined ? labels : [];
+  }
+
   return {
     options: {
-      labels: Object.keys(totalQuantities).map(
-        coin => coinData[coin] && coinData[coin].name
-      )
+      labels: getLabels(totalQuantities, coinData)
     },
     series: totalHoldingsPerCoin(totalQuantities, coinData)
   };

@@ -6,8 +6,6 @@ import PieChart from "./PieChart";
 import { getPieData } from "../utils/portfolioServices";
 
 function CryptofolioPage({ totalQuantities, coinData }) {
-  console.log(totalQuantities);
-
   const pieData = getPieData(totalQuantities, coinData);
   return (
     <>

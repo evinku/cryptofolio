@@ -13,6 +13,8 @@ const StyledName = styled.h2`
 function PieCharts({ coinData }) {
   const [portfolios, setPortfolios] = React.useState([]);
 
+  console.log(portfolios);
+
   React.useEffect(() => {
     loadPortfolios();
   }, []);
