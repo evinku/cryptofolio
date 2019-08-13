@@ -34,6 +34,7 @@
     "docz:build": "docz build",
     "server": "nodemon server.js"
   },
+  "proxy": "http://localhost:4000",
   "eslintConfig": {
     "extends": "react-app"
   },
