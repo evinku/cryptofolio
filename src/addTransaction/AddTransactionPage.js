@@ -8,12 +8,7 @@ const StyledSection = styled.section`
   position: relative;
 `;
 
-const StyledMoneyRain = styled.iframe`
-  position: absolute;
-  pointer-events: none;
-`;
-
-const StyledCoinRain = styled.iframe`
+const StyledRain = styled.iframe`
   position: absolute;
   pointer-events: none;
 `;
@@ -42,24 +37,24 @@ function AddTransactionPage({
   return (
     <StyledSection>
       <Title size="L">Add Transaction</Title>
-      {transactionType === "buy" ? (
-        <StyledMoneyRain
+      {transactionType === "buy" && (
+        <StyledRain
           src="/coin_rain.gif"
-          width="480"
-          height="480"
+          width="100%"
+          height="100%"
           frameBorder="0"
           allowFullScreen
         />
-      ) : null}
-      {transactionType === "sell" ? (
-        <StyledCoinRain
+      )}
+      {transactionType === "sell" && (
+        <StyledRain
           src="/money_rain.gif"
           width="480"
           height="480"
           frameBorder="0"
           allowFullScreen
         />
-      ) : null}
+      )}
       <Form
         onTransactionSubmit={handleTransactionSubmit}
         coinOptions={coinOptions}
