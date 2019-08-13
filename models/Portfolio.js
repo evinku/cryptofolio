@@ -16,6 +16,10 @@ const portfolioSchema = new mongoose.Schema({
   data: {
     type: Object,
     required: true
+  },
+  confirmed: {
+    type: Boolean,
+    default: false
   }
 });
 
