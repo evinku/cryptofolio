@@ -34,7 +34,7 @@ const StyledSpan = styled.span`
   margin-right: 5px;
 `;
 
-function TransactionCards({ transactions }) {
+function TransactionCards({ transactions, coinData }) {
   function renderTransactionCard(transaction) {
     return (
       <div key={transaction.id}>
@@ -52,7 +52,9 @@ function TransactionCards({ transactions }) {
           <StyledTransactions>
             <StyledGroup>
               <StyledSpan>Coin:</StyledSpan>
-              <span>{transaction.coin}</span>
+              <span>
+                {coinData[transaction.coin] && coinData[transaction.coin].name}
+              </span>
             </StyledGroup>
             <StyledGroup>
               <StyledSpan>Price:</StyledSpan>

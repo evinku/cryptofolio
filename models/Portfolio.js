@@ -14,7 +14,7 @@ const portfolioSchema = new mongoose.Schema({
     required: true
   },
   data: {
-    type: [{ name: String, amount: Number }],
+    type: Object,
     required: true
   }
 });

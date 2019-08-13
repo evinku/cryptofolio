@@ -26,17 +26,17 @@ function App() {
     getFromLocal("transactions") || []
   );
   const [coinData, setCoinData] = React.useState([]);
-  const [coinDataNormalized, setCoinDataNormalized] = React.useState({});
+  const [coinDataNormalizedID, setCoinDataNormalizedID] = React.useState({});
 
   React.useEffect(() => {
     getCoinData().then(coinData => {
       setCoinData(coinData);
 
-      setCoinDataNormalized(
+      setCoinDataNormalizedID(
         coinData.reduce((acc, coin) => {
           return {
             ...acc,
-            [coin.name]: coin
+            [coin.id]: coin
           };
         }, {})
       );
@@ -79,7 +79,7 @@ function App() {
                   {...props}
                   onNewTransaction={handleNewTransaction}
                   coinData={coinData}
-                  coinDataNormalized={coinDataNormalized}
+                  coinDataNormalizedID={coinDataNormalizedID}
                   totalQuantities={totalQuantities}
                 />
               )}
@@ -92,6 +92,7 @@ function App() {
                   {...props}
                   transactions={transactions}
                   totalQuantities={totalQuantities}
+                  coinData={coinDataNormalizedID}
                 />
               )}
             />
@@ -102,7 +103,7 @@ function App() {
                 <CryptofolioPage
                   {...props}
                   totalQuantities={totalQuantities}
-                  coinData={coinDataNormalized}
+                  coinData={coinDataNormalizedID}
                 />
               )}
             />
@@ -113,7 +114,7 @@ function App() {
                 <InsightsPage
                   {...props}
                   totalQuantities={totalQuantities}
-                  coinData={coinDataNormalized}
+                  coinData={coinDataNormalizedID}
                 />
               )}
             />

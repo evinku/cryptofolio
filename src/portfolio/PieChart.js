@@ -18,6 +18,9 @@ const StyledDate = styled.span`
 `;
 
 function PieChart({ pieData, date }) {
+  if (Object.keys(pieData).length === 0) {
+    return null;
+  }
   return (
     <StyledPie>
       <Chart
@@ -37,7 +40,7 @@ function PieChart({ pieData, date }) {
 }
 
 PieChart.propTypes = {
-  pieData: PropTypes.object.isRequired
+  pieData: PropTypes.object
 };
 
 export default PieChart;

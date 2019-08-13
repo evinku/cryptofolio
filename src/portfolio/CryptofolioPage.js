@@ -17,7 +17,7 @@ function CryptofolioPage({ totalQuantities, coinData }) {
 }
 
 CryptofolioPage.propTypes = {
-  totalQuantities: PropTypes.object.isRequired,
+  totalQuantities: PropTypes.object,
   coinData: PropTypes.object.isRequired
 };
 

@@ -4,7 +4,12 @@ import PropTypes from "prop-types";
 import TransactionCards from "./TransactionCards";
 import SearchTransactions from "./SearchTransactions";
 
-function AllTransactionsPage({ history, transactions, totalQuantities }) {
+function AllTransactionsPage({
+  history,
+  transactions,
+  totalQuantities,
+  coinData
+}) {
   const [filteredTransactions, setFilteredTransactions] = React.useState(null);
 
   function handleSearchTransactionsChange(filteredTransactions) {
@@ -14,7 +19,7 @@ function AllTransactionsPage({ history, transactions, totalQuantities }) {
   //prepare for dropdown in SearchTransactions
   const transactionOptions = [
     ...Object.keys(totalQuantities).map(key => ({
-      label: key,
+      label: coinData[key] && coinData[key].name,
       value: key
     })),
     {
@@ -32,6 +37,7 @@ function AllTransactionsPage({ history, transactions, totalQuantities }) {
         onSearchTransactionsChange={handleSearchTransactionsChange}
       />
       <TransactionCards
+        coinData={coinData}
         transactions={
           filteredTransactions === null ? transactions : filteredTransactions
         }

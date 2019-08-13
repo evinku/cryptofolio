@@ -8,12 +8,7 @@ const StyledSection = styled.section`
   position: relative;
 `;
 
-const StyledMoneyRain = styled.iframe`
-  position: absolute;
-  pointer-events: none;
-`;
-
-const StyledCoinRain = styled.iframe`
+const StyledRain = styled.iframe`
   position: absolute;
   pointer-events: none;
 `;
@@ -23,7 +18,7 @@ function AddTransactionPage({
   onNewTransaction,
   coinData,
   totalQuantities,
-  coinDataNormalized
+  coinDataNormalizedID
 }) {
   const [transactionType, setTransactionType] = React.useState("");
 
@@ -36,36 +31,36 @@ function AddTransactionPage({
 
   const coinOptions = coinData.map(coin => ({
     label: coin.name,
-    value: coin.name
+    value: coin.id
   }));
 
   return (
     <StyledSection>
       <Title size="L">Add Transaction</Title>
-      {transactionType === "buy" ? (
-        <StyledMoneyRain
+      {transactionType === "buy" && (
+        <StyledRain
           src="/coin_rain.gif"
-          width="480"
-          height="480"
+          width="100%"
+          height="100%"
           frameBorder="0"
           allowFullScreen
         />
-      ) : null}
-      {transactionType === "sell" ? (
-        <StyledCoinRain
+      )}
+      {transactionType === "sell" && (
+        <StyledRain
           src="/money_rain.gif"
           width="480"
           height="480"
           frameBorder="0"
           allowFullScreen
         />
-      ) : null}
+      )}
       <Form
         onTransactionSubmit={handleTransactionSubmit}
         coinOptions={coinOptions}
         history={history}
         totalQuantities={totalQuantities}
-        coinDataNormalized={coinDataNormalized}
+        coinDataNormalizedID={coinDataNormalizedID}
       />
     </StyledSection>
   );
@@ -75,7 +70,7 @@ AddTransactionPage.propTypes = {
   onNewTransaction: PropTypes.func,
   coinData: PropTypes.array,
   totalQuantities: PropTypes.object,
-  coinDataNormalized: PropTypes.object,
+  coinDataNormalizedID: PropTypes.object,
   history: PropTypes.object
 };
 

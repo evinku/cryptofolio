@@ -2,7 +2,6 @@ import React from "react";
 import PieChart from "../portfolio/PieChart";
 import styled from "styled-components";
 import { getPieData } from "../utils/portfolioServices";
-import portfolio from "./__mock__/portfolioData";
 import { getPortfolios } from "../services";
 
 const StyledName = styled.h2`
@@ -22,22 +21,13 @@ function PieCharts({ coinData }) {
     getPortfolios().then(result => setPortfolios(result));
   }
 
-  function parseCoinData(data) {
-    return data.reduce((acc, coin) => {
-      return {
-        ...acc,
-        [coin.name]: coin.amount
-      };
-    }, {});
-  }
-
   return (
     portfolios &&
     portfolios.map(portfolio => (
       <div key={portfolio._id}>
         <StyledName>{portfolio.name}`s Portfolio</StyledName>
         <PieChart
-          pieData={getPieData(parseCoinData(portfolio.data), coinData)}
+          pieData={getPieData(portfolio.data, coinData)}
           date={portfolio.date}
         />
       </div>
