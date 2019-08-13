@@ -96,6 +96,9 @@ function Form({
     if (formData.quantity.trim() === "") {
       errors.quantity = "Please add a quantity";
     }
+    if (formData.quantity.includes("-")) {
+      errors.quantity = "(-) is not allowed";
+    }
     if (formData.price.trim() === "") {
       errors.price = "Please add a price";
     }
