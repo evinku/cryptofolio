@@ -7,6 +7,7 @@ import PieChart from "../portfolio/PieChart";
 import { getPieData } from "../utils/portfolioServices";
 import ActionButton from "../components/ActionButton";
 import UploadPopUp from "./UploadPopUp";
+import Notifications, { notify } from "react-notify-toast";
 
 const StyledSection = styled.section`
   position: relative;
@@ -44,8 +45,14 @@ function InsightsPage({ totalQuantities, coinData }) {
     setShowPopUp(true);
   }
 
+  function handleMessageChange(message) {
+    const myColor = { background: "green", text: "white" };
+    notify.show(message.msg, "success", 8000, myColor);
+  }
+
   return (
     <StyledSection>
+      <Notifications />
       <Title size="L">Insights</Title>
       <StyledHeadline>Your Portfolio</StyledHeadline>
       <PieChart pieData={getPieData(totalQuantities, coinData)} />
@@ -56,6 +63,7 @@ function InsightsPage({ totalQuantities, coinData }) {
         totalQuantities={totalQuantities}
         showPopUp={showPopUp}
         onCancelClick={() => setShowPopUp(false)}
+        onMessageChange={handleMessageChange}
       />
     </StyledSection>
   );

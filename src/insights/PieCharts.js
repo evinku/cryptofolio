@@ -23,15 +23,17 @@ function PieCharts({ coinData }) {
 
   return (
     portfolios &&
-    portfolios.map(portfolio => (
-      <div key={portfolio._id}>
-        <StyledName>{portfolio.name}`s Portfolio</StyledName>
-        <PieChart
-          pieData={getPieData(portfolio.data, coinData)}
-          date={portfolio.date}
-        />
-      </div>
-    ))
+    portfolios
+      .filter(portfolio => portfolio.confirmed === true)
+      .map(portfolio => (
+        <div key={portfolio._id}>
+          <StyledName>{portfolio.name}`s Portfolio</StyledName>
+          <PieChart
+            pieData={getPieData(portfolio.data, coinData)}
+            date={portfolio.date}
+          />
+        </div>
+      ))
   );
 }
 

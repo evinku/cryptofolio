@@ -1,13 +1,13 @@
-const { CLIENT_ORIGIN } = require("../config");
-
 module.exports = {
   confirm: id => ({
-    subject: "React Confirm Email",
+    subject: "<Cryptofolio> Please verify your email",
     html: `
-      <a href='http://localhost:3000/confirm/${id}'>
-        click to confirm email
-      </a>
-    `,
-    text: `Copy and paste this link: http://localhost:3000/confirm/${id}`
+    Click <a href='${
+      process.env.CLIENT_ORIGIN
+    }/api/portfolios/confirm/${id}'>here</a> to verify your email. 
+    After the verification is done, others will see your portfolio.
+
+    HAPPY TRADING!
+    `
   })
 };

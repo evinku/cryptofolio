@@ -62,7 +62,12 @@ const StyledGroup = styled.div`
   justify-content: space-between;
 `;
 
-function UploadPopUp({ showPopUp, onCancelClick, totalQuantities }) {
+function UploadPopUp({
+  showPopUp,
+  onCancelClick,
+  totalQuantities,
+  onMessageChange
+}) {
   const [uploadData, setUploadData] = React.useState({
     name: "",
     email: ""
@@ -78,10 +83,10 @@ function UploadPopUp({ showPopUp, onCancelClick, totalQuantities }) {
   function handleSubmit(event) {
     event.preventDefault();
     const date = new Date().toISOString();
-
     const data = { ...uploadData, date, data: totalQuantities };
 
-    postPortfolio(data);
+    postPortfolio(data).then(message => onMessageChange(message));
+
     onCancelClick();
   }
 
