@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import ActionButton from "../components/ActionButton";
 import { zoomOut } from "../utils/animations";
 import { postPortfolio } from "../services";
+import { RingLoader } from "react-spinners";
 
 const CancelButton = styled(ActionButton).attrs({
   icon: "fa-window-close",
@@ -57,16 +58,23 @@ const StyledInput = styled.input`
 `;
 
 const StyledGroup = styled.div`
-  display: flex;
-  width: 60%;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  width: 80%;
 `;
 
-function UploadPopUp({ showPopUp, onCancelClick, totalQuantities }) {
+function UploadPopUp({
+  showPopUp,
+  onCancelClick,
+  totalQuantities,
+  onMessageChange
+}) {
   const [uploadData, setUploadData] = React.useState({
     name: "",
     email: ""
   });
+  const [confirming, setConfirming] = React.useState(false);
 
   function handleChange(event) {
     setUploadData({
@@ -77,12 +85,17 @@ function UploadPopUp({ showPopUp, onCancelClick, totalQuantities }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const date = new Date().toISOString();
 
-    const data = { ...uploadData, date, data: totalQuantities };
+    const data = { ...uploadData, data: totalQuantities };
 
-    postPortfolio(data);
-    onCancelClick();
+    postPortfolio(data).then(message => onMessageChange(message));
+
+    setConfirming(true);
+
+    setTimeout(function() {
+      setConfirming(false);
+      onCancelClick();
+    }, 1500);
   }
 
   if (showPopUp) {
@@ -103,6 +116,12 @@ function UploadPopUp({ showPopUp, onCancelClick, totalQuantities }) {
         <StyledGroup>
           <CancelButton onClick={() => onCancelClick()} />
           <SendButton onClick={handleSubmit} />
+          <RingLoader
+            sizeUnit={"px"}
+            size={40}
+            color={"white"}
+            loading={confirming}
+          />
         </StyledGroup>
       </StyledForm>
     );
@@ -112,7 +131,9 @@ function UploadPopUp({ showPopUp, onCancelClick, totalQuantities }) {
 
 UploadPopUp.propTypes = {
   showPopUp: PropTypes.bool,
-  onCancelClick: PropTypes.func.isRequired
+  onCancelClick: PropTypes.func.isRequired,
+  onMessageChange: PropTypes.func.isRequired,
+  totalQuantities: PropTypes.object.isRequired
 };
 
 export default UploadPopUp;

@@ -4,10 +4,12 @@ const dotenv = require("dotenv");
 const fs = require("fs");
 const path = require("path");
 const api = require("./server-api");
+const cors = require("cors");
 
 // setup server
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // read .env file
 dotenv.config();

@@ -1,5 +1,6 @@
 module.exports = function(app) {
   const Portfolio = require("./models/Portfolio");
+  const emailController = require("./email/email.controller");
 
   app.get("/api/portfolios", (req, res) => {
     Portfolio.find()
@@ -7,15 +8,9 @@ module.exports = function(app) {
       .catch(err => res.json(err));
   });
 
-  app.post("/api/portfolios", (req, res) => {
-    Portfolio.create(req.body)
-      .then(portfolio => res.json(portfolio))
+  app.post("/api/portfolios", emailController.collectEmail);
 
-      .catch(err => {
-        console.log(err);
-        res.json(err);
-      });
-  });
+  app.get("/api/portfolios/confirm/:id", emailController.confirmEmail);
 
   app.patch("/api/portfolios/:id", (req, res) => {
     const { id } = req.params;
