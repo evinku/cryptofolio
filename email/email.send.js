@@ -3,14 +3,14 @@ const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "neuefischecryptofolio@gmail.com",
-    pass: "tmybtwrhekwukrhc"
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS
   }
 });
 
 module.exports = async (to, content) => {
   const contacts = {
-    from: "neuefischecryptofolio@gmail.com",
+    from: process.env.MAIL_USER,
     to
   };
 
