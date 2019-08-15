@@ -10,8 +10,8 @@ const portfolioSchema = new mongoose.Schema({
     required: true
   },
   date: {
-    type: String,
-    required: true
+    type: Date,
+    default: new Date().toISOString()
   },
   data: {
     type: Object,

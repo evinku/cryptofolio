@@ -1,10 +1,10 @@
 module.exports = {
-  confirm: id => ({
+  confirm: (id, name) => ({
     subject: "<Cryptofolio> Please verify your email",
     html: `
     Click <a href='${
       process.env.CLIENT_ORIGIN
-    }/api/portfolios/confirm/${id}'>here</a> to verify your email. 
+    }/confirm/${id}'>here</a> to upload your portfolio (${name}). 
     After the verification is done, others will see your portfolio.
 
     HAPPY TRADING!
