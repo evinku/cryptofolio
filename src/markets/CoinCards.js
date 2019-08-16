@@ -114,7 +114,7 @@ function CoinCards({ coinData, filteredCoins }) {
 
 CoinCards.propTypes = {
   coinData: PropTypes.object.isRequired,
-  filteredCoins: PropTypes.array
+  filteredCoins: PropTypes.array.isRequired
 };
 
 export default CoinCards;
