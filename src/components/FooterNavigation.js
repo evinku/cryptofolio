@@ -5,9 +5,7 @@ import ActionButton from "./ActionButton";
 import { Link } from "react-router-dom";
 
 const PortfolioButton = styled(ActionButton).attrs({
-  icon: "fa-chart-pie",
-  type: "",
-  size: "16px"
+  icon: "fa-chart-pie"
 })`
   font-size: 35px;
   width: 35px;
@@ -18,9 +16,7 @@ const PortfolioButton = styled(ActionButton).attrs({
 `;
 
 const InsightsButton = styled(ActionButton).attrs({
-  icon: "fa-stethoscope",
-  type: "",
-  size: "16px"
+  icon: "fa-stethoscope"
 })`
   font-size: 35px;
   width: 35px;
@@ -31,9 +27,7 @@ const InsightsButton = styled(ActionButton).attrs({
 `;
 
 const MarketsButton = styled(ActionButton).attrs({
-  icon: "fa-search-dollar",
-  type: "",
-  size: "16px"
+  icon: "fa-search-dollar"
 })`
   font-size: 35px;
   width: 35px;
@@ -44,9 +38,7 @@ const MarketsButton = styled(ActionButton).attrs({
 `;
 
 const AllTransactionsButton = styled(ActionButton).attrs({
-  icon: "fa-align-justify",
-  type: "",
-  size: "16px"
+  icon: "fa-align-justify"
 })`
   font-size: 35px;
   width: 35px;
@@ -57,9 +49,7 @@ const AllTransactionsButton = styled(ActionButton).attrs({
 `;
 
 const AddButton = styled(ActionButton).attrs({
-  icon: "fa-plus",
-  type: "",
-  size: "16px"
+  icon: "fa-plus"
 })`
   font-size: 40px;
   width: 48px;

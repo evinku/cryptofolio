@@ -9,8 +9,8 @@ const uuidv1 = require("uuid/v1");
 
 const BuyButton = styled(ActionButton).attrs({
   icon: "fa-smile-beam",
-  type: "Buy",
-  size: "20px"
+  description: "Buy",
+  descriptionSize: "20px"
 })`
   font-size: 50px;
   color: green;
@@ -18,8 +18,8 @@ const BuyButton = styled(ActionButton).attrs({
 
 const SellButton = styled(ActionButton).attrs({
   icon: "fa-sad-cry",
-  type: "Sell",
-  size: "20px"
+  description: "Sell",
+  descriptionSize: "20px"
 })`
   font-size: 50px;
   color: crimson;
@@ -123,10 +123,8 @@ function Form({ history, onTransactionSubmit, totalQuantities, coinData }) {
       return;
     }
     onTransactionSubmit({ ...formData, type });
-
     resetForm();
     setErrors({});
-
     setTimeout(function() {
       history.push("/all-transactions");
     }, 2000);
