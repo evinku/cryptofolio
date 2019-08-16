@@ -14,6 +14,7 @@ const StyledButton = styled.button`
 
 const StyledDescription = styled.span`
   font-size: ${props => props.size};
+  color: ${props => props.color};
   margin: 0;
 `;
 
@@ -30,14 +31,15 @@ function ActionButton({
   onClick,
   className,
   description,
-  descriptionSize
+  descriptionSize,
+  descriptionColor
 }) {
   return (
     <StyledGroup>
       <StyledButton className={className} active={active} onClick={onClick}>
         <i className={`fas ${icon}`} />
       </StyledButton>
-      <StyledDescription size={descriptionSize}>
+      <StyledDescription size={descriptionSize} color={descriptionColor}>
         {description}
       </StyledDescription>
     </StyledGroup>

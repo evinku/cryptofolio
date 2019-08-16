@@ -8,9 +8,8 @@ import { RingLoader } from "react-spinners";
 
 const CancelButton = styled(ActionButton).attrs({
   icon: "fa-window-close",
-  type: "Cancel",
-  size: "16px",
-  color: "white"
+  description: "Cancel",
+  descriptionColor: "white"
 })`
   font-size: 40px;
   background: transparent;
@@ -19,9 +18,8 @@ const CancelButton = styled(ActionButton).attrs({
 
 const SendButton = styled(ActionButton).attrs({
   icon: "fa-share-square",
-  type: "Send",
-  size: "16px",
-  color: "white"
+  description: "Send",
+  descriptionColor: "white"
 })`
   color: white;
   font-size: 40px;
@@ -50,9 +48,8 @@ const StyledForm = styled.form`
 const StyledInput = styled.input`
   width: 100%;
   height: 30px;
-  font-size: 15px;
+  font-size: 16px;
   padding: 20px;
-  padding-left: 10px;
   margin-bottom: 25px;
   border-radius: 10px;
 `;

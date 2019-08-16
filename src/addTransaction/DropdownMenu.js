@@ -6,7 +6,6 @@ import "react-dropdown/style.css";
 
 const StyledDropdown = styled(Dropdown)`
   width: 100vw;
-
   .Dropdown-control {
     border: 1px solid white;
   }

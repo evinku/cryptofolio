@@ -8,8 +8,6 @@ const PortfolioButton = styled(ActionButton).attrs({
   icon: "fa-chart-pie"
 })`
   font-size: 35px;
-  width: 35px;
-  height: 35px;
   &:focus {
     outline: none;
   }
@@ -19,8 +17,6 @@ const InsightsButton = styled(ActionButton).attrs({
   icon: "fa-stethoscope"
 })`
   font-size: 35px;
-  width: 35px;
-  height: 35px;
   &:focus {
     outline: none;
   }
@@ -30,8 +26,6 @@ const MarketsButton = styled(ActionButton).attrs({
   icon: "fa-search-dollar"
 })`
   font-size: 35px;
-  width: 35px;
-  height: 35px;
   &:focus {
     outline: none;
   }
@@ -41,8 +35,6 @@ const AllTransactionsButton = styled(ActionButton).attrs({
   icon: "fa-align-justify"
 })`
   font-size: 35px;
-  width: 35px;
-  height: 35px;
   &:focus {
     outline: none;
   }

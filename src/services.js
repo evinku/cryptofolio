@@ -14,9 +14,9 @@ export function postPortfolio(data) {
   return fetchPortfolio("POST", data);
 }
 
-export function patchPortfolio(data, id) {
+/*export function patchPortfolio(data, id) {
   return fetchPortfolio("PATCH", data, id);
-}
+}*/
 
 function fetchPortfolio(method, data, id = "") {
   return fetch("/api/portfolios/" + id, {
