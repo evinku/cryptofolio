@@ -41,15 +41,13 @@ const AddTransactionForm = styled.form`
 
 const StyledInput = styled.input`
   width: 100vw;
-  height: 30px;
-  font-size: 15px;
-  padding: 20px;
-  padding-left: 10px;
+  font-size: 16px;
+  padding: 8px 10px 8px 10px;
 `;
 
 const StyledDescription = styled.h2`
   margin: 0;
-  margin-bottom: 2px;
+  padding-left: 5px;
 `;
 
 const StyledError = styled.div`
@@ -60,21 +58,12 @@ function checkTransaction(coin, currentQuantity, quantity, type) {
   if (type === "buy") {
     return false;
   }
-  if (currentQuantity[coin] === undefined) {
-    return true;
-  }
-  if (currentQuantity[coin] < quantity) {
+  if (currentQuantity[coin] === undefined || currentQuantity[coin] < quantity) {
     return true;
   } else return false;
 }
 
-function Form({
-  history,
-  onTransactionSubmit,
-  coinOptions,
-  totalQuantities,
-  coinData
-}) {
+function Form({ history, onTransactionSubmit, totalQuantities, coinData }) {
   const [formData, setFormData] = React.useState({
     id: uuidv1(),
     coin: "",
@@ -147,17 +136,25 @@ function Form({
     setFormData({ ...formData, date: newDate.toISOString() });
   }
 
-  function handleDropdownChange(dropdownValue) {
+  function handleDropdownChange(value) {
     setFormData({
       ...formData,
-      coin: dropdownValue,
-      price: coinData[dropdownValue].current_price.toString()
+      coin: value,
+      price: coinData[value].current_price.toString()
     });
   }
+
+  // prepare for dropdown in DropdownMenu
+
+  const coinOptions = Object.keys(coinData).map(key => ({
+    label: coinData[key].name,
+    value: coinData[key].id
+  }));
 
   return (
     <AddTransactionForm>
       <div>
+        <StyledDescription>Coin:</StyledDescription>
         <DropdownMenu
           coinOptions={coinOptions}
           onDropdownChange={handleDropdownChange}
@@ -204,10 +201,9 @@ function Form({
 
 Form.propTypes = {
   onTransactionSubmit: PropTypes.func,
-  coinOptions: PropTypes.array,
   history: PropTypes.object,
   totalQuantities: PropTypes.object,
-  coinDataNormalizedID: PropTypes.object
+  coinData: PropTypes.object
 };
 
 export default Form;

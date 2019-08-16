@@ -7,9 +7,9 @@ import "react-dropdown/style.css";
 const StyledDropdown = styled(Dropdown)`
   width: 100vw;
   height: 30px;
-  font-size: 15px;
-  padding: 20px;
-  padding-left: 10px;
+  .Dropdown-control {
+    border: 1px solid white;
+  }
 `;
 
 const StyledDiv = styled.div`

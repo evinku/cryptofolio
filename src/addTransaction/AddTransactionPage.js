@@ -26,13 +26,6 @@ function AddTransactionPage({
     onNewTransaction(transaction);
   }
 
-  // prepare for dropdown in Form
-
-  const coinOptions = Object.keys(coinData).map(key => ({
-    label: coinData[key].name,
-    value: coinData[key].id
-  }));
-
   return (
     <StyledSection>
       <Title size="L">Add Transaction</Title>
@@ -56,7 +49,6 @@ function AddTransactionPage({
       )}
       <Form
         onTransactionSubmit={handleTransactionSubmit}
-        coinOptions={coinOptions}
         history={history}
         totalQuantities={totalQuantities}
         coinData={coinData}
@@ -67,9 +59,8 @@ function AddTransactionPage({
 
 AddTransactionPage.propTypes = {
   onNewTransaction: PropTypes.func,
-  coinData: PropTypes.array,
+  coinData: PropTypes.object,
   totalQuantities: PropTypes.object,
-  coinDataNormalizedID: PropTypes.object,
   history: PropTypes.object
 };
 

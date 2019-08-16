@@ -5,10 +5,8 @@ import PropTypes from "prop-types";
 
 const StyledDatePicker = styled(DatePicker)`
   width: 100vw;
-  height: 30px;
   font-size: 16px;
-  padding: 20px;
-  padding-left: 10px;
+  padding: 8px 10px 8px 10px;
 `;
 
 function PickDate({ onDateChange }) {
@@ -28,7 +26,7 @@ function PickDate({ onDateChange }) {
       placeholderText="Select date"
       selected={date ? date : null}
       onChange={handleDateChange}
-      onclick={handleClick}
+      onClick={handleClick}
       showTimeSelect
       timeFormat="HH:mm"
       timeIntervals={1}
