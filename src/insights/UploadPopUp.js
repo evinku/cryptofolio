@@ -50,7 +50,7 @@ const StyledInput = styled.input`
   height: 30px;
   font-size: 16px;
   padding: 20px;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
   border-radius: 10px;
 `;
 
@@ -59,6 +59,11 @@ const StyledGroup = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   width: 80%;
+`;
+
+const StyledError = styled.div`
+  color: crimson;
+  margin: 0;
 `;
 
 function UploadPopUp({
@@ -73,6 +78,21 @@ function UploadPopUp({
   });
   const [confirming, setConfirming] = React.useState(false);
 
+  const [errors, setErrors] = React.useState({});
+
+  function validate() {
+    const errors = {};
+
+    if (uploadData.email.trim() === "") {
+      errors.email = "Please add a valid email";
+    }
+    if (uploadData.name.trim() === "") {
+      errors.name = "Please add a name";
+    }
+
+    return Object.keys(errors).length === 0 ? null : errors;
+  }
+
   function handleChange(event) {
     setUploadData({
       ...uploadData,
@@ -82,6 +102,13 @@ function UploadPopUp({
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    setErrors({});
+    const errors = validate();
+    if (errors) {
+      setErrors(errors);
+      return;
+    }
 
     const data = { ...uploadData, data: totalQuantities };
 
@@ -104,12 +131,14 @@ function UploadPopUp({
           placeholder="Your Name"
           onChange={handleChange}
         />
+        {errors.name && <StyledError>{errors.name}</StyledError>}
         <StyledInput
           name="email"
           value={uploadData.email}
           placeholder="Your Email"
           onChange={handleChange}
         />
+        {errors.email && <StyledError>{errors.email}</StyledError>}
         <StyledGroup>
           <CancelButton onClick={() => onCancelClick()} />
           <SendButton onClick={handleSubmit} />
