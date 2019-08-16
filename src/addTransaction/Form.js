@@ -73,7 +73,7 @@ function Form({
   onTransactionSubmit,
   coinOptions,
   totalQuantities,
-  coinDataNormalizedID
+  coinData
 }) {
   const [formData, setFormData] = React.useState({
     id: uuidv1(),
@@ -151,7 +151,7 @@ function Form({
     setFormData({
       ...formData,
       coin: dropdownValue,
-      price: coinDataNormalizedID[dropdownValue].current_price.toString()
+      price: coinData[dropdownValue].current_price.toString()
     });
   }
 

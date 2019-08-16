@@ -41,48 +41,59 @@ const StyledSpan = styled.span`
   color: ${props => props.color};
 `;
 
-function CoinCards({ coinData }) {
-  function renderCoinCard(coinData) {
+function CoinCards({ coinData, filteredCoins }) {
+  function renderCoinCard(filteredCoin) {
     return (
-      <div key={coinData.id}>
+      <div key={coinData[filteredCoin].id}>
         <StyledCard>
-          <StyledRank>{coinData.market_cap_rank}</StyledRank>
+          <StyledRank>{coinData[filteredCoin].market_cap_rank}</StyledRank>
           <StyledGroupImage>
-            <StyledImg alt={coinData.name} src={coinData.image} />
-            <span>{coinData.name}</span>
+            <StyledImg
+              alt={coinData[filteredCoin].name}
+              src={coinData[filteredCoin].image}
+            />
+            <span>{coinData[filteredCoin].name}</span>
           </StyledGroupImage>
           <StyledGroup>
             <span>
               {new Intl.NumberFormat("de-DE", {
                 style: "currency",
                 currency: "USD"
-              }).format(coinData.current_price)}
+              }).format(coinData[filteredCoin].current_price)}
             </span>
             <StyledSpan
               color={
-                coinData.price_change_percentage_24h &&
-                coinData.price_change_percentage_24h.toString().startsWith("-")
-                  ? "#F5A099"
-                  : "#A8D7B6"
-              }
-            >
-              {Math.round(coinData.price_change_percentage_24h * 100) / 100} %
-            </StyledSpan>
-          </StyledGroup>
-          <StyledGroup>
-            <span>{numeral(coinData.market_cap).format("($ 0.00 a)")}</span>
-            <StyledSpan
-              color={
-                coinData.market_cap_change_percentage_24h &&
-                coinData.market_cap_change_percentage_24h
+                coinData[filteredCoin].price_change_percentage_24h &&
+                coinData[filteredCoin].price_change_percentage_24h
                   .toString()
                   .startsWith("-")
                   ? "#F5A099"
                   : "#A8D7B6"
               }
             >
-              {Math.round(coinData.market_cap_change_percentage_24h * 100) /
-                100}{" "}
+              {Math.round(
+                coinData[filteredCoin].price_change_percentage_24h * 100
+              ) / 100}{" "}
+              %
+            </StyledSpan>
+          </StyledGroup>
+          <StyledGroup>
+            <span>
+              {numeral(coinData[filteredCoin].market_cap).format("($ 0.00 a)")}
+            </span>
+            <StyledSpan
+              color={
+                coinData[filteredCoin].market_cap_change_percentage_24h &&
+                coinData[filteredCoin].market_cap_change_percentage_24h
+                  .toString()
+                  .startsWith("-")
+                  ? "#F5A099"
+                  : "#A8D7B6"
+              }
+            >
+              {Math.round(
+                coinData[filteredCoin].market_cap_change_percentage_24h * 100
+              ) / 100}{" "}
               %
             </StyledSpan>
           </StyledGroup>
@@ -95,14 +106,15 @@ function CoinCards({ coinData }) {
   return (
     <StyledSection>
       <CoinCardHeadlines />
-      {coinData.length === 0 && <div>Loading...</div>}
-      {coinData && coinData.map(renderCoinCard)}
+      {filteredCoins.length === 0 && <div>Loading...</div>}
+      {filteredCoins && filteredCoins.map(renderCoinCard)}
     </StyledSection>
   );
 }
 
 CoinCards.propTypes = {
-  coinData: PropTypes.array.isRequired
+  coinData: PropTypes.object.isRequired,
+  filteredCoins: PropTypes.array
 };
 
 export default CoinCards;
