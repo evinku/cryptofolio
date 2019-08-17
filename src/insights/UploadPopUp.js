@@ -5,12 +5,12 @@ import ActionButton from "../components/ActionButton";
 import { zoomOut } from "../utils/animations";
 import { postPortfolio } from "../services";
 import { RingLoader } from "react-spinners";
+import EmailValidator from "email-validator";
 
 const CancelButton = styled(ActionButton).attrs({
   icon: "fa-window-close",
-  type: "Cancel",
-  size: "16px",
-  color: "white"
+  description: "Cancel",
+  descriptionColor: "white"
 })`
   font-size: 40px;
   background: transparent;
@@ -19,9 +19,8 @@ const CancelButton = styled(ActionButton).attrs({
 
 const SendButton = styled(ActionButton).attrs({
   icon: "fa-share-square",
-  type: "Send",
-  size: "16px",
-  color: "white"
+  description: "Send",
+  descriptionColor: "white"
 })`
   color: white;
   font-size: 40px;
@@ -37,7 +36,6 @@ const StyledForm = styled.form`
   border-radius: 10px;
   top: 195px;
   width: 95%;
-  height: 250px;
   padding: 20px;
   background: linear-gradient(
     180deg,
@@ -50,18 +48,29 @@ const StyledForm = styled.form`
 const StyledInput = styled.input`
   width: 100%;
   height: 30px;
-  font-size: 15px;
+  font-size: 16px;
   padding: 20px;
-  padding-left: 10px;
-  margin-bottom: 25px;
   border-radius: 10px;
+`;
+
+const StyledInputGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  width: 100%;
+  margin-bottom: 20px;
 `;
 
 const StyledGroup = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   justify-items: center;
   width: 80%;
+`;
+
+const StyledError = styled.div`
+  color: crimson;
+  margin: 0;
 `;
 
 function UploadPopUp({
@@ -75,6 +84,20 @@ function UploadPopUp({
     email: ""
   });
   const [confirming, setConfirming] = React.useState(false);
+  const [errors, setErrors] = React.useState({});
+
+  function validate() {
+    const errors = {};
+
+    if (!EmailValidator.validate(uploadData.email)) {
+      errors.email = "Please add a valid email";
+    }
+    if (uploadData.name.trim() === "") {
+      errors.name = "Please add a name";
+    }
+
+    return Object.keys(errors).length === 0 ? null : errors;
+  }
 
   function handleChange(event) {
     setUploadData({
@@ -85,6 +108,13 @@ function UploadPopUp({
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    setErrors({});
+    const errors = validate();
+    if (errors) {
+      setErrors(errors);
+      return;
+    }
 
     const data = { ...uploadData, data: totalQuantities };
 
@@ -101,28 +131,34 @@ function UploadPopUp({
   if (showPopUp) {
     return (
       <StyledForm>
-        <StyledInput
-          name="name"
-          value={uploadData.name}
-          placeholder="Your Name"
-          onChange={handleChange}
-        />
-        <StyledInput
-          name="email"
-          value={uploadData.email}
-          placeholder="Your Email"
-          onChange={handleChange}
-        />
+        <StyledInputGroup>
+          <StyledInput
+            name="name"
+            value={uploadData.name}
+            placeholder="Your Name"
+            onChange={handleChange}
+          />
+          {errors.name && <StyledError>{errors.name}</StyledError>}
+        </StyledInputGroup>
+        <StyledInputGroup>
+          <StyledInput
+            name="email"
+            value={uploadData.email}
+            placeholder="Your Email"
+            onChange={handleChange}
+          />
+          {errors.email && <StyledError>{errors.email}</StyledError>}
+        </StyledInputGroup>
         <StyledGroup>
           <CancelButton onClick={() => onCancelClick()} />
           <SendButton onClick={handleSubmit} />
-          <RingLoader
-            sizeUnit={"px"}
-            size={40}
-            color={"white"}
-            loading={confirming}
-          />
         </StyledGroup>
+        <RingLoader
+          sizeUnit={"px"}
+          size={50}
+          color={"white"}
+          loading={confirming}
+        />
       </StyledForm>
     );
   }

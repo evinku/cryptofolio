@@ -4,43 +4,40 @@ import PropTypes from "prop-types";
 import TransactionCards from "./TransactionCards";
 import SearchTransactions from "./SearchTransactions";
 
-function AllTransactionsPage({
-  history,
-  transactions,
-  totalQuantities,
-  coinData
-}) {
-  const [filteredTransactions, setFilteredTransactions] = React.useState(null);
+function AllTransactionsPage({ transactions, totalQuantities, coinData }) {
+  const [filterValue, setFilterValue] = React.useState("");
 
-  function handleSearchTransactionsChange(filteredTransactions) {
-    setFilteredTransactions(filteredTransactions);
+  function handleFilterTransactionsChange(value) {
+    setFilterValue(value);
   }
 
   //prepare for dropdown in SearchTransactions
   const transactionOptions = [
     ...Object.keys(totalQuantities).map(key => ({
-      label: coinData[key] && coinData[key].name,
-      value: key
+      value: key,
+      label: coinData[key] && coinData[key].name
     })),
     {
-      label: "All Transactions",
-      value: null
+      value: "",
+      label: "All Transactions"
     }
   ];
+
+  const filteredTransactions =
+    filterValue === ""
+      ? transactions
+      : transactions.filter(transaction => transaction.coin === filterValue);
 
   return (
     <>
       <Title size="L">All Transactions</Title>
       <SearchTransactions
         transactionOptions={transactionOptions}
-        transactions={transactions}
-        onSearchTransactionsChange={handleSearchTransactionsChange}
+        onFilterTransactionsChange={handleFilterTransactionsChange}
       />
       <TransactionCards
         coinData={coinData}
-        transactions={
-          filteredTransactions === null ? transactions : filteredTransactions
-        }
+        transactions={filteredTransactions}
       />
     </>
   );
@@ -48,7 +45,8 @@ function AllTransactionsPage({
 
 AllTransactionsPage.propTypes = {
   transactions: PropTypes.array.isRequired,
-  totalQuantities: PropTypes.object.isRequired
+  totalQuantities: PropTypes.object.isRequired,
+  coinData: PropTypes.object.isRequired
 };
 
 export default AllTransactionsPage;

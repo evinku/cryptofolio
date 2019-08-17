@@ -26,13 +26,14 @@ function App() {
   const [transactions, setTransactions] = React.useState(
     getFromLocal("transactions") || []
   );
-  const [coinData, setCoinData] = React.useState([]);
   const [coinDataNormalizedID, setCoinDataNormalizedID] = React.useState({});
 
   React.useEffect(() => {
-    getCoinData().then(coinData => {
-      setCoinData(coinData);
+    setToLocal("transactions", transactions);
+  }, [transactions]);
 
+  React.useEffect(() => {
+    getCoinData().then(coinData => {
       setCoinDataNormalizedID(
         coinData.reduce((acc, coin) => {
           return {
@@ -43,10 +44,6 @@ function App() {
       );
     });
   }, []);
-
-  React.useEffect(() => {
-    setToLocal("transactions", transactions);
-  }, [transactions]);
 
   function handleNewTransaction(transaction) {
     setTransactions([transaction, ...transactions]);
@@ -70,7 +67,9 @@ function App() {
             <Route
               path="/markets"
               exact
-              render={props => <MarketsPage {...props} coinData={coinData} />}
+              render={props => (
+                <MarketsPage {...props} coinData={coinDataNormalizedID} />
+              )}
             />
             <Route
               path="/add-transaction"
@@ -79,8 +78,7 @@ function App() {
                 <AddTransactionPage
                   {...props}
                   onNewTransaction={handleNewTransaction}
-                  coinData={coinData}
-                  coinDataNormalizedID={coinDataNormalizedID}
+                  coinData={coinDataNormalizedID}
                   totalQuantities={totalQuantities}
                 />
               )}

@@ -5,61 +5,43 @@ import ActionButton from "./ActionButton";
 import { Link } from "react-router-dom";
 
 const PortfolioButton = styled(ActionButton).attrs({
-  icon: "fa-chart-pie",
-  type: "",
-  size: "16px"
+  icon: "fa-chart-pie"
 })`
   font-size: 35px;
-  width: 35px;
-  height: 35px;
   &:focus {
     outline: none;
   }
 `;
 
 const InsightsButton = styled(ActionButton).attrs({
-  icon: "fa-stethoscope",
-  type: "",
-  size: "16px"
+  icon: "fa-stethoscope"
 })`
   font-size: 35px;
-  width: 35px;
-  height: 35px;
   &:focus {
     outline: none;
   }
 `;
 
 const MarketsButton = styled(ActionButton).attrs({
-  icon: "fa-search-dollar",
-  type: "",
-  size: "16px"
+  icon: "fa-search-dollar"
 })`
   font-size: 35px;
-  width: 35px;
-  height: 35px;
   &:focus {
     outline: none;
   }
 `;
 
 const AllTransactionsButton = styled(ActionButton).attrs({
-  icon: "fa-align-justify",
-  type: "",
-  size: "16px"
+  icon: "fa-align-justify"
 })`
   font-size: 35px;
-  width: 35px;
-  height: 35px;
   &:focus {
     outline: none;
   }
 `;
 
 const AddButton = styled(ActionButton).attrs({
-  icon: "fa-plus",
-  type: "",
-  size: "16px"
+  icon: "fa-plus"
 })`
   font-size: 40px;
   width: 48px;
@@ -93,23 +75,53 @@ const FooterLink = styled(Link)`
 `;
 
 function FooterNavigation({ links }) {
+  const [active, setActive] = React.useState("");
+
+  function handlePortfolioClick() {
+    setActive("portfolio");
+  }
+  function handleInsightsClick() {
+    setActive("insights");
+  }
+  function handleMarketsClick() {
+    setActive("markets");
+  }
+  function handleTransactionsClick() {
+    setActive("transactions");
+  }
+  function handleAddClick() {
+    setActive("add");
+  }
+
   return (
     <StyledFooter>
       <FooterLink to={links.toCryptofolio}>
-        <PortfolioButton />
+        <PortfolioButton
+          active={active === "portfolio"}
+          onClick={handlePortfolioClick}
+        />
       </FooterLink>
       <FooterLink to={links.toInsights}>
-        <InsightsButton />
+        <InsightsButton
+          active={active === "insights"}
+          onClick={handleInsightsClick}
+        />
       </FooterLink>
       <FooterLink to={links.toMarkets}>
-        <MarketsButton />
+        <MarketsButton
+          active={active === "markets"}
+          onClick={handleMarketsClick}
+        />
       </FooterLink>
       <FooterLink to={links.toAllTransactions}>
-        <AllTransactionsButton />
+        <AllTransactionsButton
+          active={active === "transactions"}
+          onClick={handleTransactionsClick}
+        />
       </FooterLink>
       <StyledDiv>
         <FooterLink to={links.toAddTransaction}>
-          <AddButton />
+          <AddButton active={active === "add"} onClick={handleAddClick} />
         </FooterLink>
       </StyledDiv>
     </StyledFooter>

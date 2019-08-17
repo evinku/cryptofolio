@@ -9,8 +9,8 @@ const uuidv1 = require("uuid/v1");
 
 const BuyButton = styled(ActionButton).attrs({
   icon: "fa-smile-beam",
-  type: "Buy",
-  size: "20px"
+  description: "Buy",
+  descriptionSize: "20px"
 })`
   font-size: 50px;
   color: green;
@@ -18,8 +18,8 @@ const BuyButton = styled(ActionButton).attrs({
 
 const SellButton = styled(ActionButton).attrs({
   icon: "fa-sad-cry",
-  type: "Sell",
-  size: "20px"
+  description: "Sell",
+  descriptionSize: "20px"
 })`
   font-size: 50px;
   color: crimson;
@@ -41,15 +41,13 @@ const AddTransactionForm = styled.form`
 
 const StyledInput = styled.input`
   width: 100vw;
-  height: 30px;
-  font-size: 15px;
-  padding: 20px;
-  padding-left: 10px;
+  font-size: 16px;
+  padding: 8px 10px 8px 10px;
 `;
 
 const StyledDescription = styled.h2`
   margin: 0;
-  margin-bottom: 2px;
+  padding-left: 5px;
 `;
 
 const StyledError = styled.div`
@@ -60,21 +58,12 @@ function checkTransaction(coin, currentQuantity, quantity, type) {
   if (type === "buy") {
     return false;
   }
-  if (currentQuantity[coin] === undefined) {
-    return true;
-  }
-  if (currentQuantity[coin] < quantity) {
+  if (currentQuantity[coin] === undefined || currentQuantity[coin] < quantity) {
     return true;
   } else return false;
 }
 
-function Form({
-  history,
-  onTransactionSubmit,
-  coinOptions,
-  totalQuantities,
-  coinDataNormalizedID
-}) {
+function Form({ history, onTransactionSubmit, totalQuantities, coinData }) {
   const [formData, setFormData] = React.useState({
     id: uuidv1(),
     coin: "",
@@ -84,6 +73,7 @@ function Form({
   });
 
   const [errors, setErrors] = React.useState({});
+  const [disabled, setDisabled] = React.useState(false);
 
   function validate(type) {
     const errors = {};
@@ -127,6 +117,7 @@ function Form({
 
   function handleSubmit(event, type) {
     event.preventDefault();
+
     setErrors({});
     const errors = validate(type);
     if (errors) {
@@ -134,10 +125,9 @@ function Form({
       return;
     }
     onTransactionSubmit({ ...formData, type });
-
+    setDisabled(true);
     resetForm();
     setErrors({});
-
     setTimeout(function() {
       history.push("/all-transactions");
     }, 2000);
@@ -147,17 +137,25 @@ function Form({
     setFormData({ ...formData, date: newDate.toISOString() });
   }
 
-  function handleDropdownChange(dropdownValue) {
+  function handleDropdownChange(value) {
     setFormData({
       ...formData,
-      coin: dropdownValue,
-      price: coinDataNormalizedID[dropdownValue].current_price.toString()
+      coin: value,
+      price: coinData[value].current_price.toString()
     });
   }
+
+  // prepare for dropdown in DropdownMenu
+
+  const coinOptions = Object.keys(coinData).map(key => ({
+    label: coinData[key].name,
+    value: coinData[key].id
+  }));
 
   return (
     <AddTransactionForm>
       <div>
+        <StyledDescription>Coin:</StyledDescription>
         <DropdownMenu
           coinOptions={coinOptions}
           onDropdownChange={handleDropdownChange}
@@ -195,8 +193,14 @@ function Form({
         )}
       </div>
       <ButtonGroup>
-        <BuyButton onClick={event => handleSubmit(event, "buy")} />
-        <SellButton onClick={event => handleSubmit(event, "sell")} />
+        <BuyButton
+          disabled={disabled}
+          onClick={event => handleSubmit(event, "buy")}
+        />
+        <SellButton
+          disabled={disabled}
+          onClick={event => handleSubmit(event, "sell")}
+        />
       </ButtonGroup>
     </AddTransactionForm>
   );
@@ -204,10 +208,9 @@ function Form({
 
 Form.propTypes = {
   onTransactionSubmit: PropTypes.func,
-  coinOptions: PropTypes.array,
   history: PropTypes.object,
   totalQuantities: PropTypes.object,
-  coinDataNormalizedID: PropTypes.object
+  coinData: PropTypes.object
 };
 
 export default Form;

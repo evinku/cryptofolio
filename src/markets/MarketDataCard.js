@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import numeral from "numeral";
+import { getMarketData } from "../utils/coinGecko";
 
 const StyledSection = styled.section`
   display: grid;
@@ -19,7 +19,6 @@ const StyledGroup = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   border-radius: 5px;
   padding: 5px;
 `;
@@ -34,7 +33,13 @@ const StyledTitle = styled.span`
   margin-bottom: 5px;
 `;
 
-function MarketDataCard({ marketData }) {
+function MarketDataCard() {
+  const [marketData, setMarketData] = React.useState({});
+
+  React.useEffect(() => {
+    getMarketData().then(marketData => setMarketData(marketData));
+  }, []);
+
   return (
     <StyledSection>
       <StyledGroup>
@@ -56,9 +61,5 @@ function MarketDataCard({ marketData }) {
     </StyledSection>
   );
 }
-
-MarketDataCard.propTypes = {
-  marketData: PropTypes.object.isRequired
-};
 
 export default MarketDataCard;

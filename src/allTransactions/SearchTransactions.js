@@ -1,19 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import Select from "react-dropdown-select";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 
-const StyledSelect = styled(Select)`
-  .react-dropdown-select-content {
-    min-width: 270px;
-  }
-
-  .react-dropdown-select-item {
-    &:hover {
-      background: lightgray;
-    }
+const StyledDropdown = styled(Dropdown)`
+  width: 100vw;
+  height: 30px;
+  .Dropdown-control {
+    border: 1px solid white;
   }
 `;
+
 const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
@@ -22,44 +20,31 @@ const StyledDiv = styled.div`
 `;
 
 function SearchTransactions({
-  onSearchTransactionsChange,
-  transactions,
+  onFilterTransactionsChange,
   transactionOptions
 }) {
-  function handleChange(values) {
-    let dropdownValue = null;
+  const [value, setValue] = React.useState();
 
-    if (values.length > 0) {
-      dropdownValue = values[0].value;
-    }
-
-    if (dropdownValue === null) {
-      const filteredTransactions = null;
-      return onSearchTransactionsChange(filteredTransactions);
-    }
-
-    if (transactions.length > 0) {
-      const filteredTransactions = transactions.filter(
-        transaction => transaction.coin === dropdownValue
-      );
-      onSearchTransactionsChange(filteredTransactions);
-    }
+  function handleChange(value) {
+    onFilterTransactionsChange(value.value);
+    setValue(value);
   }
 
   return (
     <StyledDiv>
-      <StyledSelect
+      <StyledDropdown
         options={transactionOptions}
-        values={[]}
         onChange={handleChange}
-        placeholder="Filter coin..."
+        value={value}
+        placeholder="Filter transactions"
       />
     </StyledDiv>
   );
 }
 
 SearchTransactions.propTypes = {
-  onSearchTransactionsChange: PropTypes.func.isRequired
+  onFilterTransactionsChange: PropTypes.func.isRequired,
+  transactionOptions: PropTypes.array.isRequired
 };
 
 export default SearchTransactions;

@@ -16,9 +16,8 @@ const StyledRain = styled.iframe`
 function AddTransactionPage({
   history,
   onNewTransaction,
-  coinData,
   totalQuantities,
-  coinDataNormalizedID
+  coinData
 }) {
   const [transactionType, setTransactionType] = React.useState("");
 
@@ -26,13 +25,6 @@ function AddTransactionPage({
     setTransactionType(transaction.type);
     onNewTransaction(transaction);
   }
-
-  // prepare for dropdown in Form
-
-  const coinOptions = coinData.map(coin => ({
-    label: coin.name,
-    value: coin.id
-  }));
 
   return (
     <StyledSection>
@@ -57,10 +49,9 @@ function AddTransactionPage({
       )}
       <Form
         onTransactionSubmit={handleTransactionSubmit}
-        coinOptions={coinOptions}
         history={history}
         totalQuantities={totalQuantities}
-        coinDataNormalizedID={coinDataNormalizedID}
+        coinData={coinData}
       />
     </StyledSection>
   );
@@ -68,9 +59,8 @@ function AddTransactionPage({
 
 AddTransactionPage.propTypes = {
   onNewTransaction: PropTypes.func,
-  coinData: PropTypes.array,
+  coinData: PropTypes.object,
   totalQuantities: PropTypes.object,
-  coinDataNormalizedID: PropTypes.object,
   history: PropTypes.object
 };
 

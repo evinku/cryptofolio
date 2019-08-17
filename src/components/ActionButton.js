@@ -10,6 +10,10 @@ const StyledButton = styled.button`
   border: none;
   cursor: pointer;
   background-color: rgb(240, 240, 240);
+  color: ${props => (props.active ? "rgb(57, 99, 140)" : "black")};
+  &:disabled {
+    color: grey;
+  }
 `;
 
 const StyledDescription = styled.span`
@@ -25,14 +29,28 @@ const StyledGroup = styled.div`
   justify-content: center;
 `;
 
-function ActionButton({ icon, active, onClick, className, type, size, color }) {
+function ActionButton({
+  icon,
+  active,
+  onClick,
+  className,
+  description,
+  descriptionSize,
+  descriptionColor,
+  ...props
+}) {
   return (
     <StyledGroup>
-      <StyledButton className={className} active={active} onClick={onClick}>
+      <StyledButton
+        className={className}
+        active={active}
+        onClick={onClick}
+        {...props}
+      >
         <i className={`fas ${icon}`} />
       </StyledButton>
-      <StyledDescription size={size} color={color}>
-        {type}
+      <StyledDescription size={descriptionSize} color={descriptionColor}>
+        {description}
       </StyledDescription>
     </StyledGroup>
   );
