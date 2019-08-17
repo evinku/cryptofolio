@@ -72,7 +72,7 @@ function PortfolioCards({ coinData, totalQuantities }) {
             </StyledQuantity>
           </StyledGroup>
           <span>
-            {new Intl.NumberFormat("de-DE", {
+            {new Intl.NumberFormat("ja-JP", {
               style: "currency",
               currency: "USD"
             }).format(findPriceByName(coinData, key))}
@@ -94,7 +94,7 @@ function PortfolioCards({ coinData, totalQuantities }) {
       <StyledTotal>
         <StyledTitle>Total:</StyledTitle>
         <StyledAmount>
-          {new Intl.NumberFormat("de-DE", {
+          {new Intl.NumberFormat("ja-JP", {
             style: "currency",
             currency: "USD"
           }).format(totalHoldings(totalQuantities, coinData))}

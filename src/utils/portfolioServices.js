@@ -14,7 +14,7 @@ export function findImageByName(coins, name) {
 export function calculateHoldings(price, amount) {
   const holdings = price * amount;
 
-  return new Intl.NumberFormat("de-DE", {
+  return new Intl.NumberFormat("ja-JP", {
     style: "currency",
     currency: "USD"
   }).format(holdings);

@@ -56,7 +56,7 @@ function CoinCards({ coinData, filteredCoins }) {
           </StyledGroupImage>
           <StyledGroup>
             <span>
-              {new Intl.NumberFormat("de-DE", {
+              {new Intl.NumberFormat("ja-JP", {
                 style: "currency",
                 currency: "USD"
               }).format(coinData[filteredCoin].current_price)}
@@ -79,7 +79,7 @@ function CoinCards({ coinData, filteredCoins }) {
           </StyledGroup>
           <StyledGroup>
             <span>
-              {numeral(coinData[filteredCoin].market_cap).format("($ 0.00 a)")}
+              {numeral(coinData[filteredCoin].market_cap).format("($0.00 a)")}
             </span>
             <StyledSpan
               color={

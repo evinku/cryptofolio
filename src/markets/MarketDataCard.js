@@ -24,11 +24,11 @@ const StyledGroup = styled.div`
 `;
 
 const StyledData = styled.span`
-  font-size: 20px;
+  font-size: 18px;
 `;
 
 const StyledTitle = styled.span`
-  font-size: 14px;
+  font-size: 12px;
   color: rgba(0, 0, 0, 0.64);
   margin-bottom: 5px;
 `;
@@ -45,13 +45,13 @@ function MarketDataCard() {
       <StyledGroup>
         <StyledTitle>Total Marketcap</StyledTitle>
         <StyledData>
-          {numeral(marketData.total_market_cap_usd).format("($ 0.00 a)")}
+          {numeral(marketData.total_market_cap_usd).format("($0.00 a)")}
         </StyledData>
       </StyledGroup>
       <StyledGroup>
         <StyledTitle>24h Volume</StyledTitle>
         <StyledData>
-          {numeral(marketData.total_volume_usd).format("($ 0.00 a)")}
+          {numeral(marketData.total_volume_usd).format("($0.00 a)")}
         </StyledData>
       </StyledGroup>
       <StyledGroup>

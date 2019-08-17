@@ -59,7 +59,7 @@ function TransactionCards({ transactions, coinData }) {
             <StyledGroup>
               <StyledSpan>Price:</StyledSpan>
               <span>
-                {new Intl.NumberFormat("de-DE", {
+                {new Intl.NumberFormat("ja-JP", {
                   style: "currency",
                   currency: "USD"
                 }).format(transaction.price)}
