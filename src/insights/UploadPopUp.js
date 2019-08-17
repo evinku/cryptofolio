@@ -5,6 +5,7 @@ import ActionButton from "../components/ActionButton";
 import { zoomOut } from "../utils/animations";
 import { postPortfolio } from "../services";
 import { RingLoader } from "react-spinners";
+import EmailValidator from "email-validator";
 
 const CancelButton = styled(ActionButton).attrs({
   icon: "fa-window-close",
@@ -35,7 +36,6 @@ const StyledForm = styled.form`
   border-radius: 10px;
   top: 195px;
   width: 95%;
-  height: 250px;
   padding: 20px;
   background: linear-gradient(
     180deg,
@@ -50,13 +50,20 @@ const StyledInput = styled.input`
   height: 30px;
   font-size: 16px;
   padding: 20px;
-  margin-bottom: 5px;
   border-radius: 10px;
+`;
+
+const StyledInputGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  width: 100%;
+  margin-bottom: 20px;
 `;
 
 const StyledGroup = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   justify-items: center;
   width: 80%;
 `;
@@ -77,13 +84,12 @@ function UploadPopUp({
     email: ""
   });
   const [confirming, setConfirming] = React.useState(false);
-
   const [errors, setErrors] = React.useState({});
 
   function validate() {
     const errors = {};
 
-    if (uploadData.email.trim() === "") {
+    if (!EmailValidator.validate(uploadData.email)) {
       errors.email = "Please add a valid email";
     }
     if (uploadData.name.trim() === "") {
@@ -125,30 +131,34 @@ function UploadPopUp({
   if (showPopUp) {
     return (
       <StyledForm>
-        <StyledInput
-          name="name"
-          value={uploadData.name}
-          placeholder="Your Name"
-          onChange={handleChange}
-        />
-        {errors.name && <StyledError>{errors.name}</StyledError>}
-        <StyledInput
-          name="email"
-          value={uploadData.email}
-          placeholder="Your Email"
-          onChange={handleChange}
-        />
-        {errors.email && <StyledError>{errors.email}</StyledError>}
+        <StyledInputGroup>
+          <StyledInput
+            name="name"
+            value={uploadData.name}
+            placeholder="Your Name"
+            onChange={handleChange}
+          />
+          {errors.name && <StyledError>{errors.name}</StyledError>}
+        </StyledInputGroup>
+        <StyledInputGroup>
+          <StyledInput
+            name="email"
+            value={uploadData.email}
+            placeholder="Your Email"
+            onChange={handleChange}
+          />
+          {errors.email && <StyledError>{errors.email}</StyledError>}
+        </StyledInputGroup>
         <StyledGroup>
           <CancelButton onClick={() => onCancelClick()} />
           <SendButton onClick={handleSubmit} />
-          <RingLoader
-            sizeUnit={"px"}
-            size={40}
-            color={"white"}
-            loading={confirming}
-          />
         </StyledGroup>
+        <RingLoader
+          sizeUnit={"px"}
+          size={50}
+          color={"white"}
+          loading={confirming}
+        />
       </StyledForm>
     );
   }
