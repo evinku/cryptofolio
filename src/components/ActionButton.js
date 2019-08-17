@@ -10,6 +10,7 @@ const StyledButton = styled.button`
   border: none;
   cursor: pointer;
   background-color: rgb(240, 240, 240);
+  color: ${props => (props.active ? "rgb(57, 99, 140)" : "black")};
 `;
 
 const StyledDescription = styled.span`
