@@ -11,6 +11,9 @@ const StyledButton = styled.button`
   cursor: pointer;
   background-color: rgb(240, 240, 240);
   color: ${props => (props.active ? "rgb(57, 99, 140)" : "black")};
+  &:disabled {
+    color: grey;
+  }
 `;
 
 const StyledDescription = styled.span`
@@ -33,11 +36,17 @@ function ActionButton({
   className,
   description,
   descriptionSize,
-  descriptionColor
+  descriptionColor,
+  ...props
 }) {
   return (
     <StyledGroup>
-      <StyledButton className={className} active={active} onClick={onClick}>
+      <StyledButton
+        className={className}
+        active={active}
+        onClick={onClick}
+        {...props}
+      >
         <i className={`fas ${icon}`} />
       </StyledButton>
       <StyledDescription size={descriptionSize} color={descriptionColor}>

@@ -73,6 +73,7 @@ function Form({ history, onTransactionSubmit, totalQuantities, coinData }) {
   });
 
   const [errors, setErrors] = React.useState({});
+  const [disabled, setDisabled] = React.useState(false);
 
   function validate(type) {
     const errors = {};
@@ -116,6 +117,7 @@ function Form({ history, onTransactionSubmit, totalQuantities, coinData }) {
 
   function handleSubmit(event, type) {
     event.preventDefault();
+
     setErrors({});
     const errors = validate(type);
     if (errors) {
@@ -123,6 +125,7 @@ function Form({ history, onTransactionSubmit, totalQuantities, coinData }) {
       return;
     }
     onTransactionSubmit({ ...formData, type });
+    setDisabled(true);
     resetForm();
     setErrors({});
     setTimeout(function() {
@@ -190,8 +193,14 @@ function Form({ history, onTransactionSubmit, totalQuantities, coinData }) {
         )}
       </div>
       <ButtonGroup>
-        <BuyButton onClick={event => handleSubmit(event, "buy")} />
-        <SellButton onClick={event => handleSubmit(event, "sell")} />
+        <BuyButton
+          disabled={disabled}
+          onClick={event => handleSubmit(event, "buy")}
+        />
+        <SellButton
+          disabled={disabled}
+          onClick={event => handleSubmit(event, "sell")}
+        />
       </ButtonGroup>
     </AddTransactionForm>
   );
