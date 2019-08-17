@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Notifications, { notify } from "react-notify-toast";
 import { RingLoader } from "react-spinners";
 
-const API_URL = "http://localhost:4000";
+const API_URL = "https://stark-coast-82137.herokuapp.com";
 
 const StyledDiv = styled.div`
   display: flex;
