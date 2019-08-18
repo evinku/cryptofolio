@@ -3,6 +3,15 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import numeral from "numeral";
 import CoinCardHeadlines from "./CoinCardHeadlines";
+import ActionButton from "../components/ActionButton";
+
+const FavButton = styled(ActionButton).attrs({
+  icon: "fa-star"
+})`
+  color: crimson;
+  font-size: 20px;
+  background: transparent;
+`;
 
 const StyledSection = styled.section`
   margin: 5px;
@@ -10,19 +19,19 @@ const StyledSection = styled.section`
 
 const StyledCard = styled.div`
   display: grid;
-  grid-template-columns: 30px 4fr 2fr 2fr;
+  grid-template-columns: 30px 4.5fr 3.5fr 3.5fr 30px;
 `;
 
 const StyledImg = styled.img`
-  width: 20px;
-  height: 20px;
-  margin-right: 3px;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
 `;
 
 const StyledGroupImage = styled.div`
   display: flex;
   align-items: center;
-  font-size: 20px;
+  font-size: 18px;
 `;
 
 const StyledGroup = styled.div`
@@ -38,10 +47,20 @@ const StyledRank = styled.div`
 `;
 
 const StyledSpan = styled.span`
+  font-size: 14px;
   color: ${props => props.color};
 `;
 
+const StyledCoinName = styled.span`
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.64);
+`;
+
 function CoinCards({ coinData, filteredCoins }) {
+  function handleFavClick(coinId) {
+    console.log(coinId);
+  }
+
   function renderCoinCard(filteredCoin) {
     return (
       <div key={coinData[filteredCoin].id}>
@@ -52,7 +71,10 @@ function CoinCards({ coinData, filteredCoins }) {
               alt={coinData[filteredCoin].name}
               src={coinData[filteredCoin].image}
             />
-            <span>{coinData[filteredCoin].name}</span>
+            <StyledGroup>
+              <span>{coinData[filteredCoin].symbol.toUpperCase()}</span>
+              <StyledCoinName>{coinData[filteredCoin].name}</StyledCoinName>
+            </StyledGroup>
           </StyledGroupImage>
           <StyledGroup>
             <span>
@@ -97,6 +119,9 @@ function CoinCards({ coinData, filteredCoins }) {
               %
             </StyledSpan>
           </StyledGroup>
+          <FavButton
+            onClick={() => handleFavClick(coinData[filteredCoin].id)}
+          />
         </StyledCard>
         <hr />
       </div>
