@@ -106,7 +106,7 @@ function CoinCards({ coinData, filteredCoins }) {
   return (
     <StyledSection>
       <CoinCardHeadlines />
-      {filteredCoins.length === 0 && <div>Loading...</div>}
+      {filteredCoins.length === 0 && <div>No results...</div>}
       {filteredCoins && filteredCoins.map(renderCoinCard)}
     </StyledSection>
   );

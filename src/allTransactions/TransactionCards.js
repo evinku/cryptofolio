@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import Moment from "react-moment";
 import { fadeIn } from "../utils/animations";
+import ActionButton from "../components/ActionButton";
 
 const StyledSection = styled.section`
   margin: 20px;
@@ -29,12 +30,30 @@ const StyledGroup = styled.div`
   flex-direction: row;
 `;
 
+const StyledHead = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 const StyledSpan = styled.span`
   opacity: 0.6;
   margin-right: 5px;
 `;
 
-function TransactionCards({ transactions, coinData }) {
+const DeleteButton = styled(ActionButton).attrs({
+  icon: "fa-trash-alt"
+})`
+  color: black;
+  font-size: 20px;
+  background: transparent;
+`;
+
+function TransactionCards({ transactions, coinData, onTransactionDelete }) {
+  function handleDeleteClick(id) {
+    onTransactionDelete(id);
+  }
+
   function renderTransactionCard(transaction) {
     return (
       <div key={transaction.id}>
@@ -45,9 +64,12 @@ function TransactionCards({ transactions, coinData }) {
               : "rgba(233,164,156,0.7)"
           }
         >
-          <span>
-            Date: <Moment format="YYYY/MM/DD">{transaction.date}</Moment>
-          </span>
+          <StyledHead>
+            <span>
+              Date: <Moment format="YYYY/MM/DD">{transaction.date}</Moment>
+            </span>
+            <DeleteButton onClick={() => handleDeleteClick(transaction.id)} />
+          </StyledHead>
           <hr />
           <StyledTransactions>
             <StyledGroup>

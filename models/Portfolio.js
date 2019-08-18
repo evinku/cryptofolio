@@ -11,7 +11,7 @@ const portfolioSchema = new mongoose.Schema({
   },
   date: {
     type: Date,
-    default: new Date().toISOString()
+    required: true
   },
   data: {
     type: Object,

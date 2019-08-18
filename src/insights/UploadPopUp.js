@@ -95,6 +95,9 @@ function UploadPopUp({
     if (uploadData.name.trim() === "") {
       errors.name = "Please add a name";
     }
+    if (Object.keys(totalQuantities).length === 0) {
+      errors.noPortfolio = "You have no portfolio to upload";
+    }
 
     return Object.keys(errors).length === 0 ? null : errors;
   }
@@ -116,7 +119,11 @@ function UploadPopUp({
       return;
     }
 
-    const data = { ...uploadData, data: totalQuantities };
+    const data = {
+      ...uploadData,
+      date: new Date().toISOString(),
+      data: totalQuantities
+    };
 
     postPortfolio(data).then(message => onMessageChange(message));
 
@@ -148,6 +155,9 @@ function UploadPopUp({
             onChange={handleChange}
           />
           {errors.email && <StyledError>{errors.email}</StyledError>}
+          {errors.noPortfolio && (
+            <StyledError>{errors.noPortfolio}</StyledError>
+          )}
         </StyledInputGroup>
         <StyledGroup>
           <CancelButton onClick={() => onCancelClick()} />

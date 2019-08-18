@@ -32,6 +32,7 @@ function PickDate({ onDateChange }) {
       timeIntervals={1}
       dateFormat="d MMMM yyyy h:mm aa"
       timeCaption="time"
+      maxDate={new Date()}
     />
   );
 }

@@ -49,6 +49,14 @@ function App() {
     setTransactions([transaction, ...transactions]);
   }
 
+  function handleTransactionDelete(id) {
+    const index = transactions.findIndex(transaction => transaction.id === id);
+    const newTransactions = transactions
+      .slice(0, index)
+      .concat(transactions.slice(index + 1, transactions.length));
+    setTransactions(newTransactions);
+  }
+
   const totalQuantities = transactions.reduce((acc, transaction) => {
     const { coin, type, quantity } = transaction;
     const previousQuantity = acc[coin] || 0;
@@ -92,6 +100,7 @@ function App() {
                   transactions={transactions}
                   totalQuantities={totalQuantities}
                   coinData={coinDataNormalizedID}
+                  onTransactionDelete={handleTransactionDelete}
                 />
               )}
             />

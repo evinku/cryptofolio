@@ -4,7 +4,12 @@ import PropTypes from "prop-types";
 import TransactionCards from "./TransactionCards";
 import SearchTransactions from "./SearchTransactions";
 
-function AllTransactionsPage({ transactions, totalQuantities, coinData }) {
+function AllTransactionsPage({
+  transactions,
+  totalQuantities,
+  coinData,
+  onTransactionDelete
+}) {
   const [filterValue, setFilterValue] = React.useState("");
 
   function handleFilterTransactionsChange(value) {
@@ -38,6 +43,7 @@ function AllTransactionsPage({ transactions, totalQuantities, coinData }) {
       <TransactionCards
         coinData={coinData}
         transactions={filteredTransactions}
+        onTransactionDelete={onTransactionDelete}
       />
     </>
   );
