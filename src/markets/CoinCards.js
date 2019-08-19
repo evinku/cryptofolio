@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import numeral from "numeral";
 import CoinCardHeadlines from "./CoinCardHeadlines";
 import ActionButton from "../components/ActionButton";
+import { getFromLocal, setToLocal } from "../services";
 
 const FavButton = styled(ActionButton).attrs({
   icon: "fa-star"
@@ -57,8 +58,29 @@ const StyledCoinName = styled.span`
 `;
 
 function CoinCards({ coinData, filteredCoins }) {
+  const [showBookmarked, setShowBookmarked] = React.useState(false);
+  const [favorites, setFavorites] = React.useState(
+    getFromLocal("favorites") || []
+  );
+
+  React.useEffect(() => {
+    setToLocal("favorites", favorites);
+  }, [favorites]);
+
   function handleFavClick(coinId) {
-    console.log(coinId);
+    if (favorites.includes(coinId)) {
+      const index = favorites.findIndex(favorite => favorite === coinId);
+      const newFavorites = favorites
+        .slice(0, index)
+        .concat(favorites.slice(index + 1, favorites.length));
+      setFavorites(newFavorites);
+    } else {
+      setFavorites([...favorites, coinId]);
+    }
+  }
+
+  function handleShowBookmarked() {
+    setShowBookmarked(!showBookmarked);
   }
 
   function renderCoinCard(filteredCoin) {
@@ -130,9 +152,18 @@ function CoinCards({ coinData, filteredCoins }) {
 
   return (
     <StyledSection>
-      <CoinCardHeadlines />
+      <CoinCardHeadlines
+        onShowBookmarked={handleShowBookmarked}
+        showBookmarked={showBookmarked}
+      />
       {filteredCoins.length === 0 && <div>No results...</div>}
-      {filteredCoins && filteredCoins.map(renderCoinCard)}
+      {filteredCoins && showBookmarked
+        ? filteredCoins
+            .filter(coin => {
+              return favorites.includes(coin);
+            })
+            .map(renderCoinCard)
+        : filteredCoins.map(renderCoinCard)}
     </StyledSection>
   );
 }
