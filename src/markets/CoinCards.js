@@ -9,7 +9,7 @@ import { getFromLocal, setToLocal } from "../services";
 const FavButton = styled(ActionButton).attrs({
   icon: "fa-star"
 })`
-  color: crimson;
+  color: ${props => props.color};
   font-size: 20px;
   background: transparent;
 `;
@@ -142,6 +142,9 @@ function CoinCards({ coinData, filteredCoins }) {
             </StyledSpan>
           </StyledGroup>
           <FavButton
+            color={
+              favorites.includes(coinData[filteredCoin].id) ? "red" : "green"
+            }
             onClick={() => handleFavClick(coinData[filteredCoin].id)}
           />
         </StyledCard>

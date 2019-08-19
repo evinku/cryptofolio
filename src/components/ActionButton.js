@@ -57,7 +57,7 @@ function ActionButton({
 }
 
 ActionButton.propTypes = {
-  icon: PropTypes.string.isRequired,
+  icon: PropTypes.string,
   active: PropTypes.bool,
   className: PropTypes.string,
   onClick: PropTypes.func
