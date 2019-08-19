@@ -30,7 +30,7 @@ const StyledHr = styled.hr`
 `;
 
 const UploadButton = styled(ActionButton).attrs({
-  icon: "fa-upload",
+  icon: "fas fa-upload",
   description: "Upload Portfolio"
 })`
   font-size: 30px;

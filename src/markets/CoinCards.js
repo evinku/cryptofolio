@@ -142,10 +142,12 @@ function CoinCards({ coinData, filteredCoins }) {
             </StyledSpan>
           </StyledGroup>
           <FavButton
-            color={
-              favorites.includes(coinData[filteredCoin].id) ? "red" : "green"
-            }
             onClick={() => handleFavClick(coinData[filteredCoin].id)}
+            icon={
+              favorites.includes(coinData[filteredCoin].id)
+                ? "fas fa-star"
+                : "far fa-star"
+            }
           />
         </StyledCard>
         <hr />

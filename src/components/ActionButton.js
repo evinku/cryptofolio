@@ -47,7 +47,7 @@ function ActionButton({
         onClick={onClick}
         {...props}
       >
-        <i className={`fas ${icon}`} />
+        <i className={`${icon}`} />
       </StyledButton>
       <StyledDescription size={descriptionSize} color={descriptionColor}>
         {description}

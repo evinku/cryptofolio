@@ -42,7 +42,7 @@ const StyledSpan = styled.span`
 `;
 
 const DeleteButton = styled(ActionButton).attrs({
-  icon: "fa-trash-alt"
+  icon: "fas fa-trash-alt"
 })`
   color: black;
   font-size: 20px;

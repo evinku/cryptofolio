@@ -8,7 +8,7 @@ import DropdownMenu from "./DropdownMenu";
 const uuidv1 = require("uuid/v1");
 
 const BuyButton = styled(ActionButton).attrs({
-  icon: "fa-smile-beam",
+  icon: "fas fa-smile-beam",
   description: "Buy",
   descriptionSize: "20px"
 })`
@@ -17,7 +17,7 @@ const BuyButton = styled(ActionButton).attrs({
 `;
 
 const SellButton = styled(ActionButton).attrs({
-  icon: "fa-sad-cry",
+  icon: "fas fa-sad-cry",
   description: "Sell",
   descriptionSize: "20px"
 })`
