@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import PieChart from "../portfolio/PieChart";
+import PieChart from "../components/PieChart";
 import styled from "styled-components";
 import { getPieData } from "../utils/portfolioServices";
 import { getPortfolios } from "../services";

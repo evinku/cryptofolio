@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import Title from "../components/Title";
 import PieCharts from "./PieCharts";
-import PieChart from "../portfolio/PieChart";
+import PieChart from "../components/PieChart";
 import { getPieData } from "../utils/portfolioServices";
 import ActionButton from "../components/ActionButton";
 import UploadPopUp from "./UploadPopUp";
