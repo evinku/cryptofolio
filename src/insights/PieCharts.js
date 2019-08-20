@@ -1,5 +1,6 @@
 import React from "react";
-import PieChart from "../portfolio/PieChart";
+import PropTypes from "prop-types";
+import PieChart from "../components/PieChart";
 import styled from "styled-components";
 import { getPieData } from "../utils/portfolioServices";
 import { getPortfolios } from "../services";
@@ -36,5 +37,9 @@ function PieCharts({ coinData }) {
       ))
   );
 }
+
+PieCharts.propTypes = {
+  coinData: PropTypes.object.isRequired
+};
 
 export default PieCharts;

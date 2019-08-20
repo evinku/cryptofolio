@@ -8,7 +8,7 @@ import { RingLoader } from "react-spinners";
 import EmailValidator from "email-validator";
 
 const CancelButton = styled(ActionButton).attrs({
-  icon: "fa-window-close",
+  icon: "fas fa-window-close",
   description: "Cancel",
   descriptionColor: "white"
 })`
@@ -18,7 +18,7 @@ const CancelButton = styled(ActionButton).attrs({
 `;
 
 const SendButton = styled(ActionButton).attrs({
-  icon: "fa-share-square",
+  icon: "fas fa-share-square",
   description: "Send",
   descriptionColor: "white"
 })`

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import Notifications, { notify } from "react-notify-toast";
 import { RingLoader } from "react-spinners";
 
@@ -40,5 +41,9 @@ function Confirm({ match }) {
     </>
   );
 }
+
+Confirm.propTypes = {
+  match: PropTypes.object.isRequired
+};
 
 export default Confirm;

@@ -5,7 +5,7 @@ import ActionButton from "./ActionButton";
 import { Link } from "react-router-dom";
 
 const PortfolioButton = styled(ActionButton).attrs({
-  icon: "fa-chart-pie"
+  icon: "fas fa-chart-pie"
 })`
   font-size: 35px;
   &:focus {
@@ -14,7 +14,7 @@ const PortfolioButton = styled(ActionButton).attrs({
 `;
 
 const InsightsButton = styled(ActionButton).attrs({
-  icon: "fa-stethoscope"
+  icon: "fas fa-stethoscope"
 })`
   font-size: 35px;
   &:focus {
@@ -23,7 +23,7 @@ const InsightsButton = styled(ActionButton).attrs({
 `;
 
 const MarketsButton = styled(ActionButton).attrs({
-  icon: "fa-search-dollar"
+  icon: "fas fa-search-dollar"
 })`
   font-size: 35px;
   &:focus {
@@ -32,7 +32,7 @@ const MarketsButton = styled(ActionButton).attrs({
 `;
 
 const AllTransactionsButton = styled(ActionButton).attrs({
-  icon: "fa-align-justify"
+  icon: "far fa-list-alt"
 })`
   font-size: 35px;
   &:focus {
@@ -41,7 +41,7 @@ const AllTransactionsButton = styled(ActionButton).attrs({
 `;
 
 const AddButton = styled(ActionButton).attrs({
-  icon: "fa-plus"
+  icon: "fas fa-plus"
 })`
   font-size: 40px;
   width: 48px;
@@ -129,7 +129,7 @@ function FooterNavigation({ links }) {
 }
 
 FooterNavigation.propTypes = {
-  links: PropTypes.object
+  links: PropTypes.object.isRequired
 };
 
 export default FooterNavigation;

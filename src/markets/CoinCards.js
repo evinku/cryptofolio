@@ -3,6 +3,16 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import numeral from "numeral";
 import CoinCardHeadlines from "./CoinCardHeadlines";
+import ActionButton from "../components/ActionButton";
+import { getFromLocal, setToLocal } from "../services";
+
+const FavButton = styled(ActionButton).attrs({
+  icon: "fa-star"
+})`
+  color: rgba(255, 0, 0, 0.8);
+  font-size: 20px;
+  background: transparent;
+`;
 
 const StyledSection = styled.section`
   margin: 5px;
@@ -10,19 +20,19 @@ const StyledSection = styled.section`
 
 const StyledCard = styled.div`
   display: grid;
-  grid-template-columns: 30px 4fr 2fr 2fr;
+  grid-template-columns: 30px 4.5fr 3.5fr 3.5fr 30px;
 `;
 
 const StyledImg = styled.img`
-  width: 20px;
-  height: 20px;
-  margin-right: 3px;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
 `;
 
 const StyledGroupImage = styled.div`
   display: flex;
   align-items: center;
-  font-size: 20px;
+  font-size: 18px;
 `;
 
 const StyledGroup = styled.div`
@@ -38,21 +48,62 @@ const StyledRank = styled.div`
 `;
 
 const StyledSpan = styled.span`
+  font-size: 14px;
   color: ${props => props.color};
 `;
 
-function CoinCards({ coinData, filteredCoins }) {
+const StyledCoinName = styled.span`
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.64);
+`;
+
+function CoinCards({ coinData, filteredCoins, onCardClick, history }) {
+  const [showBookmarked, setShowBookmarked] = React.useState(false);
+  const [favorites, setFavorites] = React.useState(
+    getFromLocal("favorites") || []
+  );
+
+  React.useEffect(() => {
+    setToLocal("favorites", favorites);
+  }, [favorites]);
+
+  function handleFavClick(coinId) {
+    if (favorites.includes(coinId)) {
+      const index = favorites.findIndex(favorite => favorite === coinId);
+      const newFavorites = favorites
+        .slice(0, index)
+        .concat(favorites.slice(index + 1, favorites.length));
+      setFavorites(newFavorites);
+    } else {
+      setFavorites([...favorites, coinId]);
+    }
+  }
+
+  function handleShowBookmarked() {
+    setShowBookmarked(!showBookmarked);
+  }
+
+  function handleCardClick(id) {
+    onCardClick(id);
+    history.push("/add-transaction");
+  }
+
   function renderCoinCard(filteredCoin) {
     return (
       <div key={coinData[filteredCoin].id}>
         <StyledCard>
           <StyledRank>{coinData[filteredCoin].market_cap_rank}</StyledRank>
-          <StyledGroupImage>
+          <StyledGroupImage
+            onClick={() => handleCardClick(coinData[filteredCoin].id)}
+          >
             <StyledImg
               alt={coinData[filteredCoin].name}
               src={coinData[filteredCoin].image}
             />
-            <span>{coinData[filteredCoin].name}</span>
+            <StyledGroup>
+              <span>{coinData[filteredCoin].symbol.toUpperCase()}</span>
+              <StyledCoinName>{coinData[filteredCoin].name}</StyledCoinName>
+            </StyledGroup>
           </StyledGroupImage>
           <StyledGroup>
             <span>
@@ -97,6 +148,14 @@ function CoinCards({ coinData, filteredCoins }) {
               %
             </StyledSpan>
           </StyledGroup>
+          <FavButton
+            onClick={() => handleFavClick(coinData[filteredCoin].id)}
+            icon={
+              favorites.includes(coinData[filteredCoin].id)
+                ? "fas fa-heart"
+                : "far fa-heart"
+            }
+          />
         </StyledCard>
         <hr />
       </div>
@@ -105,9 +164,18 @@ function CoinCards({ coinData, filteredCoins }) {
 
   return (
     <StyledSection>
-      <CoinCardHeadlines />
+      <CoinCardHeadlines
+        onShowBookmarked={handleShowBookmarked}
+        showBookmarked={showBookmarked}
+      />
       {filteredCoins.length === 0 && <div>No results...</div>}
-      {filteredCoins && filteredCoins.map(renderCoinCard)}
+      {filteredCoins && showBookmarked
+        ? filteredCoins
+            .filter(coin => {
+              return favorites.includes(coin);
+            })
+            .map(renderCoinCard)
+        : filteredCoins.map(renderCoinCard)}
     </StyledSection>
   );
 }

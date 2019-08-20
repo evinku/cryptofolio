@@ -8,7 +8,7 @@ import DropdownMenu from "./DropdownMenu";
 const uuidv1 = require("uuid/v1");
 
 const BuyButton = styled(ActionButton).attrs({
-  icon: "fa-smile-beam",
+  icon: "fas fa-smile-beam",
   description: "Buy",
   descriptionSize: "20px"
 })`
@@ -17,7 +17,7 @@ const BuyButton = styled(ActionButton).attrs({
 `;
 
 const SellButton = styled(ActionButton).attrs({
-  icon: "fa-sad-cry",
+  icon: "fas fa-sad-cry",
   description: "Sell",
   descriptionSize: "20px"
 })`
@@ -63,7 +63,13 @@ function checkTransaction(coin, currentQuantity, quantity, type) {
   } else return false;
 }
 
-function Form({ history, onTransactionSubmit, totalQuantities, coinData }) {
+function Form({
+  history,
+  onTransactionSubmit,
+  totalQuantities,
+  coinData,
+  coinCardClickValue
+}) {
   const [formData, setFormData] = React.useState({
     id: uuidv1(),
     coin: "",
@@ -159,6 +165,7 @@ function Form({ history, onTransactionSubmit, totalQuantities, coinData }) {
         <DropdownMenu
           coinOptions={coinOptions}
           onDropdownChange={handleDropdownChange}
+          coinCardClickValue={coinCardClickValue}
         />
         {errors.coin && <StyledError>{errors.coin}</StyledError>}
       </div>
@@ -207,10 +214,11 @@ function Form({ history, onTransactionSubmit, totalQuantities, coinData }) {
 }
 
 Form.propTypes = {
-  onTransactionSubmit: PropTypes.func,
-  history: PropTypes.object,
-  totalQuantities: PropTypes.object,
-  coinData: PropTypes.object
+  onTransactionSubmit: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+  totalQuantities: PropTypes.object.isRequired,
+  coinData: PropTypes.object.isRequired,
+  coinCardClickValue: PropTypes.string.isRequired
 };
 
 export default Form;

@@ -42,7 +42,7 @@ const StyledSpan = styled.span`
 `;
 
 const DeleteButton = styled(ActionButton).attrs({
-  icon: "fa-trash-alt"
+  icon: "fas fa-trash-alt"
 })`
   color: black;
   font-size: 20px;
@@ -116,7 +116,9 @@ function TransactionCards({ transactions, coinData, onTransactionDelete }) {
 }
 
 TransactionCards.propTypes = {
-  transactions: PropTypes.array.isRequired
+  transactions: PropTypes.array.isRequired,
+  coinData: PropTypes.object.isRequired,
+  onTransactionDelete: PropTypes.func.isRequired
 };
 
 export default TransactionCards;

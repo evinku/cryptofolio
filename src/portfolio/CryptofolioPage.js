@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Title from "../components/Title";
 import PortfolioCards from "./PortfolioCards";
-import PieChart from "./PieChart";
+import PieChart from "../components/PieChart";
 import { getPieData } from "../utils/portfolioServices";
 
 function CryptofolioPage({ totalQuantities, coinData }) {
@@ -17,7 +17,7 @@ function CryptofolioPage({ totalQuantities, coinData }) {
 }
 
 CryptofolioPage.propTypes = {
-  totalQuantities: PropTypes.object,
+  totalQuantities: PropTypes.object.isRequired,
   coinData: PropTypes.object.isRequired
 };
 

@@ -40,7 +40,8 @@ function PieChart({ pieData, date }) {
 }
 
 PieChart.propTypes = {
-  pieData: PropTypes.object
+  pieData: PropTypes.object.isRequired,
+  date: PropTypes.string
 };
 
 export default PieChart;

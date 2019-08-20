@@ -38,7 +38,7 @@ function PickDate({ onDateChange }) {
 }
 
 PickDate.propTypes = {
-  onDateChange: PropTypes.func
+  onDateChange: PropTypes.func.isRequired
 };
 
 export default PickDate;
