@@ -60,10 +60,11 @@ function AddTransactionPage({
 }
 
 AddTransactionPage.propTypes = {
-  onNewTransaction: PropTypes.func,
-  coinData: PropTypes.object,
-  totalQuantities: PropTypes.object,
-  history: PropTypes.object
+  onNewTransaction: PropTypes.func.isRequired,
+  coinData: PropTypes.object.isRequired,
+  totalQuantities: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  coinCardClickValue: PropTypes.string.isRequired
 };
 
 export default AddTransactionPage;

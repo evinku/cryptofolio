@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import ActionButton from "../components/ActionButton";
 
 const StyledCard = styled.div`
@@ -31,5 +32,10 @@ function CoinCardHeadlines({ onShowBookmarked, showBookmarked }) {
     </>
   );
 }
+
+CoinCardHeadlines.propTypes = {
+  onShowBookmarked: PropTypes.func.isRequired,
+  showBookmarked: PropTypes.bool.isRequired
+};
 
 export default CoinCardHeadlines;

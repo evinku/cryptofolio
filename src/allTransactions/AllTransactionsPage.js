@@ -52,7 +52,8 @@ function AllTransactionsPage({
 AllTransactionsPage.propTypes = {
   transactions: PropTypes.array.isRequired,
   totalQuantities: PropTypes.object.isRequired,
-  coinData: PropTypes.object.isRequired
+  coinData: PropTypes.object.isRequired,
+  onTransactionDelete: PropTypes.func.isRequired
 };
 
 export default AllTransactionsPage;

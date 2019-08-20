@@ -8,7 +8,6 @@ function getSize(size) {
     M: "20px",
     L: "30px"
   };
-
   return sizes[size] || sizes.M;
 }
 

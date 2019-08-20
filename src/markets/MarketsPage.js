@@ -31,7 +31,9 @@ function MarketsPage({ coinData, onCardClick, history }) {
   );
 }
 MarketsPage.propTypes = {
-  coinData: PropTypes.object.isRequired
+  coinData: PropTypes.object.isRequired,
+  onCardClick: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 export default MarketsPage;

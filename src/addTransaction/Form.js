@@ -214,10 +214,11 @@ function Form({
 }
 
 Form.propTypes = {
-  onTransactionSubmit: PropTypes.func,
-  history: PropTypes.object,
-  totalQuantities: PropTypes.object,
-  coinData: PropTypes.object
+  onTransactionSubmit: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+  totalQuantities: PropTypes.object.isRequired,
+  coinData: PropTypes.object.isRequired,
+  coinCardClickValue: PropTypes.string.isRequired
 };
 
 export default Form;

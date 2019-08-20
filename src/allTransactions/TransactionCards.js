@@ -116,7 +116,9 @@ function TransactionCards({ transactions, coinData, onTransactionDelete }) {
 }
 
 TransactionCards.propTypes = {
-  transactions: PropTypes.array.isRequired
+  transactions: PropTypes.array.isRequired,
+  coinData: PropTypes.object.isRequired,
+  onTransactionDelete: PropTypes.func.isRequired
 };
 
 export default TransactionCards;

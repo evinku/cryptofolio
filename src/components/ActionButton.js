@@ -60,11 +60,10 @@ ActionButton.propTypes = {
   icon: PropTypes.string,
   active: PropTypes.bool,
   className: PropTypes.string,
-  onClick: PropTypes.func
-};
-
-ActionButton.defaultProps = {
-  active: false
+  onClick: PropTypes.func,
+  description: PropTypes.string,
+  descriptionSize: PropTypes.string,
+  descriptionColor: PropTypes.string
 };
 
 export default ActionButton;

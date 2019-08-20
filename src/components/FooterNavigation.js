@@ -129,7 +129,7 @@ function FooterNavigation({ links }) {
 }
 
 FooterNavigation.propTypes = {
-  links: PropTypes.object
+  links: PropTypes.object.isRequired
 };
 
 export default FooterNavigation;
