@@ -11,13 +11,20 @@ const StyledDropdown = styled(Dropdown)`
   }
 `;
 
-function DropdownMenu({ coinOptions, onDropdownChange }) {
+function DropdownMenu({ coinOptions, onDropdownChange, coinCardClickValue }) {
   const [value, setValue] = React.useState();
 
   function handleChange(value) {
     onDropdownChange(value.value);
     setValue(value);
   }
+
+  React.useEffect(() => {
+    if (coinCardClickValue !== "") {
+      onDropdownChange(coinCardClickValue);
+      setValue(coinCardClickValue);
+    }
+  }, [coinCardClickValue]);
 
   return (
     <StyledDropdown
@@ -31,7 +38,8 @@ function DropdownMenu({ coinOptions, onDropdownChange }) {
 
 DropdownMenu.propTypes = {
   coinOptions: PropTypes.array.isRequired,
-  onDropdownChange: PropTypes.func.isRequired
+  onDropdownChange: PropTypes.func.isRequired,
+  coinCardClickValue: PropTypes.string.isRequired
 };
 
 export default DropdownMenu;

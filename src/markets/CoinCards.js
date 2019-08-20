@@ -57,7 +57,7 @@ const StyledCoinName = styled.span`
   color: rgba(0, 0, 0, 0.64);
 `;
 
-function CoinCards({ coinData, filteredCoins }) {
+function CoinCards({ coinData, filteredCoins, onCardClick, history }) {
   const [showBookmarked, setShowBookmarked] = React.useState(false);
   const [favorites, setFavorites] = React.useState(
     getFromLocal("favorites") || []
@@ -83,12 +83,19 @@ function CoinCards({ coinData, filteredCoins }) {
     setShowBookmarked(!showBookmarked);
   }
 
+  function handleCardClick(id) {
+    onCardClick(id);
+    history.push("/add-transaction");
+  }
+
   function renderCoinCard(filteredCoin) {
     return (
       <div key={coinData[filteredCoin].id}>
         <StyledCard>
           <StyledRank>{coinData[filteredCoin].market_cap_rank}</StyledRank>
-          <StyledGroupImage>
+          <StyledGroupImage
+            onClick={() => handleCardClick(coinData[filteredCoin].id)}
+          >
             <StyledImg
               alt={coinData[filteredCoin].name}
               src={coinData[filteredCoin].image}

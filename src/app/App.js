@@ -27,6 +27,7 @@ function App() {
     getFromLocal("transactions") || []
   );
   const [coinDataNormalizedID, setCoinDataNormalizedID] = React.useState({});
+  const [coinCardClickValue, setCoinCardClickValue] = React.useState("");
 
   React.useEffect(() => {
     setToLocal("transactions", transactions);
@@ -57,6 +58,10 @@ function App() {
     setTransactions(newTransactions);
   }
 
+  function handleCardClick(id) {
+    setCoinCardClickValue(id);
+  }
+
   const totalQuantities = transactions.reduce((acc, transaction) => {
     const { coin, type, quantity } = transaction;
     const previousQuantity = acc[coin] || 0;
@@ -76,7 +81,11 @@ function App() {
               path="/markets"
               exact
               render={props => (
-                <MarketsPage {...props} coinData={coinDataNormalizedID} />
+                <MarketsPage
+                  {...props}
+                  coinData={coinDataNormalizedID}
+                  onCardClick={handleCardClick}
+                />
               )}
             />
             <Route
@@ -88,6 +97,7 @@ function App() {
                   onNewTransaction={handleNewTransaction}
                   coinData={coinDataNormalizedID}
                   totalQuantities={totalQuantities}
+                  coinCardClickValue={coinCardClickValue}
                 />
               )}
             />

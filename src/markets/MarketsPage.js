@@ -5,7 +5,7 @@ import Search from "./Search";
 import Title from "../components/Title";
 import PropTypes from "prop-types";
 
-function MarketsPage({ coinData }) {
+function MarketsPage({ coinData, onCardClick, history }) {
   const [filterValue, setFilterValue] = React.useState("");
 
   function handleFilterChange(value) {
@@ -21,7 +21,12 @@ function MarketsPage({ coinData }) {
       <Title size="L">Markets</Title>
       <MarketDataCard />
       <Search onFilterChange={handleFilterChange} />
-      <CoinCards filteredCoins={filteredCoins} coinData={coinData} />
+      <CoinCards
+        filteredCoins={filteredCoins}
+        coinData={coinData}
+        onCardClick={onCardClick}
+        history={history}
+      />
     </>
   );
 }

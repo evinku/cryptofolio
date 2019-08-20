@@ -17,7 +17,8 @@ function AddTransactionPage({
   history,
   onNewTransaction,
   totalQuantities,
-  coinData
+  coinData,
+  coinCardClickValue
 }) {
   const [transactionType, setTransactionType] = React.useState("");
 
@@ -52,6 +53,7 @@ function AddTransactionPage({
         history={history}
         totalQuantities={totalQuantities}
         coinData={coinData}
+        coinCardClickValue={coinCardClickValue}
       />
     </StyledSection>
   );

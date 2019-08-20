@@ -63,7 +63,13 @@ function checkTransaction(coin, currentQuantity, quantity, type) {
   } else return false;
 }
 
-function Form({ history, onTransactionSubmit, totalQuantities, coinData }) {
+function Form({
+  history,
+  onTransactionSubmit,
+  totalQuantities,
+  coinData,
+  coinCardClickValue
+}) {
   const [formData, setFormData] = React.useState({
     id: uuidv1(),
     coin: "",
@@ -159,6 +165,7 @@ function Form({ history, onTransactionSubmit, totalQuantities, coinData }) {
         <DropdownMenu
           coinOptions={coinOptions}
           onDropdownChange={handleDropdownChange}
+          coinCardClickValue={coinCardClickValue}
         />
         {errors.coin && <StyledError>{errors.coin}</StyledError>}
       </div>
