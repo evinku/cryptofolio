@@ -9,7 +9,7 @@ const StyledCard = styled.div`
 `;
 
 const BookmarkButton = styled(ActionButton).attrs({})`
-  color: ${props => props.color};
+  color: rgba(255, 0, 0, 0.8);
   font-size: 20px;
   background: transparent;
 `;
@@ -24,7 +24,7 @@ function CoinCardHeadlines({ onShowBookmarked, showBookmarked }) {
         <span>Marketcap</span>
         <BookmarkButton
           onClick={onShowBookmarked}
-          icon={showBookmarked ? "fas fa-star" : "far fa-star"}
+          icon={showBookmarked ? "fas fa-heart" : "far fa-heart"}
         />
       </StyledCard>
       <hr />

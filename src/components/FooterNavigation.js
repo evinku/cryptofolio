@@ -32,7 +32,7 @@ const MarketsButton = styled(ActionButton).attrs({
 `;
 
 const AllTransactionsButton = styled(ActionButton).attrs({
-  icon: "fas fa-align-justify"
+  icon: "far fa-list-alt"
 })`
   font-size: 35px;
   &:focus {
