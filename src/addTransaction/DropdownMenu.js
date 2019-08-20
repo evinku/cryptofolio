@@ -18,13 +18,14 @@ function DropdownMenu({ coinOptions, onDropdownChange, coinCardClickValue }) {
     onDropdownChange(value.value);
     setValue(value);
   }
-
+  /* eslint-disable */
   React.useEffect(() => {
     if (coinCardClickValue !== "") {
       onDropdownChange(coinCardClickValue);
       setValue(coinCardClickValue);
     }
   }, [coinCardClickValue]);
+  /* eslint-disable */
 
   return (
     <StyledDropdown
