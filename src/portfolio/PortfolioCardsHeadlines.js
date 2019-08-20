@@ -5,6 +5,7 @@ const StyledCard = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   font-weight: bold;
+  margin-left: 5px;
 `;
 
 function PortfolioCardsHeadlines() {

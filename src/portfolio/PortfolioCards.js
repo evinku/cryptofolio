@@ -16,6 +16,7 @@ const StyledSection = styled.section`
 const StyledCard = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  margin-left: 5px;
 `;
 
 const StyledGroup = styled.div`
@@ -57,6 +58,11 @@ const StyledAmount = styled.div`
   margin: 0;
 `;
 
+const StyledAmountBtc = styled.span`
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.7);
+`;
+
 function PortfolioCards({ coinData, totalQuantities }) {
   function renderPortfolioCards(key) {
     return (
@@ -89,6 +95,8 @@ function PortfolioCards({ coinData, totalQuantities }) {
     );
   }
 
+  console.log();
+
   return (
     <StyledSection>
       <StyledTotal>
@@ -99,6 +107,14 @@ function PortfolioCards({ coinData, totalQuantities }) {
             currency: "USD"
           }).format(totalHoldings(totalQuantities, coinData))}
         </StyledAmount>
+        <StyledAmountBtc>
+          ~
+          {(
+            totalHoldings(totalQuantities, coinData) /
+            (coinData["bitcoin"] && coinData["bitcoin"].current_price)
+          ).toFixed(3)}{" "}
+          BTC
+        </StyledAmountBtc>
       </StyledTotal>
       <PortfolioCardsHeadlines />
       {Object.keys(totalQuantities).map(renderPortfolioCards)}
