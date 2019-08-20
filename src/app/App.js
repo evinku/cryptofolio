@@ -30,6 +30,10 @@ function App() {
   const [coinCardClickValue, setCoinCardClickValue] = React.useState("");
 
   React.useEffect(() => {
+    setCoinCardClickValue("");
+  }, [coinCardClickValue]);
+
+  React.useEffect(() => {
     setToLocal("transactions", transactions);
   }, [transactions]);
 

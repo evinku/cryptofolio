@@ -18,6 +18,7 @@ function DropdownMenu({ coinOptions, onDropdownChange, coinCardClickValue }) {
     onDropdownChange(value.value);
     setValue(value);
   }
+
   /* eslint-disable */
   React.useEffect(() => {
     if (coinCardClickValue !== "") {
