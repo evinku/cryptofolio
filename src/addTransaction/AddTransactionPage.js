@@ -11,6 +11,7 @@ const StyledSection = styled.section`
 const StyledRain = styled.iframe`
   position: absolute;
   pointer-events: none;
+  z-index: 1;
 `;
 
 function AddTransactionPage({
