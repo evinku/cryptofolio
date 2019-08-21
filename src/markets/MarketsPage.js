@@ -18,7 +18,9 @@ function MarketsPage({ coinData, onCardClick, history }) {
 
   return (
     <>
-      <Title size="L">Markets</Title>
+      <Title size="L" data-cy="header-title-markets">
+        Markets
+      </Title>
       <MarketDataCard />
       <Search onFilterChange={handleFilterChange} />
       <CoinCards

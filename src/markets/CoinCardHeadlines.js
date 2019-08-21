@@ -24,6 +24,7 @@ function CoinCardHeadlines({ onShowBookmarked, showBookmarked }) {
         <span>Price</span>
         <span>Marketcap</span>
         <BookmarkButton
+          data-cy="coin-like-filter"
           onClick={onShowBookmarked}
           icon={showBookmarked ? "fas fa-heart" : "far fa-heart"}
         />

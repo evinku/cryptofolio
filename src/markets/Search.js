@@ -24,7 +24,11 @@ function Search({ onFilterChange }) {
 
   return (
     <StyledDiv>
-      <StyledInput onChange={handlechange} placeholder="Search coin" />
+      <StyledInput
+        data-cy="input-search"
+        onChange={handlechange}
+        placeholder="Search coin"
+      />
     </StyledDiv>
   );
 }
