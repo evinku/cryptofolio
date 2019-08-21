@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Notifications, { notify } from "react-notify-toast";
 import { RingLoader } from "react-spinners";
 
-const API_URL = "http://localhost:4000";
+const API_URL = "http://localhost:3000";
 
 const StyledDiv = styled.div`
   display: flex;
@@ -18,7 +18,9 @@ function Confirm({ match }) {
 
   const { id } = match.params;
 
-  fetch(`${API_URL}/api/portfolios/confirm/${id}`)
+  fetch(`${API_URL}/api/portfolios/confirm/${id}`, {
+    method: "PATCH"
+  })
     .then(res => res.json())
     .then(data => {
       setTimeout(function() {

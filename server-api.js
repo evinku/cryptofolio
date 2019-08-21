@@ -10,12 +10,5 @@ module.exports = function(app) {
 
   app.post("/api/portfolios", emailController.collectEmail);
 
-  app.get("/api/portfolios/confirm/:id", emailController.confirmEmail);
-
-  app.patch("/api/portfolios/:id", (req, res) => {
-    const { id } = req.params;
-    Portfolio.findByIdAndUpdate(id, req.body, { new: true })
-      .then(portfolio => res.json(portfolio))
-      .catch(err => res.json(err));
-  });
+  app.patch("/api/portfolios/confirm/:id", emailController.confirmEmail);
 };

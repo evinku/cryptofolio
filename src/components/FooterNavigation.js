@@ -75,53 +75,23 @@ const FooterLink = styled(Link)`
 `;
 
 function FooterNavigation({ links }) {
-  const [active, setActive] = React.useState("");
-
-  function handlePortfolioClick() {
-    setActive("portfolio");
-  }
-  function handleInsightsClick() {
-    setActive("insights");
-  }
-  function handleMarketsClick() {
-    setActive("markets");
-  }
-  function handleTransactionsClick() {
-    setActive("transactions");
-  }
-  function handleAddClick() {
-    setActive("add");
-  }
-
   return (
     <StyledFooter>
       <FooterLink to={links.toCryptofolio}>
-        <PortfolioButton
-          active={active === "portfolio"}
-          onClick={handlePortfolioClick}
-        />
+        <PortfolioButton />
       </FooterLink>
       <FooterLink to={links.toInsights}>
-        <InsightsButton
-          active={active === "insights"}
-          onClick={handleInsightsClick}
-        />
+        <InsightsButton />
       </FooterLink>
       <FooterLink to={links.toMarkets}>
-        <MarketsButton
-          active={active === "markets"}
-          onClick={handleMarketsClick}
-        />
+        <MarketsButton />
       </FooterLink>
       <FooterLink to={links.toAllTransactions}>
-        <AllTransactionsButton
-          active={active === "transactions"}
-          onClick={handleTransactionsClick}
-        />
+        <AllTransactionsButton />
       </FooterLink>
       <StyledDiv>
         <FooterLink to={links.toAddTransaction}>
-          <AddButton active={active === "add"} onClick={handleAddClick} />
+          <AddButton />
         </FooterLink>
       </StyledDiv>
     </StyledFooter>

@@ -125,14 +125,13 @@ function UploadPopUp({
       data: totalQuantities
     };
 
-    postPortfolio(data).then(message => onMessageChange(message));
-
-    setConfirming(true);
-
-    setTimeout(function() {
+    postPortfolio(data).then(message => {
+      onMessageChange(message);
       setConfirming(false);
       onCancelClick();
-    }, 1500);
+    });
+
+    setConfirming(true);
   }
 
   if (showPopUp) {
