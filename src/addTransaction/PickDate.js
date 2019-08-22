@@ -23,6 +23,7 @@ function PickDate({ onDateChange }) {
 
   return (
     <StyledDatePicker
+      data-cy="input-date"
       placeholderText="Select date"
       selected={date ? date : null}
       onChange={handleDateChange}

@@ -166,7 +166,7 @@ function CoinCards({ coinData, filteredCoins, onCardClick, history }) {
   }
 
   return (
-    <StyledSection>
+    <StyledSection data-cy="coin-card-section">
       <CoinCardHeadlines
         onShowBookmarked={handleShowBookmarked}
         showBookmarked={showBookmarked}

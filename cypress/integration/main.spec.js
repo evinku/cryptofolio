@@ -1,4 +1,4 @@
-describe("Cryptofolio", () => {
+describe("Markets", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/markets");
   });
@@ -28,6 +28,23 @@ describe("Cryptofolio", () => {
 
     it("click on filter like buttons", () => {
       cy.get('[data-cy="coin-like-filter"]').click();
+      cy.get('[data-cy="coin-card-section"]').should("have.length", 1);
     });
+    it("navigates to add transaction on click", () => {
+      cy.get('[data-cy="coin-card-name"]')
+        .eq(50)
+        .click();
+    });
+  });
+});
+
+describe("Add transaction", () => {
+  before(() => {
+    cy.visit("http://localhost:3000/add-transaction");
+  });
+
+  it("create new transaction", () => {
+    cy.get('[data-cy="input-quantity"]').type(50);
+    cy.get('[data-cy="input-price"]').type(500);
   });
 });
