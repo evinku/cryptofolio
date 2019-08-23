@@ -17,7 +17,7 @@ const StyledInput = styled.input`
 `;
 
 function Search({ onFilterChange }) {
-  function handlechange(event) {
+  function handleChange(event) {
     const value = event.target.value.toLowerCase();
     onFilterChange(value);
   }
@@ -26,7 +26,7 @@ function Search({ onFilterChange }) {
     <StyledDiv>
       <StyledInput
         data-cy="input-search"
-        onChange={handlechange}
+        onChange={handleChange}
         placeholder="Search coin"
       />
     </StyledDiv>
