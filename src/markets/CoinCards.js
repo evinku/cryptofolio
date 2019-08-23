@@ -84,8 +84,11 @@ function CoinCards({ coinData, filteredCoins, onCardClick, history }) {
   }
 
   function handleCardClick(id) {
-    onCardClick(id);
-    history.push("/add-transaction");
+    const reCheck = window.confirm("Do you want to add a transaction?");
+    if (reCheck === true) {
+      onCardClick(id);
+      history.push("/add-transaction");
+    } else return;
   }
 
   function renderCoinCard(filteredCoin) {
