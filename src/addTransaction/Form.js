@@ -182,6 +182,7 @@ function Form({
           onChange={handleChange}
           name="price"
           placeholder="Price in $"
+          data-cy="input-price"
         />
         {errors.price && <StyledError>{errors.price}</StyledError>}
       </div>
@@ -193,6 +194,7 @@ function Form({
           onChange={handleChange}
           name="quantity"
           placeholder="Quantity"
+          data-cy="input-quantity"
         />
         {errors.quantity && <StyledError>{errors.quantity}</StyledError>}
         {errors.checkTransaction && (

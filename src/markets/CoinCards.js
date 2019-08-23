@@ -102,7 +102,9 @@ function CoinCards({ coinData, filteredCoins, onCardClick, history }) {
             />
             <StyledGroup>
               <span>{coinData[filteredCoin].symbol.toUpperCase()}</span>
-              <StyledCoinName>{coinData[filteredCoin].name}</StyledCoinName>
+              <StyledCoinName data-cy="coin-card-name">
+                {coinData[filteredCoin].name}
+              </StyledCoinName>
             </StyledGroup>
           </StyledGroupImage>
           <StyledGroup>
@@ -149,6 +151,7 @@ function CoinCards({ coinData, filteredCoins, onCardClick, history }) {
             </StyledSpan>
           </StyledGroup>
           <FavButton
+            data-cy="coin-like"
             onClick={() => handleFavClick(coinData[filteredCoin].id)}
             icon={
               favorites.includes(coinData[filteredCoin].id)
@@ -163,7 +166,7 @@ function CoinCards({ coinData, filteredCoins, onCardClick, history }) {
   }
 
   return (
-    <StyledSection>
+    <StyledSection data-cy="coin-card-section">
       <CoinCardHeadlines
         onShowBookmarked={handleShowBookmarked}
         showBookmarked={showBookmarked}
