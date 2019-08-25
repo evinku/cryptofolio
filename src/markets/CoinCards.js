@@ -47,7 +47,7 @@ const StyledRank = styled.div`
   align-items: center;
 `;
 
-const StyledSpan = styled.span`
+const StyledPercentage = styled.span`
   font-size: 14px;
   color: ${props => props.color};
 `;
@@ -84,8 +84,11 @@ function CoinCards({ coinData, filteredCoins, onCardClick, history }) {
   }
 
   function handleCardClick(id) {
-    onCardClick(id);
-    history.push("/add-transaction");
+    const reCheck = window.confirm("Do you want to add a transaction?");
+    if (reCheck === true) {
+      onCardClick(id);
+      history.push("/add-transaction");
+    } else return;
   }
 
   function renderCoinCard(filteredCoin) {
@@ -114,7 +117,7 @@ function CoinCards({ coinData, filteredCoins, onCardClick, history }) {
                 currency: "USD"
               }).format(coinData[filteredCoin].current_price)}
             </span>
-            <StyledSpan
+            <StyledPercentage
               color={
                 coinData[filteredCoin].price_change_percentage_24h &&
                 coinData[filteredCoin].price_change_percentage_24h
@@ -128,13 +131,13 @@ function CoinCards({ coinData, filteredCoins, onCardClick, history }) {
                 coinData[filteredCoin].price_change_percentage_24h * 100
               ) / 100}{" "}
               %
-            </StyledSpan>
+            </StyledPercentage>
           </StyledGroup>
           <StyledGroup>
             <span>
               {numeral(coinData[filteredCoin].market_cap).format("($0.00 a)")}
             </span>
-            <StyledSpan
+            <StyledPercentage
               color={
                 coinData[filteredCoin].market_cap_change_percentage_24h &&
                 coinData[filteredCoin].market_cap_change_percentage_24h
@@ -148,7 +151,7 @@ function CoinCards({ coinData, filteredCoins, onCardClick, history }) {
                 coinData[filteredCoin].market_cap_change_percentage_24h * 100
               ) / 100}{" "}
               %
-            </StyledSpan>
+            </StyledPercentage>
           </StyledGroup>
           <FavButton
             data-cy="coin-like"

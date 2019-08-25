@@ -51,7 +51,10 @@ const DeleteButton = styled(ActionButton).attrs({
 
 function TransactionCards({ transactions, coinData, onTransactionDelete }) {
   function handleDeleteClick(id) {
-    onTransactionDelete(id);
+    const reCheck = window.confirm("Do you want to delete this transaction?");
+    if (reCheck === true) {
+      onTransactionDelete(id);
+    } else return;
   }
 
   function renderTransactionCard(transaction) {
