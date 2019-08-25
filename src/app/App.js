@@ -66,8 +66,6 @@ function App() {
     setCoinCardClickValue(id);
   }
 
-  console.log(transactions);
-
   const totalQuantities = transactions.reduce((acc, transaction) => {
     const { coin, type, quantity } = transaction;
     const previousQuantity = acc[coin] || 0;

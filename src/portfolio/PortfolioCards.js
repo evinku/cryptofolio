@@ -24,7 +24,7 @@ const StyledGroup = styled.div`
   flex-direction: column;
 `;
 
-const StyledGroupInGroup = styled.div`
+const StyledImageGroup = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -51,7 +51,7 @@ const StyledTitle = styled.h3`
   margin: 0;
 `;
 
-const StyledAmount = styled.div`
+const StyledAmountUsd = styled.div`
   text-align: center;
   font-size: 22px;
   font-weight: bold;
@@ -69,10 +69,10 @@ function PortfolioCards({ coinData, totalQuantities }) {
       <div key={key}>
         <StyledCard>
           <StyledGroup>
-            <StyledGroupInGroup>
+            <StyledImageGroup>
               <StyledImg alt={key} src={findImageByName(coinData, key)} />
               <span>{coinData[key] && coinData[key].name}</span>
-            </StyledGroupInGroup>
+            </StyledImageGroup>
             <StyledQuantity>
               {Math.round(totalQuantities[key] * 100) / 100}
             </StyledQuantity>
@@ -101,12 +101,12 @@ function PortfolioCards({ coinData, totalQuantities }) {
     <StyledSection>
       <StyledTotal>
         <StyledTitle>Total:</StyledTitle>
-        <StyledAmount>
+        <StyledAmountUsd>
           {new Intl.NumberFormat("ja-JP", {
             style: "currency",
             currency: "USD"
           }).format(totalHoldings(totalQuantities, coinData))}
-        </StyledAmount>
+        </StyledAmountUsd>
         <StyledAmountBtc>
           ~
           {(
