@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Notifications, { notify } from "react-notify-toast";
 import { RingLoader } from "react-spinners";
 
-const API_URL = "https://stark-coast-82137.herokuapp.com";
+const API_URL = "http://localhost:3000";
 
 const StyledDiv = styled.div`
   display: flex;
